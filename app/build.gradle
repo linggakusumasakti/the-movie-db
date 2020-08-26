@@ -14,8 +14,9 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "TMDB_API_KEY", '"d12328fcec7d65af2acf79b488c7d59c"')
+        buildConfigField 'String', 'BASE_URL', '"https://api.themoviedb.org/3/"'
     }
 
     buildTypes {
