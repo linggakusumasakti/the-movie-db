@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">The Movie Db</string>
+    <string name="movie">Movie</string>
+    <string name="tv_show">Tv Show</string>
+    <string name="favorite">Favorite</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="find_movie_you_want">Find movie you want</string>
+    <string name="search_movie">Search Movie…</string>
+    <string name="find_tv_show_you_want">Find tv show you want</string>
 </resources>

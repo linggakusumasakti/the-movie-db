@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/movieFragment">
+
+    <fragment
+        android:id="@+id/movieFragment"
+        android:name="com.lingga.themoviedb.movie.MovieFragment"
+        android:label="MovieFragment"
+        tools:layout="@layout/fragment_movie" />
+    <fragment
+        android:id="@+id/tvFragment"
+        android:name="com.lingga.themoviedb.tvshow.TvFragment"
+        android:label="TvFragment"
+        tools:layout="@layout/fragment_tv" />
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.lingga.themoviedb.favorite.FavoriteFragment"
+        android:label="FavoriteFragment"
+        tools:layout="@layout/fragment_favorite" />
+</navigation>
