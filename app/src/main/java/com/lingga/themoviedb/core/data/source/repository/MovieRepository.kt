@@ -1,7 +1,9 @@
-package com.lingga.themoviedb.core.data
+package com.lingga.themoviedb.core.data.source.repository
 
-import com.lingga.themoviedb.core.data.source.local.LocalDataSource
-import com.lingga.themoviedb.core.data.source.remote.RemoteDataSource
+import com.lingga.themoviedb.core.data.NetworkBoundResource
+import com.lingga.themoviedb.core.data.Resource
+import com.lingga.themoviedb.core.data.source.local.MovieLocalDataSource
+import com.lingga.themoviedb.core.data.source.remote.MovieRemoteDataSource
 import com.lingga.themoviedb.core.data.source.remote.network.ApiResponse
 import com.lingga.themoviedb.core.data.source.remote.response.movie.MovieResponse
 import com.lingga.themoviedb.core.domain.model.Movie
@@ -15,8 +17,8 @@ import javax.inject.Singleton
 
 @Singleton
 class MovieRepository @Inject constructor(
-    private val remoteDataSource: RemoteDataSource,
-    private val localDataSource: LocalDataSource,
+    private val remoteDataSource: MovieRemoteDataSource,
+    private val localDataSource: MovieLocalDataSource,
     private val appExecutors: AppExecutors
 ) : IMovieRepository {
 
@@ -24,20 +26,18 @@ class MovieRepository @Inject constructor(
         object : NetworkBoundResource<List<Movie>, List<MovieResponse>>() {
             override fun loadFromDB(): Flow<List<Movie>> {
                 return localDataSource.getAllMovie().map {
-                    DataMapper.mapEntitiesToDomain(it)
+                    DataMapper.mapEntitiesToDomainMovie(it)
                 }
             }
 
-            override fun shouldFetch(data: List<Movie>?): Boolean {
-                return true
-            }
+            override fun shouldFetch(data: List<Movie>?): Boolean = data == null || data.isEmpty()
 
             override suspend fun createCall(): Flow<ApiResponse<List<MovieResponse>>> {
                 return remoteDataSource.fetchMovie()
             }
 
             override suspend fun saveCallResult(data: List<MovieResponse>) {
-                val movieList = DataMapper.responseToEntities(data)
+                val movieList = DataMapper.responseToEntitiesMovie(data)
                 localDataSource.insertMovie(movieList)
 
             }

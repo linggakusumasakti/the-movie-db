@@ -8,4 +8,5 @@
     <string name="find_movie_you_want">Find movie you want</string>
     <string name="search_movie">Search Movie…</string>
     <string name="find_tv_show_you_want">Find tv show you want</string>
+    <string name="oopss_something_went_wrong">Oopss.. something went wrong</string>
 </resources>

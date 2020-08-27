@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.lingga.themoviedb.core.ui.ViewModelFactory
 import com.lingga.themoviedb.movie.MovieViewModel
+import com.lingga.themoviedb.tvshow.TvShowViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -19,4 +20,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(MovieViewModel::class)
     abstract fun bindMovieViewModel(viewModel: MovieViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(TvShowViewModel::class)
+    abstract fun bindTvShowViewModel(viewModel: TvShowViewModel): ViewModel
 }
