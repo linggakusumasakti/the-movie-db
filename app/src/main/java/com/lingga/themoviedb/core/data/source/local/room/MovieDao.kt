@@ -18,4 +18,11 @@ interface MovieDao {
 
     @Update
     fun updateFavoriteMovie(movie: MovieEntity)
+
+    @Query("select * from movie where id = :id")
+    fun getMovie(id: Int): Flow<MovieEntity>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertDetailMovie(movie: MovieEntity)
+
 }

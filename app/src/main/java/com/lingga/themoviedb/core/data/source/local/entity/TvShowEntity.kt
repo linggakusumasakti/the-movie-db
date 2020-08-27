@@ -9,7 +9,7 @@ import androidx.room.PrimaryKey
 data class TvShowEntity(
     @PrimaryKey
     @NonNull
-    var id: String,
+    var id: Int,
     var name: String?,
     var overview: String?,
     var isFavorite: Boolean? = false,

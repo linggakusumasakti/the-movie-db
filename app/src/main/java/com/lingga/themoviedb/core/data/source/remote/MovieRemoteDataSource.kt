@@ -4,7 +4,6 @@ import android.util.Log
 import com.lingga.themoviedb.core.data.source.remote.network.ApiResponse
 import com.lingga.themoviedb.core.data.source.remote.network.MovieApiService
 import com.lingga.themoviedb.core.data.source.remote.response.movie.MovieResponse
-import com.lingga.themoviedb.core.data.source.remote.response.tvshow.TvShowResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -28,6 +27,17 @@ class MovieRemoteDataSource @Inject constructor(private val movieApiService: Mov
             } catch (e: Exception) {
                 emit(ApiResponse.Error(e.toString()))
                 Log.e("RemoteDataSource", e.toString())
+            }
+        }.flowOn(Dispatchers.IO)
+    }
+
+    suspend fun fetchDetailMovie(id: Int): Flow<ApiResponse<MovieResponse>> {
+        return flow {
+            try {
+                val response = movieApiService.getDetailMovie(id)
+                emit(ApiResponse.Success(response))
+            } catch (e: Exception) {
+                emit(ApiResponse.Error(e.toString()))
             }
         }.flowOn(Dispatchers.IO)
     }

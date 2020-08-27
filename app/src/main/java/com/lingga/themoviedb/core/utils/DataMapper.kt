@@ -13,7 +13,7 @@ object DataMapper {
         val movieList = ArrayList<MovieEntity>()
         input.map {
             val movie = MovieEntity(
-                id = it.id ?: "",
+                id = it.id ?: 0,
                 backdropPath = it.backdropPath,
                 isFavorite = false,
                 overview = it.overview,
@@ -42,7 +42,7 @@ object DataMapper {
         }
 
     fun domainToEntityMovie(input: Movie) = MovieEntity(
-        id = input.id ?: "",
+        id = input.id ?: 0,
         backdropPath = input.backdropPath,
         overview = input.overview,
         posterPath = input.posterPath,
@@ -55,7 +55,7 @@ object DataMapper {
     fun responseToEntitiesTvShow(input: List<TvShowResponse>): List<TvShowEntity> =
         input.map {
             TvShowEntity(
-                id = it.id ?: "",
+                id = it.id ?: 0,
                 voteAverage = it.voteAverage,
                 isFavorite = false,
                 posterPath = it.posterPath,
@@ -80,4 +80,48 @@ object DataMapper {
                 voteAverage = it.voteAverage
             )
         }
+
+    fun responseToEntityMovie(input: MovieResponse) = MovieEntity(
+        id = input.id ?: 0,
+        voteAverage = input.voteAverage,
+        isFavorite = false,
+        posterPath = input.posterPath,
+        overview = input.overview,
+        backdropPath = input.backdropPath,
+        title = input.title,
+        releaseDate = input.releaseDate
+    )
+
+    fun entityToDomainMovie(input: MovieEntity) = Movie(
+        id = input.id,
+        releaseDate = input.releaseDate,
+        title = input.title,
+        backdropPath = input.backdropPath,
+        overview = input.overview,
+        posterPath = input.posterPath,
+        isFavorite = input.isFavorite,
+        voteAverage = input.voteAverage
+    )
+
+    fun responseToEntityTvShow(input: TvShowResponse) = TvShowEntity(
+        id = input.id ?: 0,
+        voteAverage = input.voteAverage,
+        isFavorite = false,
+        posterPath = input.posterPath,
+        overview = input.overview,
+        backdropPath = input.backdropPath,
+        firstAirDate = input.firsAirDate,
+        name = input.name
+    )
+
+    fun entityToDomainTvShow(input: TvShowEntity) = TvShow(
+        id = input.id,
+        name = input.name,
+        firstAirDate = input.firstAirDate,
+        backdropPath = input.backdropPath,
+        overview = input.overview,
+        posterPath = input.posterPath,
+        isFavorite = input.isFavorite,
+        voteAverage = input.voteAverage
+    )
 }

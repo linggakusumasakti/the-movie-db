@@ -6,4 +6,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface TvShowUseCase {
     fun getAllTvShow(): Flow<Resource<List<TvShow>>>
+    fun getTvShow(id: Int): Flow<Resource<TvShow>>
 }

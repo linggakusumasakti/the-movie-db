@@ -10,7 +10,7 @@ data class MovieEntity(
 
     @PrimaryKey
     @NonNull
-    var id: String,
+    var id: Int,
     var title: String?,
     var overview: String?,
     var isFavorite: Boolean? = false,

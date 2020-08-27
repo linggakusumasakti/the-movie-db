@@ -1,4 +1,4 @@
-package com.lingga.themoviedb.favorite
+package com.lingga.themoviedb.ui.favorite
 
 import android.content.Context
 import android.os.Bundle
