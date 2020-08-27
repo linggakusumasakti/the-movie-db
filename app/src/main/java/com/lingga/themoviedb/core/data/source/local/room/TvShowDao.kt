@@ -18,4 +18,10 @@ interface TvShowDao {
 
     @Update
     fun updateFavoriteTvShow(tvShow: TvShowEntity)
+
+    @Query("select * from tv_show where id = :id")
+    fun getTvShow(id: Int): Flow<TvShowEntity>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertDetailTvShow(tvShow: TvShowEntity)
 }

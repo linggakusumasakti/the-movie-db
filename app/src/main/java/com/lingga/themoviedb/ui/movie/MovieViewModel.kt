@@ -1,4 +1,4 @@
-package com.lingga.themoviedb.movie
+package com.lingga.themoviedb.ui.movie
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData

@@ -12,4 +12,8 @@ class MovieLocalDataSource @Inject constructor(private val movieDao: MovieDao) {
     fun getAllMovie(): Flow<List<MovieEntity>> = movieDao.getAllMovie()
 
     suspend fun insertMovie(movie: List<MovieEntity>) = movieDao.insertMovie(movie)
+
+    fun getMovie(id: Int): Flow<MovieEntity> = movieDao.getMovie(id)
+
+    suspend fun insertDetailMovie(movie: MovieEntity) = movieDao.insertDetailMovie(movie)
 }

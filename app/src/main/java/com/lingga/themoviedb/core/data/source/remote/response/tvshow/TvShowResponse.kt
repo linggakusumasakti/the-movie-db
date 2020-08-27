@@ -3,7 +3,7 @@ package com.lingga.themoviedb.core.data.source.remote.response.tvshow
 import com.google.gson.annotations.SerializedName
 
 data class TvShowResponse(
-    val id: String?,
+    val id: Int?,
     val name: String?,
     val overview: String?,
     @SerializedName("poster_path") val posterPath: String?,
