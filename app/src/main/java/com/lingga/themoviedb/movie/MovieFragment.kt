@@ -2,7 +2,6 @@ package com.lingga.themoviedb.movie
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,6 +15,7 @@ import com.lingga.themoviedb.utils.ext.observe
 import com.lingga.themoviedb.utils.ext.show
 import javax.inject.Inject
 
+
 class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie) {
 
     @Inject
@@ -24,6 +24,7 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
     private val viewModel: MovieViewModel by viewModels { factory }
 
     private val adapter by lazy { MovieAdapter() }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -52,7 +53,9 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
                     }
                     is Resource.Error -> {
                         progressBar.hide()
-                        Log.d("errormovie", movie.message ?: "")
+                        viewError.errorContainer.show()
+                        viewError.errorMessage.text =
+                            movie.message ?: getString(R.string.oopss_something_went_wrong)
                     }
                 }
             }

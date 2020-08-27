@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/white"
@@ -36,9 +37,9 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/bg_searchview"
+            android:focusable="false"
             app:defaultQueryHint="@string/search_movie"
             app:iconifiedByDefault="false"
-            android:focusable="false"
             app:layout_constraintTop_toBottomOf="@id/text_find_movie"
             app:queryBackground="@android:color/transparent"
             app:queryHint="@string/search_movie" />
@@ -66,6 +67,15 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/search_view" />
+
+        <include
+            android:id="@+id/view_error"
+            layout="@layout/view_error"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
