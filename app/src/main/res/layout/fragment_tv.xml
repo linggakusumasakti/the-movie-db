@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/white"
@@ -13,6 +15,8 @@
             layout="@layout/app_bar_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
+        <!-- TODO: search view for submission MADE -->
 
         <TextView
             android:id="@+id/text_find_movie"
@@ -25,6 +29,7 @@
             android:text="@string/find_tv_show_you_want"
             android:textColor="@color/colorPrimary"
             android:textSize="25sp"
+            android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@id/appbar" />
 
         <androidx.appcompat.widget.SearchView
@@ -36,6 +41,7 @@
             android:layout_marginEnd="16dp"
             android:background="@drawable/bg_searchview"
             android:focusable="false"
+            android:visibility="gone"
             app:defaultQueryHint="@string/search_movie"
             app:iconifiedByDefault="false"
             app:layout_constraintTop_toBottomOf="@id/text_find_movie"
@@ -52,19 +58,14 @@
             app:layout_constraintTop_toBottomOf="@+id/search_view"
             tools:listitem="@layout/item_list_movie" />
 
-        <ProgressBar
-            android:id="@+id/progress_bar"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:visibility="gone"
+
+        <include
+            android:id="@+id/loading"
+            layout="@layout/loading"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/search_view" />
+            app:layout_constraintTop_toBottomOf="@id/search_view" />
 
         <include
             android:id="@+id/view_error"

@@ -6,6 +6,7 @@ data class MovieResponse(
     val id: Int?,
     val title: String?,
     val overview: String?,
+    val popularity: Float?,
     @SerializedName("poster_path") val posterPath: String?,
     @SerializedName("backdrop_path") val backdropPath: String?,
     @SerializedName("vote_average") val voteAverage: String?,

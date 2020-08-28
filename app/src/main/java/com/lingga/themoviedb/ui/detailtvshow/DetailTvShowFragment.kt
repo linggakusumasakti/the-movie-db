@@ -2,15 +2,17 @@ package com.lingga.themoviedb.ui.detailtvshow
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.lingga.themoviedb.R
+import com.lingga.themoviedb.core.data.Resource
 import com.lingga.themoviedb.core.ui.BaseFragment
 import com.lingga.themoviedb.core.ui.ViewModelFactory
 import com.lingga.themoviedb.databinding.FragmentDetailTvShowBinding
+import com.lingga.themoviedb.utils.ext.hide
 import com.lingga.themoviedb.utils.ext.observe
+import com.lingga.themoviedb.utils.ext.show
 import javax.inject.Inject
 
 class DetailTvShowFragment :
@@ -30,7 +32,20 @@ class DetailTvShowFragment :
 
     private fun subscribeUi() {
         observe(viewModel.detail(args.id)) {
-            Log.d("cekdetailtv", it.data.toString())
+            binding.apply {
+                when (it) {
+                    is Resource.Loading -> loading.progressBar.show()
+                    is Resource.Success -> {
+                        loading.progressBar.hide()
+                        data = it.data
+                    }
+                    is Resource.Error -> {
+                        loading.progressBar.hide()
+                        viewError.errorMessage.text = it.message
+                    }
+                }
+                backButton.setOnClickListener { requireActivity().onBackPressed() }
+            }
         }
     }
 

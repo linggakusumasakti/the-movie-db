@@ -46,13 +46,13 @@ class TvFragment : BaseFragment<FragmentTvBinding>(R.layout.fragment_tv) {
         observe(viewModel.tvShow) { tvShow ->
             binding.apply {
                 when (tvShow) {
-                    is Resource.Loading -> progressBar.show()
+                    is Resource.Loading -> loading.progressBar.show()
                     is Resource.Success -> {
-                        progressBar.hide()
+                        loading.progressBar.hide()
                         adapter.submitList(tvShow.data)
                     }
                     is Resource.Error -> {
-                        progressBar.hide()
+                        loading.progressBar.hide()
                         viewError.errorContainer.show()
                         viewError.errorMessage.text =
                             tvShow.message ?: getString(R.string.oopss_something_went_wrong)

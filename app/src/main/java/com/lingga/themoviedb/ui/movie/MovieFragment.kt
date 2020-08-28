@@ -48,13 +48,13 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
         observe(viewModel.movie) { movie ->
             binding.apply {
                 when (movie) {
-                    is Resource.Loading -> progressBar.show()
+                    is Resource.Loading -> loading.progressBar.show()
                     is Resource.Success -> {
-                        progressBar.hide()
+                        loading.progressBar.hide()
                         adapter.submitList(movie.data)
                     }
                     is Resource.Error -> {
-                        progressBar.hide()
+                        loading.progressBar.hide()
                         viewError.errorContainer.show()
                         viewError.errorMessage.text =
                             movie.message ?: getString(R.string.oopss_something_went_wrong)
