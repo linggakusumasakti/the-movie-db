@@ -20,7 +20,8 @@ object DataMapper {
                 posterPath = it.posterPath,
                 releaseDate = it.releaseDate,
                 title = it.title,
-                voteAverage = it.voteAverage
+                voteAverage = it.voteAverage,
+                popularity = it.popularity
             )
             movieList.add(movie)
         }
@@ -37,7 +38,8 @@ object DataMapper {
                 posterPath = it.posterPath,
                 overview = it.overview,
                 isFavorite = it.isFavorite,
-                backdropPath = it.backdropPath
+                backdropPath = it.backdropPath,
+                popularity = it.popularity
             )
         }
 
@@ -49,7 +51,8 @@ object DataMapper {
         releaseDate = input.releaseDate,
         title = input.title,
         voteAverage = input.voteAverage,
-        isFavorite = input.isFavorite
+        isFavorite = input.isFavorite,
+        popularity = input.popularity
     )
 
     fun responseToEntitiesTvShow(input: List<TvShowResponse>): List<TvShowEntity> =
@@ -89,7 +92,8 @@ object DataMapper {
         overview = input.overview,
         backdropPath = input.backdropPath,
         title = input.title,
-        releaseDate = input.releaseDate
+        releaseDate = input.releaseDate,
+        popularity = input.popularity
     )
 
     fun entityToDomainMovie(input: MovieEntity) = Movie(
@@ -100,7 +104,8 @@ object DataMapper {
         overview = input.overview,
         posterPath = input.posterPath,
         isFavorite = input.isFavorite,
-        voteAverage = input.voteAverage
+        voteAverage = input.voteAverage,
+        popularity = input.popularity
     )
 
     fun responseToEntityTvShow(input: TvShowResponse) = TvShowEntity(
