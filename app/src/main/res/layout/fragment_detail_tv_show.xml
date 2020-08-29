@@ -11,23 +11,19 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.constraintlayout.motion.widget.MotionLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:layoutDescription="@xml/fragment_detail_tv_show_scene"
         tools:context=".ui.detailmovie.DetailFragment">
 
-
-        <include
-            android:id="@+id/loading"
-            layout="@layout/loading" />
 
         <ImageView
             android:id="@+id/backdrop_poster"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@android:color/white"
             android:scaleType="centerCrop"
-            android:src="@color/colorPrimaryDark"
+            android:src="@color/grey"
             app:imageMovie="@{data.backdropPath}"
             app:layout_constraintDimensionRatio="H,1.5:1"
             app:layout_constraintEnd_toEndOf="parent"
@@ -51,7 +47,7 @@
             app:layout_constraintGuide_percent="0.4" />
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
+            android:id="@+id/poster"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
@@ -64,7 +60,6 @@
             tools:ignore="ContentDescription">
 
             <ImageView
-                android:id="@+id/poster"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
@@ -87,7 +82,7 @@
             android:textColor="@android:color/black"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="@+id/loading"
-            app:layout_constraintStart_toEndOf="@+id/cardView"
+            app:layout_constraintStart_toEndOf="@+id/poster"
             app:layout_constraintTop_toBottomOf="@+id/backdrop_poster"
             tools:text="Title Movie" />
 
@@ -116,40 +111,11 @@
             app:layout_constraintStart_toStartOf="@+id/release_date"
             app:layout_constraintTop_toBottomOf="@+id/release_date" />
 
-        <TextView
-            android:id="@+id/text_overview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="@string/overview"
-            android:textColor="@android:color/black"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView" />
-
-        <TextView
-            android:id="@+id/overview"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:fontFamily="@font/poppins"
-            android:text="@{data.overview}"
-            android:textAlignment="textStart"
-            android:textColor="@color/colorPrimary"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_overview"
-            tools:maxLines="5"
-            tools:text="@tools:sample/lorem/random" />
-
         <ImageView
             android:id="@+id/back_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"
             android:background="@drawable/circle"
             android:foregroundGravity="center_vertical"
@@ -161,10 +127,75 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="ContentDescription,RtlSymmetry" />
 
-        <include
-            android:id="@+id/view_error"
-            layout="@layout/view_error"
-            android:visibility="gone" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/poster">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/text_genre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="@string/genre"
+                    android:textColor="@android:color/black"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view_genre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@id/text_genre"
+                    tools:listitem="@layout/item_list_genre" />
+
+
+                <TextView
+                    android:id="@+id/text_overview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="@string/overview"
+                    android:textColor="@android:color/black"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/recycler_view_genre" />
+
+                <TextView
+                    android:id="@+id/overview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/poppins"
+                    android:text="@{data.overview}"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/colorPrimary"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_overview"
+                    tools:maxLines="5"
+                    tools:text="@tools:sample/lorem/random" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.motion.widget.MotionLayout>
 </layout>

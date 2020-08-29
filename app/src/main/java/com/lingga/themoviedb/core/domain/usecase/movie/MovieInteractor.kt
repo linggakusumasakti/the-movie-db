@@ -11,5 +11,5 @@ class MovieInteractor @Inject constructor(private val movieRepository: IMovieRep
 
     override fun getAllMovie(): Flow<Resource<List<Movie>>> = movieRepository.getAllMovie()
 
-    override fun getMovie(id: Int): Flow<Resource<Movie>> = movieRepository.getMovie(id)
+    override suspend fun getMovie(id: Int): Flow<Movie> = movieRepository.getMovie(id)
 }

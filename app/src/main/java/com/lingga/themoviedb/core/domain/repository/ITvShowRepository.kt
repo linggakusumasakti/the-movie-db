@@ -6,5 +6,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface ITvShowRepository {
     fun getAllTvShow(): Flow<Resource<List<TvShow>>>
-    fun getTvShow(id: Int): Flow<Resource<TvShow>>
+    suspend fun getTvShow(id: Int): Flow<TvShow>
 }

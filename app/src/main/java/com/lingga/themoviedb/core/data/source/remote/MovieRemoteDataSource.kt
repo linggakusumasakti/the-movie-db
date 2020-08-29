@@ -31,14 +31,10 @@ class MovieRemoteDataSource @Inject constructor(private val movieApiService: Mov
         }.flowOn(Dispatchers.IO)
     }
 
-    suspend fun fetchDetailMovie(id: Int): Flow<ApiResponse<MovieResponse>> {
+    suspend fun fetchDetailMovie(id: Int): Flow<MovieResponse> {
         return flow {
-            try {
-                val response = movieApiService.getDetailMovie(id)
-                emit(ApiResponse.Success(response))
-            } catch (e: Exception) {
-                emit(ApiResponse.Error(e.toString()))
-            }
+            val data = movieApiService.getDetailMovie(movieId = id)
+            emit(data)
         }.flowOn(Dispatchers.IO)
     }
 }

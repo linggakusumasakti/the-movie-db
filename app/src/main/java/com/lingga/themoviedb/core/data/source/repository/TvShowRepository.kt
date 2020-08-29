@@ -41,22 +41,8 @@ class TvShowRepository @Inject constructor(
             }
         }.asFlow()
 
-    override fun getTvShow(id: Int): Flow<Resource<TvShow>> =
-        object : NetworkBoundResource<TvShow, TvShowResponse>() {
-            override fun loadFromDB(): Flow<TvShow> {
-                return localDataSource.getTvShow(id).map {
-                    DataMapper.entityToDomainTvShow(it)
-                }
-            }
-
-            override fun shouldFetch(data: TvShow?): Boolean = data == null
-
-            override suspend fun createCall(): Flow<ApiResponse<TvShowResponse>> =
-                remoteDataSource.fetchDetailTvShow(id)
-
-            override suspend fun saveCallResult(data: TvShowResponse) {
-                val list = DataMapper.responseToEntityTvShow(data)
-                localDataSource.insertDetailTvShow(list)
-            }
-        }.asFlow()
+    override suspend fun getTvShow(id: Int): Flow<TvShow> =
+        remoteDataSource.fetchDetailTvShow(id).map {
+            DataMapper.responseToDomainTvShow(it)
+        }
 }
