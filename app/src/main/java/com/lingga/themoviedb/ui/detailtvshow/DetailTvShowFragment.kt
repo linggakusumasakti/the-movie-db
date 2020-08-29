@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.lingga.themoviedb.R
 import com.lingga.themoviedb.core.data.Resource
@@ -44,7 +45,7 @@ class DetailTvShowFragment :
                         viewError.errorMessage.text = it.message
                     }
                 }
-                backButton.setOnClickListener { requireActivity().onBackPressed() }
+                backButton.setOnClickListener { findNavController().navigateUp() }
             }
         }
     }
