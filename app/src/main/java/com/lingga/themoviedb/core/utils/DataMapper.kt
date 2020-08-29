@@ -84,17 +84,19 @@ object DataMapper {
             )
         }
 
-    fun responseToEntityMovie(input: MovieResponse) = MovieEntity(
-        id = input.id ?: 0,
-        voteAverage = input.voteAverage,
-        isFavorite = false,
-        posterPath = input.posterPath,
-        overview = input.overview,
-        backdropPath = input.backdropPath,
-        title = input.title,
-        releaseDate = input.releaseDate,
-        popularity = input.popularity
-    )
+    fun responseToEntityMovie(input: MovieResponse): MovieEntity {
+        return MovieEntity(
+            id = input.id ?: 0,
+            voteAverage = input.voteAverage,
+            isFavorite = false,
+            posterPath = input.posterPath,
+            overview = input.overview,
+            backdropPath = input.backdropPath,
+            title = input.title,
+            releaseDate = input.releaseDate,
+            popularity = input.popularity
+        )
+    }
 
     fun entityToDomainMovie(input: MovieEntity) = Movie(
         id = input.id,
@@ -128,5 +130,30 @@ object DataMapper {
         posterPath = input.posterPath,
         isFavorite = input.isFavorite,
         voteAverage = input.voteAverage
+    )
+
+    fun responseToDomainMovie(input: MovieResponse) = Movie(
+        id = input.id,
+        genres = input.genres,
+        popularity = input.popularity,
+        voteAverage = input.voteAverage,
+        isFavorite = false,
+        posterPath = input.posterPath,
+        overview = input.overview,
+        backdropPath = input.backdropPath,
+        title = input.title,
+        releaseDate = input.releaseDate
+    )
+
+    fun responseToDomainTvShow(input: TvShowResponse) = TvShow(
+        id = input.id,
+        genres = input.genres,
+        backdropPath = input.backdropPath,
+        overview = input.overview,
+        posterPath = input.posterPath,
+        isFavorite = false,
+        voteAverage = input.voteAverage,
+        firstAirDate = input.firsAirDate,
+        name = input.name
     )
 }

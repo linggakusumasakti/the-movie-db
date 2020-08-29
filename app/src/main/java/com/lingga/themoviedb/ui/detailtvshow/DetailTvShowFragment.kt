@@ -6,14 +6,13 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.lingga.themoviedb.R
-import com.lingga.themoviedb.core.data.Resource
 import com.lingga.themoviedb.core.ui.BaseFragment
 import com.lingga.themoviedb.core.ui.ViewModelFactory
 import com.lingga.themoviedb.databinding.FragmentDetailTvShowBinding
-import com.lingga.themoviedb.utils.ext.hide
+import com.lingga.themoviedb.ui.detailmovie.GenreAdapter
 import com.lingga.themoviedb.utils.ext.observe
-import com.lingga.themoviedb.utils.ext.show
 import javax.inject.Inject
 
 class DetailTvShowFragment :
@@ -26,26 +25,30 @@ class DetailTvShowFragment :
 
     private val args: DetailTvShowFragmentArgs by navArgs()
 
+    private val adapter by lazy { GenreAdapter() }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         subscribeUi()
+        initBinding()
+    }
+
+    private fun initBinding() {
+        binding.apply {
+            recyclerViewGenre.apply {
+                layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                adapter = this@DetailTvShowFragment.adapter
+            }
+            backButton.setOnClickListener { findNavController().navigateUp() }
+        }
     }
 
     private fun subscribeUi() {
-        observe(viewModel.detail(args.id)) {
+        viewModel.getDetail(args.id)
+        observe(viewModel.detail) {
             binding.apply {
-                when (it) {
-                    is Resource.Loading -> loading.progressBar.show()
-                    is Resource.Success -> {
-                        loading.progressBar.hide()
-                        data = it.data
-                    }
-                    is Resource.Error -> {
-                        loading.progressBar.hide()
-                        viewError.errorMessage.text = it.message
-                    }
-                }
-                backButton.setOnClickListener { findNavController().navigateUp() }
+                data = it
+                adapter.submitList(it.genres)
             }
         }
     }

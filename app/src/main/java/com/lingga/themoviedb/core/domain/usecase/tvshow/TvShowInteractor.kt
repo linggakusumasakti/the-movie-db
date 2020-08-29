@@ -11,5 +11,5 @@ class TvShowInteractor @Inject constructor(private val repository: ITvShowReposi
 
     override fun getAllTvShow(): Flow<Resource<List<TvShow>>> = repository.getAllTvShow()
 
-    override fun getTvShow(id: Int): Flow<Resource<TvShow>> = repository.getTvShow(id)
+    override suspend fun getTvShow(id: Int): Flow<TvShow> = repository.getTvShow(id)
 }

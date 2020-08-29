@@ -14,27 +14,16 @@
     <androidx.constraintlayout.motion.widget.MotionLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
         app:layoutDescription="@xml/fragment_detail_tv_show_scene"
         tools:context=".ui.detailmovie.DetailFragment">
 
-
-        <include
-            android:id="@+id/loading"
-            layout="@layout/loading" />
-
-        <include
-            android:id="@+id/view_error"
-            layout="@layout/view_error"
-            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/backdrop_poster"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@android:color/white"
             android:scaleType="centerCrop"
-            android:src="@color/colorPrimaryDark"
+            android:src="@color/grey"
             app:imageMovie="@{data.backdropPath}"
             app:layout_constraintDimensionRatio="H,1.5:1"
             app:layout_constraintEnd_toEndOf="parent"
@@ -152,6 +141,31 @@
                 android:layout_height="match_parent">
 
                 <TextView
+                    android:id="@+id/text_genre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="@string/genre"
+                    android:textColor="@android:color/black"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view_genre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@id/text_genre"
+                    tools:listitem="@layout/item_list_genre" />
+
+
+                <TextView
                     android:id="@+id/text_overview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -161,16 +175,16 @@
                     android:text="@string/overview"
                     android:textColor="@android:color/black"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@id/recycler_view_genre" />
 
                 <TextView
                     android:id="@+id/overview"
-                    android:ellipsize="end"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
+                    android:ellipsize="end"
                     android:fontFamily="@font/poppins"
                     android:text="@{data.overview}"
                     android:textAlignment="textStart"
