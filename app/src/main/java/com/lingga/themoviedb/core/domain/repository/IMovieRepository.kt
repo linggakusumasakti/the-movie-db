@@ -8,4 +8,6 @@ interface IMovieRepository {
 
     fun getAllMovie(): Flow<Resource<List<Movie>>>
     suspend fun getMovie(id: Int): Flow<Movie>
+    fun setFavoriteMovie(movie: Movie, state: Boolean)
+    fun getFavoriteMovie(): Flow<List<Movie>>
 }

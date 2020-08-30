@@ -5,6 +5,8 @@ import com.lingga.themoviedb.core.di.CoreComponent
 import com.lingga.themoviedb.ui.detailmovie.DetailFragment
 import com.lingga.themoviedb.ui.detailtvshow.DetailTvShowFragment
 import com.lingga.themoviedb.ui.favorite.FavoriteFragment
+import com.lingga.themoviedb.ui.favorite.FavoriteMovieFragment
+import com.lingga.themoviedb.ui.favorite.FavoriteTvShowFragment
 import com.lingga.themoviedb.ui.movie.MovieFragment
 import com.lingga.themoviedb.ui.tvshow.TvFragment
 import dagger.Component
@@ -26,4 +28,6 @@ interface AppComponent {
     fun inject(fragment: FavoriteFragment)
     fun inject(fragment: DetailFragment)
     fun inject(fragment: DetailTvShowFragment)
+    fun inject(fragment: FavoriteMovieFragment)
+    fun inject(fragment: FavoriteTvShowFragment)
 }

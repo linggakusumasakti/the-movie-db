@@ -10,9 +10,9 @@ import dagger.Module
 @Module(includes = [NetworkModule::class, DatabaseModule::class])
 abstract class RepositoryModule {
 
-    @Binds
-    abstract fun provideRepository(movieRepository: MovieRepository): IMovieRepository
+  @Binds
+  abstract fun provideRepository(movieRepository: MovieRepository): IMovieRepository
 
-    @Binds
-    abstract fun provideTvShowRepository(tvShowRepository: TvShowRepository): ITvShowRepository
+  @Binds
+  abstract fun provideTvShowRepository(tvShowRepository: TvShowRepository): ITvShowRepository
 }

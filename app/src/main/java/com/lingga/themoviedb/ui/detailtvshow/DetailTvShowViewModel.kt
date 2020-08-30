@@ -5,12 +5,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.lingga.themoviedb.core.domain.model.TvShow
-import com.lingga.themoviedb.core.domain.usecase.tvshow.TvShowInteractor
+import com.lingga.themoviedb.core.domain.usecase.tvshow.TvShowUseCase
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class DetailTvShowViewModel @Inject constructor(private val interactor: TvShowInteractor) :
+class DetailTvShowViewModel @Inject constructor(private val useCase: TvShowUseCase) :
     ViewModel() {
 
     private val _detail = MutableLiveData<TvShow>()
@@ -19,7 +19,7 @@ class DetailTvShowViewModel @Inject constructor(private val interactor: TvShowIn
 
     fun getDetail(id: Int) {
         viewModelScope.launch {
-            interactor.getTvShow(id)
+            useCase.getTvShow(id)
                 .collect {
                     _detail.postValue(it)
                 }

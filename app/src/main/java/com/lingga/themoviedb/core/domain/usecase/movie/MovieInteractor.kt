@@ -12,4 +12,9 @@ class MovieInteractor @Inject constructor(private val movieRepository: IMovieRep
     override fun getAllMovie(): Flow<Resource<List<Movie>>> = movieRepository.getAllMovie()
 
     override suspend fun getMovie(id: Int): Flow<Movie> = movieRepository.getMovie(id)
+
+    override fun setFavoriteMovie(movie: Movie, state: Boolean) =
+        movieRepository.setFavoriteMovie(movie, state)
+
+    override fun getFavoriteMovie(): Flow<List<Movie>> = movieRepository.getFavoriteMovie()
 }

@@ -6,7 +6,7 @@
     <data>
 
         <variable
-            name="data"
+            name="args"
             type="com.lingga.themoviedb.core.domain.model.Movie" />
 
     </data>
@@ -24,7 +24,7 @@
             android:background="@android:color/white"
             android:scaleType="centerCrop"
             android:src="@color/grey"
-            app:imageMovie="@{data.backdropPath}"
+            app:imageMovie="@{args.backdropPath}"
             app:layout_constraintDimensionRatio="H,1.5:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -63,7 +63,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                app:imageMovie="@{data.posterPath}"
+                app:imageMovie="@{args.posterPath}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -76,12 +76,15 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="4dp"
+            android:ellipsize="end"
             android:fontFamily="@font/poppins_medium"
-            android:text="@{data.title}"
+            android:maxWidth="0dp"
+            android:maxLines="3"
+            android:text="@{args.title}"
             android:textColor="@android:color/black"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="@+id/loading"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@+id/favorite_button"
             app:layout_constraintStart_toEndOf="@+id/poster"
             app:layout_constraintTop_toBottomOf="@+id/backdrop_poster"
             tools:text="Title Movie" />
@@ -92,7 +95,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/poppins_medium"
-            android:text="@{data.releaseDateFormat}"
+            android:text="@{args.releaseDateFormat}"
             android:textColor="@android:color/black"
             app:layout_constraintEnd_toEndOf="@+id/title"
             app:layout_constraintStart_toStartOf="@+id/title"
@@ -106,7 +109,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:isIndicator="true"
-            android:rating="@{data.ratingBar}"
+            android:rating="@{args.ratingBar}"
             android:theme="@style/RatingBar"
             app:layout_constraintStart_toStartOf="@+id/release_date"
             app:layout_constraintTop_toBottomOf="@+id/release_date" />
@@ -126,6 +129,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="ContentDescription,RtlSymmetry" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/favorite_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:backgroundTint="@android:color/white"
+            android:src="@drawable/ic_twotone_favorite_border"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/poster"
+            tools:ignore="ContentDescription" />
 
 
         <androidx.core.widget.NestedScrollView
@@ -187,7 +201,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
                     android:fontFamily="@font/poppins"
-                    android:text="@{data.overview}"
+                    android:text="@{args.overview}"
                     android:textAlignment="textStart"
                     android:textColor="@color/colorPrimary"
                     app:layout_constraintEnd_toEndOf="parent"

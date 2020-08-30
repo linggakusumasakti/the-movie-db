@@ -13,24 +13,24 @@ import java.util.concurrent.TimeUnit
 @Module
 class NetworkModule {
 
-    @Provides
-    fun provideOkHttpClient(): OkHttpClient {
-        return OkHttpClient.Builder()
-            .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-            .connectTimeout(120, TimeUnit.SECONDS)
-            .readTimeout(120, TimeUnit.SECONDS)
-            .writeTimeout(120, TimeUnit.SECONDS)
-            .build()
-    }
+  @Provides
+  fun provideOkHttpClient(): OkHttpClient {
+    return OkHttpClient.Builder()
+      .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+      .connectTimeout(120, TimeUnit.SECONDS)
+      .readTimeout(120, TimeUnit.SECONDS)
+      .writeTimeout(120, TimeUnit.SECONDS)
+      .build()
+  }
 
-    @Provides
-    fun provideRetrofit(client: OkHttpClient): Retrofit = Retrofit.Builder()
-        .baseUrl(BuildConfig.BASE_URL)
-        .addConverterFactory(GsonConverterFactory.create())
-        .client(client)
-        .build()
+  @Provides
+  fun provideRetrofit(client: OkHttpClient): Retrofit = Retrofit.Builder()
+    .baseUrl(BuildConfig.BASE_URL)
+    .addConverterFactory(GsonConverterFactory.create())
+    .client(client)
+    .build()
 
-    @Provides
-    fun provideMovieApiService(retrofit: Retrofit): MovieApiService =
-        retrofit.create(MovieApiService::class.java)
+  @Provides
+  fun provideMovieApiService(retrofit: Retrofit): MovieApiService =
+    retrofit.create(MovieApiService::class.java)
 }

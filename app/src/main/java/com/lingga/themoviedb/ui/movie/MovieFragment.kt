@@ -66,9 +66,7 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
 
     private fun navigateToDetail(movie: Movie) {
         findNavController().navigate(
-            MovieFragmentDirections.actionMovieFragmentToDetailFragment(
-                movie.id ?: 0
-            )
+            MovieFragmentDirections.actionMovieFragmentToDetailFragment(movie)
         )
     }
 

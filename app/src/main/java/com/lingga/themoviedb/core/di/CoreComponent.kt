@@ -9,15 +9,15 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(
-    modules = [RepositoryModule::class]
+  modules = [RepositoryModule::class]
 )
 interface CoreComponent {
 
-    @Component.Factory
-    interface Factory {
-        fun create(@BindsInstance context: Context): CoreComponent
-    }
+  @Component.Factory
+  interface Factory {
+    fun create(@BindsInstance context: Context): CoreComponent
+  }
 
-    fun provideRepository(): IMovieRepository
-    fun provideTvShowRepository(): ITvShowRepository
+  fun provideRepository(): IMovieRepository
+  fun provideTvShowRepository(): ITvShowRepository
 }
