@@ -13,7 +13,11 @@ class MovieLocalDataSource @Inject constructor(private val movieDao: MovieDao) {
 
     suspend fun insertMovie(movie: List<MovieEntity>) = movieDao.insertMovie(movie)
 
-    fun getMovie(id: Int): Flow<MovieEntity> = movieDao.getMovie(id)
+    fun setFavoriteMovie(movie: MovieEntity, state: Boolean) {
+        movie.isFavorite = state
+        movieDao.updateFavoriteMovie(movie)
+    }
 
-    suspend fun insertDetailMovie(movie: MovieEntity) = movieDao.insertDetailMovie(movie)
+    fun getFavoriteMovie(): Flow<List<MovieEntity>> = movieDao.getFavoriteMovie()
+
 }

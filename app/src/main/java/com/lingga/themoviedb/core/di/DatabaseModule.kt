@@ -12,15 +12,15 @@ import javax.inject.Singleton
 @Module
 class DatabaseModule {
 
-    @Singleton
-    @Provides
-    fun provideDatabase(context: Context): MovieDatabase =
-        Room.databaseBuilder(context, MovieDatabase::class.java, "Movie.db")
-            .fallbackToDestructiveMigration().build()
+  @Singleton
+  @Provides
+  fun provideDatabase(context: Context): MovieDatabase =
+    Room.databaseBuilder(context, MovieDatabase::class.java, "Movie.db")
+      .fallbackToDestructiveMigration().build()
 
-    @Provides
-    fun provideMovieDao(database: MovieDatabase): MovieDao = database.movieDao()
+  @Provides
+  fun provideMovieDao(database: MovieDatabase): MovieDao = database.movieDao()
 
-    @Provides
-    fun provideTvShowDao(database: MovieDatabase): TvShowDao = database.tvShowDao()
+  @Provides
+  fun provideTvShowDao(database: MovieDatabase): TvShowDao = database.tvShowDao()
 }

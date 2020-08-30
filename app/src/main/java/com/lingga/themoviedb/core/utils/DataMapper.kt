@@ -84,53 +84,6 @@ object DataMapper {
             )
         }
 
-    fun responseToEntityMovie(input: MovieResponse): MovieEntity {
-        return MovieEntity(
-            id = input.id ?: 0,
-            voteAverage = input.voteAverage,
-            isFavorite = false,
-            posterPath = input.posterPath,
-            overview = input.overview,
-            backdropPath = input.backdropPath,
-            title = input.title,
-            releaseDate = input.releaseDate,
-            popularity = input.popularity
-        )
-    }
-
-    fun entityToDomainMovie(input: MovieEntity) = Movie(
-        id = input.id,
-        releaseDate = input.releaseDate,
-        title = input.title,
-        backdropPath = input.backdropPath,
-        overview = input.overview,
-        posterPath = input.posterPath,
-        isFavorite = input.isFavorite,
-        voteAverage = input.voteAverage,
-        popularity = input.popularity
-    )
-
-    fun responseToEntityTvShow(input: TvShowResponse) = TvShowEntity(
-        id = input.id ?: 0,
-        voteAverage = input.voteAverage,
-        isFavorite = false,
-        posterPath = input.posterPath,
-        overview = input.overview,
-        backdropPath = input.backdropPath,
-        firstAirDate = input.firsAirDate,
-        name = input.name
-    )
-
-    fun entityToDomainTvShow(input: TvShowEntity) = TvShow(
-        id = input.id,
-        name = input.name,
-        firstAirDate = input.firstAirDate,
-        backdropPath = input.backdropPath,
-        overview = input.overview,
-        posterPath = input.posterPath,
-        isFavorite = input.isFavorite,
-        voteAverage = input.voteAverage
-    )
 
     fun responseToDomainMovie(input: MovieResponse) = Movie(
         id = input.id,

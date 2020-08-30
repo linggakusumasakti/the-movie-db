@@ -48,5 +48,14 @@ class MovieRepository @Inject constructor(
             DataMapper.responseToDomainMovie(it)
         }
 
+    override fun setFavoriteMovie(movie: Movie, state: Boolean) {
+        val movieEntity = DataMapper.domainToEntityMovie(movie)
+        appExecutors.diskIO().execute { localDataSource.setFavoriteMovie(movieEntity, state) }
+    }
 
+    override fun getFavoriteMovie(): Flow<List<Movie>> {
+        return localDataSource.getFavoriteMovie().map {
+            DataMapper.mapEntitiesToDomainMovie(it)
+        }
+    }
 }

@@ -13,25 +13,25 @@ import com.lingga.themoviedb.MyApplication
 import com.lingga.themoviedb.di.AppComponent
 
 abstract class BaseFragment<B : ViewDataBinding> constructor(
-    @LayoutRes val layoutRes: Int
+  @LayoutRes val layoutRes: Int
 ) : Fragment() {
 
-    protected lateinit var binding: B
-    protected lateinit var appComponent: AppComponent
+  protected lateinit var binding: B
+  protected lateinit var appComponent: AppComponent
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = DataBindingUtil.inflate(inflater, layoutRes, container, false)
-        binding.lifecycleOwner = viewLifecycleOwner
-        return binding.root
-    }
+  override fun onCreateView(
+    inflater: LayoutInflater,
+    container: ViewGroup?,
+    savedInstanceState: Bundle?
+  ): View? {
+    binding = DataBindingUtil.inflate(inflater, layoutRes, container, false)
+    binding.lifecycleOwner = viewLifecycleOwner
+    return binding.root
+  }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        appComponent = (requireActivity().application as MyApplication).appComponent
-    }
+  override fun onAttach(context: Context) {
+    super.onAttach(context)
+    appComponent = (requireActivity().application as MyApplication).appComponent
+  }
 
 }

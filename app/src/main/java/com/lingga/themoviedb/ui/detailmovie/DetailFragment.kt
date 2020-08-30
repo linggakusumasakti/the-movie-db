@@ -3,6 +3,7 @@ package com.lingga.themoviedb.ui.detailmovie
 import android.content.Context
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -28,6 +29,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        showDetailArgs()
         subscribeUi()
         initBinding()
     }
@@ -43,11 +45,39 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
     }
 
     private fun subscribeUi() {
-        viewModel.getDetail(args.id)
-        observe(viewModel.detail) {
-            binding.apply {
-                data = it
-                adapter.submitList(it.genres)
+        viewModel.getDetail(args.movie.id ?: 0)
+        observe(viewModel.detail) { movie ->
+            adapter.submitList(movie.genres)
+        }
+    }
+
+    private fun showDetailArgs() {
+        binding.args = args.movie
+        var statusFavorite = args.movie.isFavorite ?: false
+        setStatusFavorite(statusFavorite)
+        binding.favoriteButton.setOnClickListener {
+            statusFavorite = !statusFavorite
+            viewModel.setFavoriteMovie(args.movie, statusFavorite)
+            setStatusFavorite(statusFavorite)
+        }
+    }
+
+    private fun setStatusFavorite(statusFavorite: Boolean) {
+        binding.apply {
+            if (statusFavorite) {
+                favoriteButton.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        context ?: return,
+                        R.drawable.ic_baseline_favorite
+                    )
+                )
+            } else {
+                favoriteButton.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        context ?: return,
+                        R.drawable.ic_twotone_favorite_border
+                    )
+                )
             }
         }
     }
