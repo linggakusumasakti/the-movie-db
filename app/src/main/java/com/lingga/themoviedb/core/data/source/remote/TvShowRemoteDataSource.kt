@@ -33,8 +33,12 @@ class TvShowRemoteDataSource @Inject constructor(private val movieApiService: Mo
 
     suspend fun fetchDetailTvShow(id: Int): Flow<TvShowResponse> {
         return flow {
-            val data = movieApiService.getDetailTvShow(tvId = id)
-            emit(data)
+            try {
+                val data = movieApiService.getDetailTvShow(tvId = id)
+                emit(data)
+            } catch (e: Exception) {
+                Log.e("RemoteDataSource", e.toString())
+            }
         }.flowOn(Dispatchers.IO)
     }
 }
