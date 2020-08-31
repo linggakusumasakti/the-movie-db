@@ -1,17 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.favorite.FavoriteTvShowFragment">
 
-        <!-- TODO: Update blank fragment layout -->
-        <TextView
+        <include
+            android:id="@+id/empty_favorite"
+            layout="@layout/view_empty_favorite"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/tv_show" />
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/recycler_view_movie"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </FrameLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_movie"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/item_list_movie" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

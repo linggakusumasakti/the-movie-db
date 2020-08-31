@@ -64,9 +64,7 @@ class TvFragment : BaseFragment<FragmentTvBinding>(R.layout.fragment_tv) {
 
     private fun navigateToDetail(tvShow: TvShow) {
         findNavController().navigate(
-            TvFragmentDirections.actionTvFragmentToDetailTvShowFragment(
-                tvShow.id ?: 0
-            )
+            TvFragmentDirections.actionTvFragmentToDetailTvShowFragment(tvShow)
         )
     }
 

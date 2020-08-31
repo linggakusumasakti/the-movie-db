@@ -1,16 +1,20 @@
 package com.lingga.themoviedb.core.data.source.local
 
+import androidx.paging.DataSource
 import com.lingga.themoviedb.core.data.source.local.entity.TvShowEntity
 import com.lingga.themoviedb.core.data.source.local.room.TvShowDao
 import javax.inject.Inject
 
 class TvShowLocalDataSource @Inject constructor(private val tvShowDao: TvShowDao) {
 
-  fun getAllTvShow() = tvShowDao.getAllTvShow()
+    fun getAllTvShow() = tvShowDao.getAllTvShow()
 
-  suspend fun insertTvShow(tvShow: List<TvShowEntity>) = tvShowDao.insertTvShow(tvShow)
+    suspend fun insertTvShow(tvShow: List<TvShowEntity>) = tvShowDao.insertTvShow(tvShow)
 
-  fun getTvShow(id: Int) = tvShowDao.getTvShow(id)
+    fun setFavoriteTvShow(tvShowEntity: TvShowEntity, state: Boolean) {
+        tvShowEntity.isFavorite = state
+        tvShowDao.updateFavoriteTvShow(tvShowEntity)
+    }
 
-  suspend fun insertDetailTvShow(tvShow: TvShowEntity) = tvShowDao.insertDetailTvShow(tvShow)
+    fun getFavoriteTvShow(): DataSource.Factory<Int, TvShowEntity> = tvShowDao.getFavoriteTvShow()
 }

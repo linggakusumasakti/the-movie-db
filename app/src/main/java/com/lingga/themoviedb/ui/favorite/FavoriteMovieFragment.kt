@@ -12,6 +12,7 @@ import com.lingga.themoviedb.core.ui.BaseFragment
 import com.lingga.themoviedb.core.ui.ViewModelFactory
 import com.lingga.themoviedb.databinding.FragmentFavoriteMovieBinding
 import com.lingga.themoviedb.utils.ext.observe
+import com.lingga.themoviedb.utils.ext.show
 import javax.inject.Inject
 
 class FavoriteMovieFragment :
@@ -41,7 +42,8 @@ class FavoriteMovieFragment :
 
     private fun subscribeUi() {
         observe(viewModel.favoriteMovie) {
-            adapter.submitList(it)
+            if (it.isNullOrEmpty()) binding.emptyFavorite.textView.show()
+            else adapter.submitList(it)
         }
     }
 

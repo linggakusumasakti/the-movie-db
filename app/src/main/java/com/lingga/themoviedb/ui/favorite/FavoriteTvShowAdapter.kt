@@ -1,13 +1,12 @@
-package com.lingga.themoviedb.ui.tvshow
+package com.lingga.themoviedb.ui.favorite
 
 import androidx.recyclerview.widget.DiffUtil
 import com.lingga.themoviedb.R
 import com.lingga.themoviedb.core.domain.model.TvShow
-import com.lingga.themoviedb.core.ui.BaseAdapter
+import com.lingga.themoviedb.core.ui.BasePagedListAdapter
 
-class TvAdapter(onClick: (TvShow) -> Unit) :
-    BaseAdapter<TvShow>(diffUtil = DIFF_CALLBACK, onClick = onClick) {
-
+class FavoriteTvShowAdapter(onClick: (TvShow) -> Unit) :
+    BasePagedListAdapter<TvShow>(diffUtil = DIFF_CALLBACK, onClick = onClick) {
     override val getLayoutIdRes: Int
         get() = R.layout.item_list_tv_show
 

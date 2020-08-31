@@ -20,7 +20,7 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(R.layout.fragment
         initTabLayout()
     }
 
-    private inner class FavoritePagerAdapter(
+    private class FavoritePagerAdapter(
         fm: FragmentManager,
         lifecycle: Lifecycle
     ) : FragmentStateAdapter(fm, lifecycle) {
