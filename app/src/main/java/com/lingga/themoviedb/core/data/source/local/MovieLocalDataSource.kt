@@ -1,5 +1,6 @@
 package com.lingga.themoviedb.core.data.source.local
 
+import androidx.paging.DataSource
 import com.lingga.themoviedb.core.data.source.local.entity.MovieEntity
 import com.lingga.themoviedb.core.data.source.local.room.MovieDao
 import kotlinx.coroutines.flow.Flow
@@ -18,6 +19,6 @@ class MovieLocalDataSource @Inject constructor(private val movieDao: MovieDao) {
         movieDao.updateFavoriteMovie(movie)
     }
 
-    fun getFavoriteMovie(): Flow<List<MovieEntity>> = movieDao.getFavoriteMovie()
+    fun getFavoriteMovie(): DataSource.Factory<Int, MovieEntity> = movieDao.getFavoriteMovie()
 
 }

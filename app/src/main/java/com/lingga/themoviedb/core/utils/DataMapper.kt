@@ -43,6 +43,19 @@ object DataMapper {
             )
         }
 
+    fun mapEntityToDomainMovie(input: MovieEntity) = Movie(
+        id = input.id,
+        backdropPath = input.backdropPath,
+        voteAverage = input.voteAverage,
+        isFavorite = input.isFavorite,
+        posterPath = input.posterPath,
+        overview = input.overview,
+        releaseDate = input.releaseDate,
+        title = input.title,
+        popularity = input.popularity
+    )
+
+
     fun domainToEntityMovie(input: Movie) = MovieEntity(
         id = input.id ?: 0,
         backdropPath = input.backdropPath,

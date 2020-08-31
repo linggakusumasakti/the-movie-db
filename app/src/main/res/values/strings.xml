@@ -11,4 +11,5 @@
     <string name="oopss_something_went_wrong">Oopss.. something went wrong</string>
     <string name="overview">Overview</string>
     <string name="genre">Genre</string>
+    <string name="empty_fav_movie">Favorite Movie Is Empty</string>
 </resources>
