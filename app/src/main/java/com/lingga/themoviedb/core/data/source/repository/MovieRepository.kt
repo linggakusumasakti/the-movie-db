@@ -1,5 +1,8 @@
 package com.lingga.themoviedb.core.data.source.repository
 
+import androidx.lifecycle.LiveData
+import androidx.paging.LivePagedListBuilder
+import androidx.paging.PagedList
 import com.lingga.themoviedb.core.data.NetworkBoundResource
 import com.lingga.themoviedb.core.data.Resource
 import com.lingga.themoviedb.core.data.source.local.MovieLocalDataSource
@@ -53,9 +56,16 @@ class MovieRepository @Inject constructor(
         appExecutors.diskIO().execute { localDataSource.setFavoriteMovie(movieEntity, state) }
     }
 
-    override fun getFavoriteMovie(): Flow<List<Movie>> {
-        return localDataSource.getFavoriteMovie().map {
-            DataMapper.mapEntitiesToDomainMovie(it)
+    override fun getFavoriteMovie(): LiveData<PagedList<Movie>> {
+        val data = localDataSource.getFavoriteMovie().map {
+            DataMapper.mapEntityToDomainMovie(it)
         }
+
+        val config = PagedList.Config.Builder()
+            .setEnablePlaceholders(false)
+            .setInitialLoadSizeHint(4)
+            .setPageSize(4)
+            .build()
+        return LivePagedListBuilder(data, config).build()
     }
 }

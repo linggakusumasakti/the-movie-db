@@ -1,5 +1,8 @@
 package com.lingga.themoviedb.core.data.source.repository
 
+import androidx.lifecycle.LiveData
+import androidx.paging.LivePagedListBuilder
+import androidx.paging.PagedList
 import com.lingga.themoviedb.core.data.NetworkBoundResource
 import com.lingga.themoviedb.core.data.Resource
 import com.lingga.themoviedb.core.data.source.local.TvShowLocalDataSource
@@ -45,4 +48,22 @@ class TvShowRepository @Inject constructor(
         remoteDataSource.fetchDetailTvShow(id).map {
             DataMapper.responseToDomainTvShow(it)
         }
+
+    override fun setFavoriteTvShow(tvShow: TvShow, state: Boolean) {
+        val entity = DataMapper.domainToEntityTvShow(tvShow)
+        appExecutors.diskIO().execute { localDataSource.setFavoriteTvShow(entity, state) }
+    }
+
+    override fun getFavoriteTvShow(): LiveData<PagedList<TvShow>> {
+        val data = localDataSource.getFavoriteTvShow().map {
+            DataMapper.mapEntityToDomainTvShow(it)
+        }
+        val config = PagedList.Config.Builder()
+            .setEnablePlaceholders(false)
+            .setInitialLoadSizeHint(4)
+            .setPageSize(4)
+            .build()
+
+        return LivePagedListBuilder(data, config).build()
+    }
 }

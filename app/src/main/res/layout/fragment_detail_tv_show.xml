@@ -6,7 +6,7 @@
     <data>
 
         <variable
-            name="data"
+            name="args"
             type="com.lingga.themoviedb.core.domain.model.TvShow" />
 
     </data>
@@ -24,7 +24,7 @@
             android:layout_height="0dp"
             android:scaleType="centerCrop"
             android:src="@color/grey"
-            app:imageMovie="@{data.backdropPath}"
+            app:imageMovie="@{args.backdropPath}"
             app:layout_constraintDimensionRatio="H,1.5:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -63,7 +63,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                app:imageMovie="@{data.posterPath}"
+                app:imageMovie="@{args.posterPath}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -79,7 +79,7 @@
             android:layout_marginEnd="8dp"
             android:ellipsize="end"
             android:fontFamily="@font/poppins_medium"
-            android:text="@{data.name}"
+            android:text="@{args.name}"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="@+id/loading"
@@ -93,7 +93,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/poppins_medium"
-            android:text="@{data.releaseDateFormat}"
+            android:text="@{args.releaseDateFormat}"
             android:textColor="@android:color/black"
             app:layout_constraintEnd_toEndOf="@+id/title"
             app:layout_constraintStart_toStartOf="@+id/title"
@@ -107,7 +107,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:isIndicator="true"
-            android:rating="@{data.ratingBar}"
+            android:rating="@{args.ratingBar}"
             android:theme="@style/RatingBar"
             app:layout_constraintStart_toStartOf="@+id/release_date"
             app:layout_constraintTop_toBottomOf="@+id/release_date" />
@@ -197,7 +197,7 @@
                     android:layout_marginEnd="16dp"
                     android:ellipsize="end"
                     android:fontFamily="@font/poppins"
-                    android:text="@{data.overview}"
+                    android:text="@{args.overview}"
                     android:textAlignment="textStart"
                     android:textColor="@color/colorPrimary"
                     app:layout_constraintEnd_toEndOf="parent"

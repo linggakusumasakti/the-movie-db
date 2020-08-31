@@ -25,4 +25,6 @@ class DetailTvShowViewModel @Inject constructor(private val useCase: TvShowUseCa
                 }
         }
     }
+
+    fun setFavoriteTvShow(tvShow: TvShow, state: Boolean) = useCase.setFavoriteTvShow(tvShow, state)
 }

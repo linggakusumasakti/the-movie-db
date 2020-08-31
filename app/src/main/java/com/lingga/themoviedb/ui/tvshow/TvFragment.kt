@@ -43,7 +43,7 @@ class TvFragment : BaseFragment<FragmentTvBinding>(R.layout.fragment_tv) {
     }
 
     private fun subscribeUi() {
-        observe(viewModel.tvShow) { tvShow ->
+        observe(viewModel.tvShow ?: return) { tvShow ->
             binding.apply {
                 when (tvShow) {
                     is Resource.Loading -> loading.progressBar.show()
@@ -64,9 +64,7 @@ class TvFragment : BaseFragment<FragmentTvBinding>(R.layout.fragment_tv) {
 
     private fun navigateToDetail(tvShow: TvShow) {
         findNavController().navigate(
-            TvFragmentDirections.actionTvFragmentToDetailTvShowFragment(
-                tvShow.id ?: 0
-            )
+            TvFragmentDirections.actionTvFragmentToDetailTvShowFragment(tvShow)
         )
     }
 

@@ -43,6 +43,30 @@ object DataMapper {
             )
         }
 
+    fun mapEntityToDomainMovie(input: MovieEntity) = Movie(
+        id = input.id,
+        backdropPath = input.backdropPath,
+        voteAverage = input.voteAverage,
+        isFavorite = input.isFavorite,
+        posterPath = input.posterPath,
+        overview = input.overview,
+        releaseDate = input.releaseDate,
+        title = input.title,
+        popularity = input.popularity
+    )
+
+    fun mapEntityToDomainTvShow(input: TvShowEntity) = TvShow(
+        id = input.id,
+        backdropPath = input.backdropPath,
+        voteAverage = input.voteAverage,
+        isFavorite = input.isFavorite,
+        posterPath = input.posterPath,
+        overview = input.overview,
+        firstAirDate = input.firstAirDate,
+        name = input.name
+    )
+
+
     fun domainToEntityMovie(input: Movie) = MovieEntity(
         id = input.id ?: 0,
         backdropPath = input.backdropPath,
@@ -53,6 +77,17 @@ object DataMapper {
         voteAverage = input.voteAverage,
         isFavorite = input.isFavorite,
         popularity = input.popularity
+    )
+
+    fun domainToEntityTvShow(input: TvShow) = TvShowEntity(
+        id = input.id ?: 0,
+        backdropPath = input.backdropPath,
+        overview = input.overview,
+        posterPath = input.posterPath,
+        isFavorite = input.isFavorite,
+        voteAverage = input.voteAverage,
+        name = input.name,
+        firstAirDate = input.firstAirDate
     )
 
     fun responseToEntitiesTvShow(input: List<TvShowResponse>): List<TvShowEntity> =

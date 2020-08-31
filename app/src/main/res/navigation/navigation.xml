@@ -39,6 +39,9 @@
         <action
             android:id="@+id/action_favoriteFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
+        <action
+            android:id="@+id/action_favoriteFragment_to_detailTvShowFragment"
+            app:destination="@id/detailTvShowFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
@@ -55,7 +58,7 @@
         android:label="DetailTvShowFragment"
         tools:layout="@layout/fragment_detail_tv_show">
         <argument
-            android:name="id"
-            app:argType="integer" />
+            android:name="tv_show"
+            app:argType="com.lingga.themoviedb.core.domain.model.TvShow" />
     </fragment>
 </navigation>

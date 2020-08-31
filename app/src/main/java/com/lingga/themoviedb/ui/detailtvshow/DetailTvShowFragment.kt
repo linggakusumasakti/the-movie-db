@@ -3,6 +3,7 @@ package com.lingga.themoviedb.ui.detailtvshow
 import android.content.Context
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -31,6 +32,7 @@ class DetailTvShowFragment :
         super.onViewCreated(view, savedInstanceState)
         subscribeUi()
         initBinding()
+        showDetailArgs()
     }
 
     private fun initBinding() {
@@ -44,11 +46,39 @@ class DetailTvShowFragment :
     }
 
     private fun subscribeUi() {
-        viewModel.getDetail(args.id)
-        observe(viewModel.detail) {
-            binding.apply {
-                data = it
-                adapter.submitList(it.genres)
+        viewModel.getDetail(args.tvShow.id ?: 0)
+        observe(viewModel.detail) { tvShow ->
+            adapter.submitList(tvShow.genres)
+        }
+    }
+
+    private fun showDetailArgs() {
+        binding.args = args.tvShow
+        var statusFavorite = args.tvShow.isFavorite ?: false
+        setStatusFavorite(statusFavorite)
+        binding.favoriteButton.setOnClickListener {
+            statusFavorite = !statusFavorite
+            viewModel.setFavoriteTvShow(args.tvShow, statusFavorite)
+            setStatusFavorite(statusFavorite)
+        }
+    }
+
+    private fun setStatusFavorite(statusFavorite: Boolean) {
+        binding.apply {
+            if (statusFavorite) {
+                favoriteButton.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        context ?: return,
+                        R.drawable.ic_baseline_favorite
+                    )
+                )
+            } else {
+                favoriteButton.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        context ?: return,
+                        R.drawable.ic_twotone_favorite_border
+                    )
+                )
             }
         }
     }

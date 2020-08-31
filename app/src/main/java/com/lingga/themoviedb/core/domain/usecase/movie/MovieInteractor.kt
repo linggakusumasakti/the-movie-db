@@ -1,5 +1,7 @@
 package com.lingga.themoviedb.core.domain.usecase.movie
 
+import androidx.lifecycle.LiveData
+import androidx.paging.PagedList
 import com.lingga.themoviedb.core.data.Resource
 import com.lingga.themoviedb.core.domain.model.Movie
 import com.lingga.themoviedb.core.domain.repository.IMovieRepository
@@ -16,5 +18,5 @@ class MovieInteractor @Inject constructor(private val movieRepository: IMovieRep
     override fun setFavoriteMovie(movie: Movie, state: Boolean) =
         movieRepository.setFavoriteMovie(movie, state)
 
-    override fun getFavoriteMovie(): Flow<List<Movie>> = movieRepository.getFavoriteMovie()
+    override fun getFavoriteMovie(): LiveData<PagedList<Movie>> = movieRepository.getFavoriteMovie()
 }

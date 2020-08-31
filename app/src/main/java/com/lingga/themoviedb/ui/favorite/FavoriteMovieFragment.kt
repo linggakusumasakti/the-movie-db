@@ -11,8 +11,8 @@ import com.lingga.themoviedb.core.domain.model.Movie
 import com.lingga.themoviedb.core.ui.BaseFragment
 import com.lingga.themoviedb.core.ui.ViewModelFactory
 import com.lingga.themoviedb.databinding.FragmentFavoriteMovieBinding
-import com.lingga.themoviedb.ui.movie.MovieAdapter
 import com.lingga.themoviedb.utils.ext.observe
+import com.lingga.themoviedb.utils.ext.show
 import javax.inject.Inject
 
 class FavoriteMovieFragment :
@@ -23,7 +23,7 @@ class FavoriteMovieFragment :
 
     private val viewModel: FavoriteMovieViewModel by viewModels { factory }
 
-    private val adapter by lazy { MovieAdapter { navigateToDetail(it) } }
+    private val adapter by lazy { FavoriteAdapter { navigateToDetail(it) } }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -33,7 +33,7 @@ class FavoriteMovieFragment :
 
     private fun initBinding() {
         binding.apply {
-            recyclerViewMovie.apply {
+            recyclerViewFavoriteMovie.apply {
                 adapter = this@FavoriteMovieFragment.adapter
                 layoutManager = LinearLayoutManager(context)
             }
@@ -41,8 +41,9 @@ class FavoriteMovieFragment :
     }
 
     private fun subscribeUi() {
-        observe(viewModel.favoriteMovie) {
-            adapter.submitList(it)
+        observe(viewModel.favoriteMovie ?: return) {
+            if (it.isNullOrEmpty()) binding.emptyFavorite.textView.show()
+            else adapter.submitList(it)
         }
     }
 

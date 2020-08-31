@@ -45,7 +45,7 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
     }
 
     private fun subscribeUi() {
-        observe(viewModel.movie) { movie ->
+        observe(viewModel.movie ?: return) { movie ->
             binding.apply {
                 when (movie) {
                     is Resource.Loading -> loading.progressBar.show()
