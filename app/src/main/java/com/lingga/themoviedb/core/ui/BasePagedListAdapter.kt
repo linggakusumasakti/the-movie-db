@@ -5,14 +5,14 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.databinding.library.baseAdapters.BR
+import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 
 abstract class BasePagedListAdapter<T>(
     val onClick: (T) -> Unit = {},
     diffUtil: DiffUtil.ItemCallback<T>
-) : ListAdapter<T, BasePagedListAdapter<T>.ViewHolder>(diffUtil) {
+) : PagedListAdapter<T, BasePagedListAdapter<T>.ViewHolder>(diffUtil) {
 
     protected abstract val getLayoutIdRes: Int
 
