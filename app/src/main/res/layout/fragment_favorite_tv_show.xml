@@ -13,11 +13,11 @@
             layout="@layout/view_empty_favorite"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@+id/recycler_view_movie"
+            app:layout_constraintBottom_toBottomOf="@+id/recycler_view_favorite_tv_show"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view_movie"
+            android:id="@+id/recycler_view_favorite_tv_show"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="8dp"

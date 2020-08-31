@@ -33,7 +33,7 @@ class FavoriteMovieFragment :
 
     private fun initBinding() {
         binding.apply {
-            recyclerViewMovie.apply {
+            recyclerViewFavoriteMovie.apply {
                 adapter = this@FavoriteMovieFragment.adapter
                 layoutManager = LinearLayoutManager(context)
             }
@@ -41,7 +41,7 @@ class FavoriteMovieFragment :
     }
 
     private fun subscribeUi() {
-        observe(viewModel.favoriteMovie) {
+        observe(viewModel.favoriteMovie ?: return) {
             if (it.isNullOrEmpty()) binding.emptyFavorite.textView.show()
             else adapter.submitList(it)
         }

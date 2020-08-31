@@ -5,7 +5,7 @@ import com.lingga.themoviedb.R
 import com.lingga.themoviedb.core.data.source.remote.response.GenreResponse
 import com.lingga.themoviedb.core.ui.BaseAdapter
 
-class GenreAdapter() : BaseAdapter<GenreResponse>(diffUtil = DIFF_CALLBACK) {
+class GenreAdapter : BaseAdapter<GenreResponse>(diffUtil = DIFF_CALLBACK) {
     override val getLayoutIdRes: Int
         get() = R.layout.item_list_genre
 

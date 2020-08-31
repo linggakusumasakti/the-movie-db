@@ -33,7 +33,7 @@ class FavoriteTvShowFragment :
 
     private fun initBinding() {
         binding.apply {
-            recyclerViewMovie.apply {
+            recyclerViewFavoriteTvShow.apply {
                 adapter = this@FavoriteTvShowFragment.adapter
                 layoutManager = LinearLayoutManager(context)
             }
@@ -41,7 +41,7 @@ class FavoriteTvShowFragment :
     }
 
     private fun subscribeUi() {
-        observe(viewModel.favoriteTvShow) {
+        observe(viewModel.favoriteTvShow ?: return) {
             if (it.isNullOrEmpty()) {
                 binding.emptyFavorite.textView.apply {
                     show()
