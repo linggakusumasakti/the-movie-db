@@ -33,7 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
-        android:name="com.lingga.themoviedb.ui.favorite.FavoriteFragment"
+        android:name="com.lingga.themoviedb.favorites.FavoriteFragment"
         android:label="FavoriteFragment"
         tools:layout="@layout/fragment_favorite" >
         <action

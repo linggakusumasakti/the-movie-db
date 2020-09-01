@@ -1,4 +1,4 @@
-package com.lingga.themoviedb.ui.favorite
+package com.lingga.themoviedb.favorites
 
 import androidx.lifecycle.ViewModel
 import com.domain.usecase.movie.MovieUseCase
