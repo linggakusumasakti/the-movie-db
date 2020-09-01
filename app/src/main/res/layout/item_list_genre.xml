@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="com.lingga.themoviedb.core.data.source.remote.response.GenreResponse" />
+            type="com.data.source.remote.response.GenreResponse" />
     </data>
 
 

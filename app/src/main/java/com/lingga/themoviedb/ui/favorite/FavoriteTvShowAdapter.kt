@@ -1,9 +1,9 @@
 package com.lingga.themoviedb.ui.favorite
 
 import androidx.recyclerview.widget.DiffUtil
+import com.domain.model.TvShow
 import com.lingga.themoviedb.R
-import com.lingga.themoviedb.core.domain.model.TvShow
-import com.lingga.themoviedb.core.ui.BasePagedListAdapter
+import com.lingga.themoviedb.ui.base.BasePagedListAdapter
 
 class FavoriteTvShowAdapter(onClick: (TvShow) -> Unit) :
     BasePagedListAdapter<TvShow>(diffUtil = DIFF_CALLBACK, onClick = onClick) {

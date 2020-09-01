@@ -1,8 +1,8 @@
 package com.lingga.themoviedb
 
 import android.app.Application
-import com.lingga.themoviedb.core.di.CoreComponent
-import com.lingga.themoviedb.core.di.DaggerCoreComponent
+import com.di.CoreComponent
+import com.di.DaggerCoreComponent
 import com.lingga.themoviedb.di.AppComponent
 import com.lingga.themoviedb.di.DaggerAppComponent
 

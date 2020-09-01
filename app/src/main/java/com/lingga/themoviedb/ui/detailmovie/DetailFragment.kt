@@ -9,8 +9,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lingga.themoviedb.R
-import com.lingga.themoviedb.core.ui.BaseFragment
-import com.lingga.themoviedb.core.ui.ViewModelFactory
+import com.lingga.themoviedb.ui.base.BaseFragment
+import com.lingga.themoviedb.ui.ViewModelFactory
 import com.lingga.themoviedb.databinding.FragmentDetailBinding
 import com.lingga.themoviedb.utils.ext.observe
 import javax.inject.Inject
