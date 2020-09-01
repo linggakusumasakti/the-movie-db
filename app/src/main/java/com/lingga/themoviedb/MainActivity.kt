@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.setupWithNavController
-import com.lingga.themoviedb.core.ui.BaseActivity
+import com.lingga.themoviedb.ui.base.BaseActivity
 import com.lingga.themoviedb.databinding.ActivityMainBinding
 import com.lingga.themoviedb.utils.ext.setTransparentStatusBarBlack
 

@@ -2,7 +2,7 @@ package com.lingga.themoviedb.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.lingga.themoviedb.core.ui.ViewModelFactory
+import com.lingga.themoviedb.ui.ViewModelFactory
 import com.lingga.themoviedb.ui.detailmovie.DetailViewModel
 import com.lingga.themoviedb.ui.detailtvshow.DetailTvShowViewModel
 import com.lingga.themoviedb.ui.favorite.FavoriteMovieViewModel

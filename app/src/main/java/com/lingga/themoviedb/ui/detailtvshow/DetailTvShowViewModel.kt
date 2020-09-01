@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.lingga.themoviedb.core.domain.model.TvShow
-import com.lingga.themoviedb.core.domain.usecase.tvshow.TvShowUseCase
+import com.domain.model.TvShow
+import com.domain.usecase.tvshow.TvShowUseCase
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject

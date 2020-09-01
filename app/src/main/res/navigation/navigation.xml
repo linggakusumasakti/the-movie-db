@@ -50,7 +50,7 @@
         tools:layout="@layout/fragment_detail">
         <argument
             android:name="movie"
-            app:argType="com.lingga.themoviedb.core.domain.model.Movie" />
+            app:argType="com.domain.model.Movie" />
     </fragment>
     <fragment
         android:id="@+id/detailTvShowFragment"
@@ -59,6 +59,6 @@
         tools:layout="@layout/fragment_detail_tv_show">
         <argument
             android:name="tv_show"
-            app:argType="com.lingga.themoviedb.core.domain.model.TvShow" />
+            app:argType="com.domain.model.TvShow" />
     </fragment>
 </navigation>

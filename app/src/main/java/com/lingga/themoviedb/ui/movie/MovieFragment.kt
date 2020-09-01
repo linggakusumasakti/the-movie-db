@@ -6,12 +6,12 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.data.Resource
+import com.domain.model.Movie
 import com.lingga.themoviedb.R
-import com.lingga.themoviedb.core.data.Resource
-import com.lingga.themoviedb.core.domain.model.Movie
-import com.lingga.themoviedb.core.ui.BaseFragment
-import com.lingga.themoviedb.core.ui.ViewModelFactory
 import com.lingga.themoviedb.databinding.FragmentMovieBinding
+import com.lingga.themoviedb.ui.ViewModelFactory
+import com.lingga.themoviedb.ui.base.BaseFragment
 import com.lingga.themoviedb.utils.ext.hide
 import com.lingga.themoviedb.utils.ext.observe
 import com.lingga.themoviedb.utils.ext.show

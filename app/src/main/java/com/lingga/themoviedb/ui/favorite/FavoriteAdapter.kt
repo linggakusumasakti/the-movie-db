@@ -1,9 +1,9 @@
 package com.lingga.themoviedb.ui.favorite
 
 import androidx.recyclerview.widget.DiffUtil
+import com.domain.model.Movie
 import com.lingga.themoviedb.R
-import com.lingga.themoviedb.core.domain.model.Movie
-import com.lingga.themoviedb.core.ui.BasePagedListAdapter
+import com.lingga.themoviedb.ui.base.BasePagedListAdapter
 
 class FavoriteAdapter(onClick: (Movie) -> Unit) :
     BasePagedListAdapter<Movie>(diffUtil = DIFF_CALLBACK, onClick = onClick) {

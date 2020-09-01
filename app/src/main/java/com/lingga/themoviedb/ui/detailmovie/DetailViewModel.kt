@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.lingga.themoviedb.core.domain.model.Movie
-import com.lingga.themoviedb.core.domain.usecase.movie.MovieUseCase
+import com.domain.model.Movie
+import com.domain.usecase.movie.MovieUseCase
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject

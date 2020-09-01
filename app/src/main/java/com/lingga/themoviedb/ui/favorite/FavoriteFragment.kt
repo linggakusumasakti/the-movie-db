@@ -9,7 +9,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import com.lingga.themoviedb.R
-import com.lingga.themoviedb.core.ui.BaseFragment
+import com.lingga.themoviedb.ui.base.BaseFragment
 import com.lingga.themoviedb.databinding.FragmentFavoriteBinding
 
 class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(R.layout.fragment_favorite) {

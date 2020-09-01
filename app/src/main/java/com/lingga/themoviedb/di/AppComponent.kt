@@ -1,7 +1,7 @@
 package com.lingga.themoviedb.di
 
+import com.di.CoreComponent
 import com.lingga.themoviedb.MainActivity
-import com.lingga.themoviedb.core.di.CoreComponent
 import com.lingga.themoviedb.ui.detailmovie.DetailFragment
 import com.lingga.themoviedb.ui.detailtvshow.DetailTvShowFragment
 import com.lingga.themoviedb.ui.favorite.FavoriteFragment

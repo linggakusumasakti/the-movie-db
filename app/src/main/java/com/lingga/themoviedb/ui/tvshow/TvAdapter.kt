@@ -1,9 +1,9 @@
 package com.lingga.themoviedb.ui.tvshow
 
 import androidx.recyclerview.widget.DiffUtil
+import com.domain.model.TvShow
 import com.lingga.themoviedb.R
-import com.lingga.themoviedb.core.domain.model.TvShow
-import com.lingga.themoviedb.core.ui.BaseAdapter
+import com.lingga.themoviedb.ui.base.BaseAdapter
 
 class TvAdapter(onClick: (TvShow) -> Unit) :
     BaseAdapter<TvShow>(diffUtil = DIFF_CALLBACK, onClick = onClick) {
