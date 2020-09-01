@@ -6,18 +6,18 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.favorite.FavoriteMovieFragment">
+        tools:context="com.lingga.themoviedb.favorites.FavoriteTvShowFragment">
 
         <include
             android:id="@+id/empty_favorite"
             layout="@layout/view_empty_favorite"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/recycler_view_favorite_movie" />
+            app:layout_constraintBottom_toBottomOf="@+id/recycler_view_favorite_tv_show"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view_favorite_movie"
+            android:id="@+id/recycler_view_favorite_tv_show"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="8dp"

@@ -6,7 +6,7 @@ import androidx.lifecycle.Observer
 import androidx.paging.PagedList
 import com.lingga.themoviedb.core.domain.model.Movie
 import com.lingga.themoviedb.core.domain.usecase.movie.MovieUseCase
-import com.lingga.themoviedb.ui.favorite.FavoriteMovieViewModel
+import com.FavoriteMovieViewModel
 import com.nhaarman.mockitokotlin2.verify
 import org.junit.Before
 import org.junit.Rule
@@ -19,7 +19,7 @@ import org.mockito.junit.MockitoJUnitRunner
 @RunWith(MockitoJUnitRunner.Silent::class)
 class FavoriteMovieViewModelTest {
 
-    private lateinit var viewModel: FavoriteMovieViewModel
+    private lateinit var viewModel: com.FavoriteMovieViewModel
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
@@ -35,7 +35,7 @@ class FavoriteMovieViewModelTest {
 
     @Before
     fun setUp() {
-        viewModel = FavoriteMovieViewModel(useCase)
+        viewModel = com.FavoriteMovieViewModel(useCase)
     }
 
     @Test
@@ -47,7 +47,7 @@ class FavoriteMovieViewModelTest {
         Mockito.`when`(useCase.getFavoriteMovie()).thenReturn(movie)
         verify(useCase).getFavoriteMovie()
 
-        viewModel.favoriteMovie?.observeForever(observer)
+        viewModel.favoriteMovie.observeForever(observer)
     }
 
 }

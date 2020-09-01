@@ -1,4 +1,4 @@
-package com.lingga.themoviedb.ui.favorite
+package com.lingga.themoviedb.favorites
 
 import android.content.Context
 import android.os.Bundle
@@ -6,11 +6,13 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.di.CoreComponent
+import com.di.DaggerCoreComponent
 import com.domain.model.Movie
-import com.lingga.themoviedb.R
-import com.lingga.themoviedb.ui.base.BaseFragment
+import com.lingga.themoviedb.favorites.databinding.FragmentFavoriteMovieBinding
+import com.lingga.themoviedb.favorites.di.DaggerFavoriteComponent
 import com.lingga.themoviedb.ui.ViewModelFactory
-import com.lingga.themoviedb.databinding.FragmentFavoriteMovieBinding
+import com.lingga.themoviedb.ui.base.BaseFragment
 import com.lingga.themoviedb.utils.ext.observe
 import com.lingga.themoviedb.utils.ext.show
 import javax.inject.Inject
@@ -24,6 +26,10 @@ class FavoriteMovieFragment :
     private val viewModel: FavoriteMovieViewModel by viewModels { factory }
 
     private val adapter by lazy { FavoriteAdapter { navigateToDetail(it) } }
+
+    private val coreComponent: CoreComponent by lazy {
+        DaggerCoreComponent.factory().create(requireActivity())
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -55,6 +61,6 @@ class FavoriteMovieFragment :
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        appComponent.inject(this)
+        DaggerFavoriteComponent.builder().coreComponent(coreComponent).build().inject(this)
     }
 }

@@ -1,4 +1,4 @@
-package com.lingga.themoviedb.ui.favorite
+package com.lingga.themoviedb.favorites
 
 import androidx.recyclerview.widget.DiffUtil
 import com.domain.model.TvShow

@@ -6,7 +6,7 @@ import androidx.lifecycle.Observer
 import androidx.paging.PagedList
 import com.lingga.themoviedb.core.domain.model.TvShow
 import com.lingga.themoviedb.core.domain.usecase.tvshow.TvShowUseCase
-import com.lingga.themoviedb.ui.favorite.FavoriteTvShowViewModel
+import com.FavoriteTvShowViewModel
 import com.nhaarman.mockitokotlin2.verify
 import org.junit.Before
 import org.junit.Rule
@@ -18,7 +18,7 @@ import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner.Silent::class)
 class FavoriteTvShowViewModelTest {
-    private lateinit var viewModel: FavoriteTvShowViewModel
+    private lateinit var viewModel: com.FavoriteTvShowViewModel
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
@@ -34,7 +34,7 @@ class FavoriteTvShowViewModelTest {
 
     @Before
     fun setUp() {
-        viewModel = FavoriteTvShowViewModel(useCase)
+        viewModel = com.FavoriteTvShowViewModel(useCase)
     }
 
     @Test
@@ -46,6 +46,6 @@ class FavoriteTvShowViewModelTest {
         Mockito.`when`(useCase.getFavoriteTvShow()).thenReturn(tvShow)
         verify(useCase).getFavoriteTvShow()
 
-        viewModel.favoriteTvShow?.observeForever(observer)
+        viewModel.favoriteTvShow.observeForever(observer)
     }
 }

@@ -1,4 +1,4 @@
-package com.lingga.themoviedb.ui.favorite
+package com.lingga.themoviedb.favorites
 
 import android.content.Context
 import android.os.Bundle
@@ -7,12 +7,18 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.di.CoreComponent
+import com.di.DaggerCoreComponent
 import com.google.android.material.tabs.TabLayoutMediator
-import com.lingga.themoviedb.R
+import com.lingga.themoviedb.favorites.databinding.FragmentFavoriteBinding
+import com.lingga.themoviedb.favorites.di.DaggerFavoriteComponent
 import com.lingga.themoviedb.ui.base.BaseFragment
-import com.lingga.themoviedb.databinding.FragmentFavoriteBinding
 
 class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(R.layout.fragment_favorite) {
+
+    private val coreComponent: CoreComponent by lazy {
+        DaggerCoreComponent.factory().create(requireActivity())
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -39,22 +45,21 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(R.layout.fragment
                 offscreenPageLimit = 2
                 adapter = pagerAdapter
             }
-            appbar.textTitle.text = getString(R.string.favorite)
         }
     }
 
     private fun initTabLayout() {
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, pos ->
             tab.text = when (pos) {
-                0 -> resources.getString(R.string.movie)
-                else -> resources.getString(R.string.tv_show)
+                0 -> getString(R.string.movie)
+                else -> getString(R.string.tv)
             }
         }.attach()
     }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        appComponent.inject(this)
+        DaggerFavoriteComponent.builder().coreComponent(coreComponent).build().inject(this)
     }
 
 }
