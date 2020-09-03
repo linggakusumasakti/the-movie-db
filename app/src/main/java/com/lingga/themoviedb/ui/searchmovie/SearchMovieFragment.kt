@@ -1,4 +1,4 @@
-package com.lingga.themoviedb.ui.movie
+package com.lingga.themoviedb.ui.searchmovie
 
 import android.content.Context
 import android.os.Bundle
@@ -6,13 +6,14 @@ import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.data.Resource
 import com.domain.model.Movie
 import com.lingga.themoviedb.R
-import com.lingga.themoviedb.databinding.FragmentMovieBinding
+import com.lingga.themoviedb.databinding.FragmentSearchMovieBinding
 import com.lingga.themoviedb.ui.ViewModelFactory
 import com.lingga.themoviedb.ui.base.BaseFragment
+import com.lingga.themoviedb.ui.movie.MovieAdapter
 import com.lingga.themoviedb.utils.ext.hide
 import com.lingga.themoviedb.utils.ext.observe
 import com.lingga.themoviedb.utils.ext.show
@@ -20,27 +21,30 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
 
 
-class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie) {
+@ExperimentalCoroutinesApi
+class SearchMovieFragment :
+    BaseFragment<FragmentSearchMovieBinding>(R.layout.fragment_search_movie) {
 
     @Inject
     lateinit var factory: ViewModelFactory
 
-    private val viewModel: MovieViewModel by viewModels { factory }
+    private val viewModel: SearchMovieViewModel by viewModels { factory }
+
+    private val args: SearchMovieFragmentArgs by navArgs()
 
     private val adapter by lazy { MovieAdapter { navigateToDetail(it) } }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initBinding()
         subscribeUi()
+        initBinding()
     }
 
     private fun initBinding() {
         binding.apply {
             appbar.textTitle.text = getString(R.string.movie)
             recyclerViewMovie.apply {
-                adapter = this@MovieFragment.adapter
+                adapter = this@SearchMovieFragment.adapter
                 layoutManager = LinearLayoutManager(context)
             }
             searchMovie(this)
@@ -48,38 +52,29 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
     }
 
     private fun subscribeUi() {
-        observe(viewModel.movie ?: return) { movie ->
-            binding.apply {
-                when (movie) {
-                    is Resource.Loading -> loading.progressBar.show()
-                    is Resource.Success -> {
-                        loading.progressBar.hide()
-                        adapter.submitList(movie.data)
-                    }
-                    is Resource.Error -> {
-                        loading.progressBar.hide()
-                        viewError.errorContainer.show()
-                        viewError.errorMessage.text =
-                            movie.message ?: getString(R.string.oopss_something_went_wrong)
-                    }
-                }
+        viewModel.getSearch(args.query ?: "")
+        observe(viewModel.search) {
+            if (it.isNullOrEmpty()) binding.notFound.show()
+            else adapter.submitList(it)
+        }
+        observe(viewModel.getLoading()) {
+            binding.loading.progressBar.apply {
+                if (it) show() else hide()
+            }
+        }
+        observe(viewModel.error) {
+            binding.viewError.apply {
+                errorContainer.show()
+                errorMessage.text = it
             }
         }
     }
 
-    private fun navigateToDetail(movie: Movie) {
-        findNavController().navigate(
-            MovieFragmentDirections.actionMovieFragmentToDetailFragment(movie)
-        )
-    }
-
-    private fun searchMovie(binding: FragmentMovieBinding) {
+    private fun searchMovie(binding: FragmentSearchMovieBinding) {
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 findNavController().navigate(
-                    MovieFragmentDirections.actionMovieFragmentToSearchMovieFragment(
-                        query
-                    )
+                    SearchMovieFragmentDirections.actionSearchMovieFragmentSelf(query)
                 )
                 return true
             }
@@ -88,7 +83,12 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
         })
     }
 
-    @ExperimentalCoroutinesApi
+    private fun navigateToDetail(movie: Movie) {
+        findNavController().navigate(
+            SearchMovieFragmentDirections.actionSearchMovieFragmentToDetailFragment(movie)
+        )
+    }
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         appComponent.inject(this)

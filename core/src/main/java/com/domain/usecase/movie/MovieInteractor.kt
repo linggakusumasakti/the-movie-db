@@ -19,4 +19,7 @@ class MovieInteractor @Inject constructor(private val movieRepository: IMovieRep
         movieRepository.setFavoriteMovie(movie, state)
 
     override fun getFavoriteMovie(): LiveData<PagedList<Movie>> = movieRepository.getFavoriteMovie()
+
+    override suspend fun getSearchMovie(query: String): Flow<List<Movie>> =
+        movieRepository.getSearchMovie(query)
 }

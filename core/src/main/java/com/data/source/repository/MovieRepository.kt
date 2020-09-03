@@ -68,4 +68,10 @@ class MovieRepository @Inject constructor(
             .build()
         return LivePagedListBuilder(data, config).build()
     }
+
+    override suspend fun getSearchMovie(query: String): Flow<List<Movie>> =
+        remoteDataSource.fetchSearchMovie(query).map {
+            DataMapper.responseToDomainMovies(it)
+        }
+
 }

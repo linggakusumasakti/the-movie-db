@@ -2,6 +2,7 @@ package com.utils
 
 import com.data.source.local.entity.MovieEntity
 import com.data.source.local.entity.TvShowEntity
+import com.data.source.remote.response.BaseMovieResponse
 import com.data.source.remote.response.movie.MovieResponse
 import com.data.source.remote.response.tvshow.TvShowResponse
 import com.domain.model.Movie
@@ -27,6 +28,26 @@ object DataMapper {
         }
         return movieList
     }
+
+    fun responseToDomainMovies(input: List<MovieResponse>): List<Movie> {
+        val movieList = ArrayList<Movie>()
+        input.map {
+            val movie = Movie(
+                id = it.id ?: 0,
+                backdropPath = it.backdropPath,
+                isFavorite = false,
+                overview = it.overview,
+                posterPath = it.posterPath,
+                releaseDate = it.releaseDate,
+                title = it.title,
+                voteAverage = it.voteAverage,
+                popularity = it.popularity
+            )
+            movieList.add(movie)
+        }
+        return movieList
+    }
+
 
     fun mapEntitiesToDomainMovie(input: List<MovieEntity>): List<Movie> =
         input.map {
