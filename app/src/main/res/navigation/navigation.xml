@@ -17,6 +17,9 @@
             app:exitAnim="@anim/fragment_close_exit"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_movieFragment_to_searchMovieFragment"
+            app:destination="@id/searchMovieFragment" />
     </fragment>
     <fragment
         android:id="@+id/tvFragment"
@@ -35,7 +38,7 @@
         android:id="@+id/favoriteFragment"
         android:name="com.lingga.themoviedb.favorites.FavoriteFragment"
         android:label="FavoriteFragment"
-        tools:layout="@layout/fragment_favorite" >
+        tools:layout="@layout/fragment_favorite">
         <action
             android:id="@+id/action_favoriteFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
@@ -60,5 +63,21 @@
         <argument
             android:name="tv_show"
             app:argType="com.domain.model.TvShow" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchMovieFragment"
+        android:name="com.lingga.themoviedb.ui.searchmovie.SearchMovieFragment"
+        android:label="SearchMovieFragment"
+        tools:layout="@layout/fragment_search_movie">
+        <argument
+            android:name="query"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_searchMovieFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+        <action
+            android:id="@+id/action_searchMovieFragment_self"
+            app:destination="@id/searchMovieFragment" />
     </fragment>
 </navigation>

@@ -6,6 +6,7 @@ import com.lingga.themoviedb.ui.ViewModelFactory
 import com.lingga.themoviedb.ui.detailmovie.DetailViewModel
 import com.lingga.themoviedb.ui.detailtvshow.DetailTvShowViewModel
 import com.lingga.themoviedb.ui.movie.MovieViewModel
+import com.lingga.themoviedb.ui.searchmovie.SearchMovieViewModel
 import com.lingga.themoviedb.ui.tvshow.TvShowViewModel
 import dagger.Binds
 import dagger.Module
@@ -37,5 +38,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(DetailTvShowViewModel::class)
     abstract fun bindDetailTvShowViewModel(viewModel: DetailTvShowViewModel): ViewModel
-    
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SearchMovieViewModel::class)
+    abstract fun bindSearchMovieViewModel(viewModel: SearchMovieViewModel): ViewModel
 }

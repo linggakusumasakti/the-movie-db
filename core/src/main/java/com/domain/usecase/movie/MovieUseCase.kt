@@ -11,4 +11,5 @@ interface MovieUseCase {
     suspend fun getMovie(id: Int): Flow<Movie>
     fun setFavoriteMovie(movie: Movie, state: Boolean)
     fun getFavoriteMovie(): LiveData<PagedList<Movie>>
+    suspend fun getSearchMovie(query:String): Flow<List<Movie>>
 }

@@ -41,4 +41,18 @@ class MovieRemoteDataSource @Inject constructor(private val movieApiService: Mov
             }
         }.flowOn(Dispatchers.IO)
     }
+
+    suspend fun fetchSearchMovie(query: String): Flow<List<MovieResponse>> {
+        return flow {
+            try {
+                val response = movieApiService.getSearchMovie(query = query)
+                val data = response.results
+                if (data?.isNotEmpty() ?: return@flow) {
+                    emit(response.results)
+                }
+            } catch (e: Exception) {
+                Log.e("RemoteDataSource", e.toString())
+            }
+        }.flowOn(Dispatchers.IO)
+    }
 }
