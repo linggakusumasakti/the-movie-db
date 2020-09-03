@@ -33,6 +33,9 @@
             app:exitAnim="@anim/fragment_close_exit"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_tvFragment_to_searchTvShowFragment"
+            app:destination="@id/searchTvShowFragment" />
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
@@ -79,5 +82,21 @@
         <action
             android:id="@+id/action_searchMovieFragment_self"
             app:destination="@id/searchMovieFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchTvShowFragment"
+        android:name="com.lingga.themoviedb.ui.searchtvshow.SearchTvShowFragment"
+        android:label="SearchTvShowFragment"
+        tools:layout="@layout/fragment_search_tv_show" >
+        <argument
+            android:name="query"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_searchTvShowFragment_to_detailTvShowFragment"
+            app:destination="@id/detailTvShowFragment" />
+        <action
+            android:id="@+id/action_searchTvShowFragment_self"
+            app:destination="@id/searchTvShowFragment" />
     </fragment>
 </navigation>

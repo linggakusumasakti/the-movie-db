@@ -1,4 +1,4 @@
-package com.lingga.themoviedb.ui.tvshow
+package com.lingga.themoviedb.ui.searchtvshow
 
 import android.content.Context
 import android.os.Bundle
@@ -6,39 +6,44 @@ import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.data.Resource
 import com.domain.model.TvShow
 import com.lingga.themoviedb.R
-import com.lingga.themoviedb.databinding.FragmentTvBinding
+import com.lingga.themoviedb.databinding.FragmentSearchTvShowBinding
 import com.lingga.themoviedb.ui.ViewModelFactory
 import com.lingga.themoviedb.ui.base.BaseFragment
+import com.lingga.themoviedb.ui.tvshow.TvAdapter
 import com.lingga.themoviedb.utils.ext.hide
 import com.lingga.themoviedb.utils.ext.observe
 import com.lingga.themoviedb.utils.ext.show
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
 
-class TvFragment : BaseFragment<FragmentTvBinding>(R.layout.fragment_tv) {
+@ExperimentalCoroutinesApi
+class SearchTvShowFragment :
+    BaseFragment<FragmentSearchTvShowBinding>(R.layout.fragment_search_tv_show) {
 
     @Inject
     lateinit var factory: ViewModelFactory
 
-    private val viewModel: TvShowViewModel by viewModels { factory }
+    private val viewModel: SearchTvShowViewModel by viewModels { factory }
+
+    private val args: SearchTvShowFragmentArgs by navArgs()
 
     private val adapter by lazy { TvAdapter { navigateToDetail(it) } }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initBinding()
         subscribeUi()
+        initBinding()
     }
 
     private fun initBinding() {
         binding.apply {
             appbar.textTitle.text = getString(R.string.tv_show)
-            recyclerViewTv.apply {
-                adapter = this@TvFragment.adapter
+            recyclerViewTvShow.apply {
+                adapter = this@SearchTvShowFragment.adapter
                 layoutManager = LinearLayoutManager(context)
             }
             searchTvShow(this)
@@ -46,36 +51,29 @@ class TvFragment : BaseFragment<FragmentTvBinding>(R.layout.fragment_tv) {
     }
 
     private fun subscribeUi() {
-        observe(viewModel.tvShow ?: return) { tvShow ->
-            binding.apply {
-                when (tvShow) {
-                    is Resource.Loading -> loading.progressBar.show()
-                    is Resource.Success -> {
-                        loading.progressBar.hide()
-                        adapter.submitList(tvShow.data)
-                    }
-                    is Resource.Error -> {
-                        loading.progressBar.hide()
-                        viewError.errorContainer.show()
-                        viewError.errorMessage.text =
-                            tvShow.message ?: getString(R.string.oopss_something_went_wrong)
-                    }
-                }
+        viewModel.getSearch(args.query ?: "")
+        observe(viewModel.search) {
+            if (it.isNullOrEmpty()) binding.notFound.show()
+            else adapter.submitList(it)
+        }
+        observe(viewModel.getLoading()) {
+            binding.loading.progressBar.apply {
+                if (it) show() else hide()
+            }
+        }
+        observe(viewModel.error) {
+            binding.viewError.apply {
+                errorContainer.show()
+                errorMessage.text = it
             }
         }
     }
 
-    private fun navigateToDetail(tvShow: TvShow) {
-        findNavController().navigate(
-            TvFragmentDirections.actionTvFragmentToDetailTvShowFragment(tvShow)
-        )
-    }
-
-    private fun searchTvShow(binding: FragmentTvBinding) {
+    private fun searchTvShow(binding: FragmentSearchTvShowBinding) {
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 findNavController().navigate(
-                    TvFragmentDirections.actionTvFragmentToSearchTvShowFragment(query)
+                    SearchTvShowFragmentDirections.actionSearchTvShowFragmentSelf(query)
                 )
                 return true
             }
@@ -84,9 +82,16 @@ class TvFragment : BaseFragment<FragmentTvBinding>(R.layout.fragment_tv) {
         })
     }
 
-    @ExperimentalCoroutinesApi
+    private fun navigateToDetail(tvShow: TvShow) {
+        findNavController().navigate(
+            SearchTvShowFragmentDirections.actionSearchTvShowFragmentToDetailTvShowFragment(tvShow)
+        )
+    }
+
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         appComponent.inject(this)
     }
+
 }
