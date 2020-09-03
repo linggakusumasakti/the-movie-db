@@ -41,4 +41,18 @@ class TvShowRemoteDataSource @Inject constructor(private val movieApiService: Mo
             }
         }.flowOn(Dispatchers.IO)
     }
+
+    suspend fun fetchSearchTvShow(query: String): Flow<List<TvShowResponse>> {
+        return flow {
+            try {
+                val response = movieApiService.getSearchTvShow(query = query)
+                val data = response.results
+                if (data?.isNotEmpty() ?: return@flow) {
+                    emit(response.results)
+                }
+            } catch (e: Exception) {
+                Log.e("RemoteDataSource", e.toString())
+            }
+        }.flowOn(Dispatchers.IO)
+    }
 }

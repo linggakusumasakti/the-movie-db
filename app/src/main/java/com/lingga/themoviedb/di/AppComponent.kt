@@ -6,6 +6,7 @@ import com.lingga.themoviedb.ui.detailmovie.DetailFragment
 import com.lingga.themoviedb.ui.detailtvshow.DetailTvShowFragment
 import com.lingga.themoviedb.ui.movie.MovieFragment
 import com.lingga.themoviedb.ui.searchmovie.SearchMovieFragment
+import com.lingga.themoviedb.ui.searchtvshow.SearchTvShowFragment
 import com.lingga.themoviedb.ui.tvshow.TvFragment
 import dagger.Component
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -28,4 +29,5 @@ interface AppComponent {
     fun inject(fragment: DetailFragment)
     fun inject(fragment: DetailTvShowFragment)
     fun inject(fragment: SearchMovieFragment)
+    fun inject(fragment: SearchTvShowFragment)
 }

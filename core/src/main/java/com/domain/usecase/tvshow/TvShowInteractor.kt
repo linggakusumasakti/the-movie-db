@@ -19,4 +19,7 @@ class TvShowInteractor @Inject constructor(private val repository: ITvShowReposi
         repository.setFavoriteTvShow(tvShow, state)
 
     override fun getFavoriteTvShow(): LiveData<PagedList<TvShow>> = repository.getFavoriteTvShow()
+
+    override suspend fun getSearchTvShow(query: String): Flow<List<TvShow>> =
+        repository.getSearchTvShow(query)
 }

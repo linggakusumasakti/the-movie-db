@@ -4,18 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout2"
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/white"
-        tools:context=".ui.tvshow.TvFragment">
+        tools:context=".ui.movie.MovieFragment">
 
         <include
             android:id="@+id/appbar"
             layout="@layout/app_bar_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-
 
         <TextView
             android:id="@+id/text_find_movie"
@@ -46,7 +45,7 @@
             app:queryHint="@string/search_movie" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view_tv"
+            android:id="@+id/recycler_view_tv_show"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="8dp"
@@ -55,6 +54,20 @@
             app:layout_constraintTop_toBottomOf="@+id/search_view"
             tools:listitem="@layout/item_list_movie" />
 
+        <TextView
+            android:id="@+id/not_found"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@string/oopss_movie_you_want_not_found"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="23sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/search_view" />
 
         <include
             android:id="@+id/loading"

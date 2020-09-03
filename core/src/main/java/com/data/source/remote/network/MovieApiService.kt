@@ -33,4 +33,10 @@ interface MovieApiService {
         @Query("api_key") apiKey: String? = BuildConfig.TMDB_API_KEY,
         @Query("query") query: String?
     ): BaseMovieResponse<MovieResponse>
+
+    @GET("search/tv")
+    suspend fun getSearchTvShow(
+        @Query("api_key") apiKey: String? = BuildConfig.TMDB_API_KEY,
+        @Query("query") query: String?
+    ): BaseMovieResponse<TvShowResponse>
 }

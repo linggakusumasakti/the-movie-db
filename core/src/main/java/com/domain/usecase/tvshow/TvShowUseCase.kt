@@ -11,4 +11,5 @@ interface TvShowUseCase {
     suspend fun getTvShow(id: Int): Flow<TvShow>
     fun setFavoriteTvShow(tvShow: TvShow, state: Boolean)
     fun getFavoriteTvShow(): LiveData<PagedList<TvShow>>
+    suspend fun getSearchTvShow(query: String): Flow<List<TvShow>>
 }

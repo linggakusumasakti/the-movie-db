@@ -66,4 +66,9 @@ class TvShowRepository @Inject constructor(
 
         return LivePagedListBuilder(data, config).build()
     }
+
+    override suspend fun getSearchTvShow(query: String): Flow<List<TvShow>> =
+        remoteDataSource.fetchSearchTvShow(query).map {
+            DataMapper.responseToDomainTvShow(it)
+        }
 }
