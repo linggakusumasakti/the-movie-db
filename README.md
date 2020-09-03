@@ -22,11 +22,11 @@ Libraries Used
   * [Animations & Transitions][31] - Move widgets and transition between screens.
   * [Fragment][34] - A basic unit of composable UI.
   * [Layout][35] - Lay out widgets using different algorithms.
+  * [MotionLayout][94] for manage motion and widget animation.
 * Third party
   * [Glide][90] for image loading
   * [Dagger 2][92] for Dependency Injection
   * [Retrofit][93] for Networking
-  * [MotionLayout][94] for manage motion and widget animation.
   * [Coroutine Flow][95] for asynchronous process and reduce callback.
 
 [0]: https://developer.android.com/jetpack/components
