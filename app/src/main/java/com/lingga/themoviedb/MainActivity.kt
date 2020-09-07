@@ -4,15 +4,17 @@ import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.setupWithNavController
-import com.lingga.themoviedb.ui.base.BaseActivity
 import com.lingga.themoviedb.databinding.ActivityMainBinding
+import com.lingga.themoviedb.ui.base.BaseActivity
 import com.lingga.themoviedb.utils.ext.setTransparentStatusBarBlack
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     private lateinit var navController: NavController
 
+    @ExperimentalCoroutinesApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         appComponent.inject(this)

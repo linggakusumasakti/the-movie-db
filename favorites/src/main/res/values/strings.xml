@@ -4,4 +4,5 @@
     <string name="fav_tv_empty">Favorite Tv Show Is Empty</string>
     <string name="tv">Tv Show</string>
     <string name="movie">Movie</string>
+    <string name="empty_fav_movie">Empty Favorite Movie</string>
 </resources>
