@@ -1,4 +1,7 @@
 # the-movie-db
+
+[![linggakusuma](https://circleci.com/gh/linggakusuma/the-movie-db.svg?style=shield)](https://circleci.com/gh/linggakusuma/the-movie-db)
+
 Submission for Menjadi Android Developer Expert dicoding with clean architecture(seperation of model) and modularization.
 
 Libraries Used
