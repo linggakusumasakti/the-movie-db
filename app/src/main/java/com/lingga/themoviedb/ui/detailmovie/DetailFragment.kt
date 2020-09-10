@@ -13,6 +13,7 @@ import com.lingga.themoviedb.ui.base.BaseFragment
 import com.lingga.themoviedb.ui.ViewModelFactory
 import com.lingga.themoviedb.databinding.FragmentDetailBinding
 import com.lingga.themoviedb.utils.ext.observe
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
 
 
@@ -82,6 +83,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
         }
     }
 
+    @ExperimentalCoroutinesApi
     override fun onAttach(context: Context) {
         super.onAttach(context)
         appComponent.inject(this)

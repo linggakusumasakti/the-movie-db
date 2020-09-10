@@ -28,6 +28,7 @@ dependencies {
 
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
     implementation "androidx.paging:paging-runtime:2.1.2"
 
     //testing
@@ -41,5 +42,9 @@ dependencies {
     testImplementation "androidx.arch.core:core-testing:2.1.0"
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion"
     implementation "androidx.test.espresso:espresso-idling-resource:$idleResourceVersion"
+
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.4'
+    implementation "androidx.multidex:multidex:2.0.1"
+    implementation "com.facebook.shimmer:shimmer:$shimmer_version"
 
 }
