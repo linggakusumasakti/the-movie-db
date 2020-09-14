@@ -43,7 +43,6 @@ dependencies {
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion"
     implementation "androidx.test.espresso:espresso-idling-resource:$idleResourceVersion"
 
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.4'
     implementation "androidx.multidex:multidex:2.0.1"
     implementation "com.facebook.shimmer:shimmer:$shimmer_version"
 
