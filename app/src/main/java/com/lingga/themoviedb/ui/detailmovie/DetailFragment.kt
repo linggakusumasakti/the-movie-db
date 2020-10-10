@@ -9,9 +9,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lingga.themoviedb.R
-import com.lingga.themoviedb.ui.base.BaseFragment
-import com.lingga.themoviedb.ui.ViewModelFactory
 import com.lingga.themoviedb.databinding.FragmentDetailBinding
+import com.lingga.themoviedb.ui.ViewModelFactory
+import com.lingga.themoviedb.ui.base.BaseFragment
 import com.lingga.themoviedb.utils.ext.observe
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
@@ -54,7 +54,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
 
     private fun showDetailArgs() {
         binding.args = args.movie
-        var statusFavorite = args.movie.isFavorite ?: false
+        var statusFavorite = args.movie.isFavorite ?: return
         setStatusFavorite(statusFavorite)
         binding.favoriteButton.setOnClickListener {
             statusFavorite = !statusFavorite

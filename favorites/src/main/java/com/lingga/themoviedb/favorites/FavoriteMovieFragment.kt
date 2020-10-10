@@ -2,6 +2,7 @@ package com.lingga.themoviedb.favorites
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -49,6 +50,7 @@ class FavoriteMovieFragment :
 
     private fun subscribeUi() {
         observe(viewModel.favoriteMovie ?: return) {
+            Log.d("cekfav", it.toString())
             if (it.isNullOrEmpty()) binding.emptyFavorite.textView.show()
             else adapter.submitList(it)
         }
