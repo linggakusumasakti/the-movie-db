@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">The Movie Db</string>
+    <string name="movie">Film</string>
+    <string name="tv_show">Acara Tv</string>
+    <string name="favorite">Favorit</string>
+    <string name="find_movie_you_want">Temukan film yang kamu mau</string>
+    <string name="search_movie">Cari Film…</string>
+    <string name="find_tv_show_you_want">Temukan acara tv yang kamu mau</string>
+    <string name="oopss_something_went_wrong">Oopss.. ada sesuatu yang salah</string>
+    <string name="overview">Ringkasan</string>
+    <string name="genre">Genre</string>
+    <string name="oopss_movie_you_want_not_found">Oopss.. Film yang kamu cari tidak ditemukan</string>
+    <string name="setting">Pengaturan</string>
+    <string name="change_language">Ubah bahasa</string>
+</resources>

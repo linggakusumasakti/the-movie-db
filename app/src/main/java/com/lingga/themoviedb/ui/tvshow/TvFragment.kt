@@ -36,7 +36,10 @@ class TvFragment : BaseFragment<FragmentTvBinding>(R.layout.fragment_tv) {
 
     private fun initBinding() {
         binding.apply {
-            appbar.textTitle.text = getString(R.string.tv_show)
+            appbar.apply {
+                textTitle.text = getString(R.string.tv_show)
+                buttonSetting.setOnClickListener { navigateToSetting() }
+            }
             recyclerViewTv.apply {
                 adapter = this@TvFragment.adapter
                 layoutManager = LinearLayoutManager(context)
@@ -73,6 +76,10 @@ class TvFragment : BaseFragment<FragmentTvBinding>(R.layout.fragment_tv) {
         findNavController().navigate(
             TvFragmentDirections.actionTvFragmentToDetailTvShowFragment(tvShow)
         )
+    }
+
+    private fun navigateToSetting() {
+        findNavController().navigate(TvFragmentDirections.actionTvFragmentToSettingFragment())
     }
 
     private fun searchTvShow(binding: FragmentTvBinding) {
