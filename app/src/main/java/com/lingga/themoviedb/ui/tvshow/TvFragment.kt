@@ -56,9 +56,13 @@ class TvFragment : BaseFragment<FragmentTvBinding>(R.layout.fragment_tv) {
                     }
                     is Resource.Error -> {
                         loading.progressBar.hide()
-                        viewError.errorContainer.show()
-                        viewError.errorMessage.text =
-                            tvShow.message ?: getString(R.string.oopss_something_went_wrong)
+                        if (tvShow.data.isNullOrEmpty()) {
+                            viewError.errorContainer.show()
+                            viewError.errorMessage.text =
+                                tvShow.message ?: getString(R.string.oopss_something_went_wrong)
+                        } else {
+                            adapter.submitList(tvShow.data)
+                        }
                     }
                 }
             }

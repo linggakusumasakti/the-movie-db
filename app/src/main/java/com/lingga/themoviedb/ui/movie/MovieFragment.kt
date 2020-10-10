@@ -2,6 +2,7 @@ package com.lingga.themoviedb.ui.movie
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
@@ -58,12 +59,17 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
                     }
                     is Resource.Error -> {
                         loading.progressBar.hide()
-                        viewError.errorContainer.show()
-                        viewError.errorMessage.text =
-                            movie.message ?: getString(R.string.oopss_something_went_wrong)
+                        if (movie.data.isNullOrEmpty()) {
+                            viewError.errorContainer.show()
+                            viewError.errorMessage.text =
+                                movie.message ?: getString(R.string.oopss_something_went_wrong)
+                        } else {
+                            adapter.submitList(movie.data)
+                        }
                     }
                 }
             }
+            Log.d("cekfav", movie.data.toString())
         }
     }
 

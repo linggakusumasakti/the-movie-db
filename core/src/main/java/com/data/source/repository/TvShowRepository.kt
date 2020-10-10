@@ -33,7 +33,7 @@ class TvShowRepository @Inject constructor(
                 }
             }
 
-            override fun shouldFetch(data: List<TvShow>?): Boolean = data == null || data.isEmpty()
+            override fun shouldFetch(data: List<TvShow>?): Boolean = true
 
             override suspend fun createCall(): Flow<ApiResponse<List<TvShowResponse>>> =
                 remoteDataSource.fetchTvShow()
