@@ -20,6 +20,9 @@
         <action
             android:id="@+id/action_movieFragment_to_searchMovieFragment"
             app:destination="@id/searchMovieFragment" />
+        <action
+            android:id="@+id/action_movieFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
     </fragment>
     <fragment
         android:id="@+id/tvFragment"
@@ -36,6 +39,9 @@
         <action
             android:id="@+id/action_tvFragment_to_searchTvShowFragment"
             app:destination="@id/searchTvShowFragment" />
+        <action
+            android:id="@+id/action_tvFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
@@ -87,7 +93,7 @@
         android:id="@+id/searchTvShowFragment"
         android:name="com.lingga.themoviedb.ui.searchtvshow.SearchTvShowFragment"
         android:label="SearchTvShowFragment"
-        tools:layout="@layout/fragment_search_tv_show" >
+        tools:layout="@layout/fragment_search_tv_show">
         <argument
             android:name="query"
             app:argType="string"
@@ -99,4 +105,9 @@
             android:id="@+id/action_searchTvShowFragment_self"
             app:destination="@id/searchTvShowFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.lingga.themoviedb.ui.setting.SettingFragment"
+        android:label="SettingFragment"
+        tools:layout="@layout/fragment_setting" />
 </navigation>

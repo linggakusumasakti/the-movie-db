@@ -39,7 +39,10 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
 
     private fun initBinding() {
         binding.apply {
-            appbar.textTitle.text = getString(R.string.movie)
+            appbar.apply {
+                textTitle.text = getString(R.string.movie)
+                buttonSetting.setOnClickListener { navigateToSetting() }
+            }
             recyclerViewMovie.apply {
                 adapter = this@MovieFragment.adapter
                 layoutManager = LinearLayoutManager(context)
@@ -77,6 +80,10 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
         findNavController().navigate(
             MovieFragmentDirections.actionMovieFragmentToDetailFragment(movie)
         )
+    }
+
+    private fun navigateToSetting() {
+        findNavController().navigate(MovieFragmentDirections.actionMovieFragmentToSettingFragment())
     }
 
     private fun searchMovie(binding: FragmentMovieBinding) {
