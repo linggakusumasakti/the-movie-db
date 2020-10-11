@@ -1,9 +1,11 @@
 <manifest xmlns:dist="http://schemas.android.com/apk/distribution"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.lingga.themoviedb.favorites">
 
     <dist:module
         dist:instant="false"
-        dist:title="@string/favorite">
+        dist:title="@string/favorite"
+        tools:ignore="ManifestResource">
         <dist:delivery>
             <dist:install-time />
         </dist:delivery>
