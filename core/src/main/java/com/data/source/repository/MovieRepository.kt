@@ -33,7 +33,7 @@ class MovieRepository @Inject constructor(
                 }
             }
 
-            override fun shouldFetch(data: List<Movie>?): Boolean = data == null || data.isEmpty()
+            override fun shouldFetch(data: List<Movie>?): Boolean = true
 
             override suspend fun createCall(): Flow<ApiResponse<List<MovieResponse>>> {
                 return remoteDataSource.fetchMovie()
@@ -52,7 +52,7 @@ class MovieRepository @Inject constructor(
         }
 
     override fun setFavoriteMovie(movie: Movie, state: Boolean) {
-        val movieEntity = DataMapper.domainToEntityMovie(movie)
+        val movieEntity = DataMapper.domainToEntityMovieFavorite(movie)
         appExecutors.diskIO().execute { localDataSource.setFavoriteMovie(movieEntity, state) }
     }
 

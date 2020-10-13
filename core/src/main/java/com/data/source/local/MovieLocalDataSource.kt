@@ -2,6 +2,7 @@ package com.data.source.local
 
 import androidx.paging.DataSource
 import com.data.source.local.entity.MovieEntity
+import com.data.source.local.entity.MovieFavoriteEntity
 import com.data.source.local.room.MovieDao
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
@@ -14,11 +15,11 @@ class MovieLocalDataSource @Inject constructor(private val movieDao: MovieDao) {
 
     suspend fun insertMovie(movie: List<MovieEntity>) = movieDao.insertMovie(movie)
 
-    fun setFavoriteMovie(movie: MovieEntity, state: Boolean) {
+    fun setFavoriteMovie(movie: MovieFavoriteEntity, state: Boolean) {
         movie.isFavorite = state
         movieDao.updateFavoriteMovie(movie)
     }
 
-    fun getFavoriteMovie(): DataSource.Factory<Int, MovieEntity> = movieDao.getFavoriteMovie()
+    fun getFavoriteMovie(): DataSource.Factory<Int, MovieFavoriteEntity> = movieDao.getFavoriteMovie()
 
 }

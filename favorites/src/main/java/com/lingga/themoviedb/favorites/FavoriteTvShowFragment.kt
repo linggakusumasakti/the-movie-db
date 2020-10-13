@@ -15,6 +15,7 @@ import com.lingga.themoviedb.ui.ViewModelFactory
 import com.lingga.themoviedb.ui.base.BaseFragment
 import com.lingga.themoviedb.utils.ext.observe
 import com.lingga.themoviedb.utils.ext.show
+import kotlinx.android.synthetic.main.view_empty_favorite.view.*
 import javax.inject.Inject
 
 class FavoriteTvShowFragment :
@@ -51,7 +52,7 @@ class FavoriteTvShowFragment :
             if (it.isNullOrEmpty()) {
                 binding.emptyFavorite.textView.apply {
                     show()
-                    text = context.getString(R.string.fav_tv_empty)
+                    text = context?.getString(R.string.fav_tv_empty)
                 }
             } else adapter.submitList(it)
         }

@@ -51,7 +51,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
-            android:src="@android:color/white"
+            android:src="@color/white"
             app:cardCornerRadius="16dp"
             app:layout_constraintDimensionRatio="H,1.5:2"
             app:layout_constraintEnd_toStartOf="@+id/guideline"
@@ -80,7 +80,7 @@
             android:ellipsize="end"
             android:fontFamily="@font/poppins_medium"
             android:text="@{args.name}"
-            android:textColor="@android:color/black"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="@+id/loading"
             app:layout_constraintStart_toEndOf="@+id/poster"
@@ -94,7 +94,7 @@
             android:layout_marginTop="8dp"
             android:fontFamily="@font/poppins_medium"
             android:text="@{args.releaseDateFormat}"
-            android:textColor="@android:color/black"
+            android:textColor="@color/colorPrimaryDark"
             app:layout_constraintEnd_toEndOf="@+id/title"
             app:layout_constraintStart_toStartOf="@+id/title"
             app:layout_constraintTop_toBottomOf="@+id/title"
@@ -112,7 +112,7 @@
             app:layout_constraintStart_toStartOf="@+id/release_date"
             app:layout_constraintTop_toBottomOf="@+id/release_date" />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/back_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -133,7 +133,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
-            android:backgroundTint="@android:color/white"
+            android:backgroundTint="@color/white"
             android:src="@drawable/ic_twotone_favorite_border"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/poster"
@@ -159,7 +159,7 @@
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/poppins_semibold"
                     android:text="@string/genre"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/colorPrimaryDark"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -184,7 +184,7 @@
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/poppins_semibold"
                     android:text="@string/overview"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/colorPrimaryDark"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/recycler_view_genre" />
 

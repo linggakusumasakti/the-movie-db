@@ -22,5 +22,4 @@ data class Movie(
 
     fun getReleaseDateFormat(): String = releaseDate?.parseDateWithFormat("MM/dd/yyyy") ?: ""
     fun getRatingBar(): Float = if (voteAverage != null) voteAverage.toFloat() / 2 else 0f
-    fun getGenre(): String? = genres?.joinToString { it.name.toString() }
 }

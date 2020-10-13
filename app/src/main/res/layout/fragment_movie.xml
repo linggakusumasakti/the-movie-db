@@ -7,7 +7,7 @@
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/white"
+        android:background="@color/white"
         tools:context=".ui.movie.MovieFragment">
 
         <include
@@ -60,7 +60,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/search_view" />
+            app:layout_constraintTop_toBottomOf="@id/search_view"
+            tools:visibility="gone" />
 
         <include
             android:id="@+id/view_error"

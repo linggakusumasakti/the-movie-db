@@ -1,6 +1,7 @@
 package com.utils
 
 import com.data.source.local.entity.MovieEntity
+import com.data.source.local.entity.MovieFavoriteEntity
 import com.data.source.local.entity.TvShowEntity
 import com.data.source.remote.response.movie.MovieResponse
 import com.data.source.remote.response.tvshow.TvShowResponse
@@ -81,7 +82,7 @@ object DataMapper {
             )
         }
 
-    fun mapEntityToDomainMovie(input: MovieEntity) = Movie(
+    fun mapEntityToDomainMovie(input: MovieFavoriteEntity) = Movie(
         id = input.id,
         backdropPath = input.backdropPath,
         voteAverage = input.voteAverage,
@@ -105,7 +106,7 @@ object DataMapper {
     )
 
 
-    fun domainToEntityMovie(input: Movie) = MovieEntity(
+    fun domainToEntityMovieFavorite(input: Movie) = MovieFavoriteEntity(
         id = input.id ?: 0,
         backdropPath = input.backdropPath,
         overview = input.overview,

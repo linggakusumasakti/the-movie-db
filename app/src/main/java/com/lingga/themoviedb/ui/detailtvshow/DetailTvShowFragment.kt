@@ -14,6 +14,7 @@ import com.lingga.themoviedb.ui.ViewModelFactory
 import com.lingga.themoviedb.databinding.FragmentDetailTvShowBinding
 import com.lingga.themoviedb.ui.detailmovie.GenreAdapter
 import com.lingga.themoviedb.utils.ext.observe
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
 
 class DetailTvShowFragment :
@@ -83,6 +84,7 @@ class DetailTvShowFragment :
         }
     }
 
+    @ExperimentalCoroutinesApi
     override fun onAttach(context: Context) {
         super.onAttach(context)
         appComponent.inject(this)

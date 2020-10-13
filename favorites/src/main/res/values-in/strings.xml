@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="favorite">Favorit</string>
+    <string name="fav_tv_empty">Acara Tv Favorit Kosong</string>
+    <string name="tv">Acara Tv</string>
+    <string name="movie">Film</string>
+    <string name="empty_fav_movie">Acara Film Favorit Kosong</string>
+</resources>
