@@ -12,4 +12,5 @@
     <string name="oopss_movie_you_want_not_found">Oopss.. Movie you want not found</string>
     <string name="setting">Setting</string>
     <string name="change_language">Change Language</string>
+    <string name="change_theme">Change Theme</string>
 </resources>
