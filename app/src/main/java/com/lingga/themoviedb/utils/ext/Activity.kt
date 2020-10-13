@@ -21,7 +21,17 @@ fun Activity.setTransparentStatusBarBlack() {
         window.decorView.systemUiVisibility =
             View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
         var flags = window.decorView.systemUiVisibility
-        flags = flags or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR // for set light status bar
+        flags = flags or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+        window.decorView.systemUiVisibility = flags
+        window.statusBarColor = Color.TRANSPARENT
+    }
+}
+
+fun Activity.setTransparentStatusBar() {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        window.decorView.systemUiVisibility =
+            View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+        val flags = window.decorView.systemUiVisibility
         window.decorView.systemUiVisibility = flags
         window.statusBarColor = Color.TRANSPARENT
     }

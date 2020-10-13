@@ -13,4 +13,5 @@
     <string name="oopss_movie_you_want_not_found">Oopss.. Film yang kamu cari tidak ditemukan</string>
     <string name="setting">Pengaturan</string>
     <string name="change_language">Ubah bahasa</string>
+    <string name="change_theme">Ubah Tema</string>
 </resources>

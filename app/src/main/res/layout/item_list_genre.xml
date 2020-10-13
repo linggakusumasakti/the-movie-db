@@ -27,7 +27,7 @@
             android:fontFamily="@font/poppins_medium"
             android:padding="8dp"
             android:text="@{item.name}"
-            android:textColor="@android:color/black"
+            android:textColor="@color/colorPrimaryDark"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
