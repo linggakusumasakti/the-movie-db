@@ -16,7 +16,6 @@ class DetailTvShowViewModel @Inject constructor(private val useCase: TvShowUseCa
     private val _detail = MutableLiveData<TvShow>()
     val detail: LiveData<TvShow> get() = _detail
 
-
     fun getDetail(id: Int) {
         viewModelScope.launch {
             useCase.getTvShow(id)
