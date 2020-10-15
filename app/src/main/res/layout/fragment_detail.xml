@@ -14,6 +14,7 @@
     <androidx.constraintlayout.motion.widget.MotionLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         app:layoutDescription="@xml/fragment_detail_tv_show_scene"
         tools:context=".ui.detailmovie.DetailFragment">
 

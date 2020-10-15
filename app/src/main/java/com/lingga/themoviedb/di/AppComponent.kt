@@ -1,7 +1,9 @@
 package com.lingga.themoviedb.di
 
+import android.app.Application
 import com.di.CoreComponent
 import com.lingga.themoviedb.MainActivity
+import com.lingga.themoviedb.MyApplication
 import com.lingga.themoviedb.ui.detailmovie.DetailFragment
 import com.lingga.themoviedb.ui.detailtvshow.DetailTvShowFragment
 import com.lingga.themoviedb.ui.movie.MovieFragment
@@ -26,10 +28,11 @@ interface AppComponent {
 
     fun inject(activity: MainActivity)
     fun inject(fragment: MovieFragment)
-    fun inject(fragment: TvFragment)
     fun inject(fragment: DetailFragment)
     fun inject(fragment: DetailTvShowFragment)
     fun inject(fragment: SearchMovieFragment)
     fun inject(fragment: SearchTvShowFragment)
     fun inject(fragment: SettingFragment)
+    fun inject(fragment: TvFragment)
+    fun inject(application: MyApplication)
 }

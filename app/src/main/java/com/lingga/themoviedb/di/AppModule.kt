@@ -22,26 +22,5 @@ abstract class AppModule {
     @Binds
     abstract fun provideTvShowUseCase(interactor: TvShowInteractor): TvShowUseCase
 
-    @Binds
-    abstract fun bindContext(application: Application): Context
 
-
-    @Module
-    companion object {
-
-        const val NAME = "cache-the-movie-db"
-
-        @Provides
-        @Singleton
-        @JvmStatic
-        fun provideSharedPreferences(context: Context): SharedPreferences {
-            return context.getSharedPreferences(NAME, Context.MODE_PRIVATE)
-        }
-
-        @Provides
-        @Singleton
-        @JvmStatic
-        fun provideResources(context: Context): Resources = context.resources
-
-    }
 }

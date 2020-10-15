@@ -1,4 +1,4 @@
-package com.lingga.themoviedb.utils
+package com.utils
 
 import android.content.SharedPreferences
 import javax.inject.Inject
