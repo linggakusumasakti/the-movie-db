@@ -14,7 +14,7 @@ Submission for Menjadi Android Developer Expert dicoding with clean architecture
 
 ## Screenshots App
 <pre>
-<img src="screenshots/Screenshot 1.png"> <img src="screenshots/Screenshot 2.png"> <img src="screenshots/Screenshot 3.png"> <img src="screenshots/Screenshot 4.png"> <img src="screenshots/Screenshot 5.png"> <img src="screenshots/Screenshot 6.png"> <img src="screenshots/Screenshot 7.png"> <img src="screenshots/Screenshot 8.png"> <img src="screenshots/Screenshot 9.png"> <img src="screenshots/Screenshot 10.png">
+<img src="screenshots/Screenshot 1.png" width="50%">    <img src="screenshots/Screenshot 2.png" width="50%">    <img src="screenshots/Screenshot 3.png" width="50%">    <img src="screenshots/Screenshot 4.png" width="50%">    <img src="screenshots/Screenshot 5.png" width="50%">    <img src="screenshots/Screenshot 6.png" width="50%">    <img src="screenshots/Screenshot 7.png" width="50%">    <img src="screenshots/Screenshot 8.png" width="50%">    <img src="screenshots/Screenshot 9.png" width="50%">    <img src="screenshots/Screenshot 10.png" width="50%">
 </pre>
 
 
