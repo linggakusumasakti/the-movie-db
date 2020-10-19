@@ -4,56 +4,32 @@
 
 Submission for Menjadi Android Developer Expert dicoding with clean architecture(seperation of model) and modularization.
 
-Libraries Used
---------------
-* [Foundation][0] - Components for core system capabilities, Kotlin extensions and support for
-  multidex and automated testing.
-  * [AppCompat][1] - Degrade gracefully on older versions of Android.
-  * [Android KTX][2] - Write more concise, idiomatic Kotlin code.
-  * [Test][3] - An Android testing framework for unit and runtime UI tests.
-* [Architecture][4] - A collection of libraries that help you design robust, testable, and
-  maintainable apps. Start with classes for managing your UI component lifecycle and handling data
-  persistence.
-  * [Data Binding][5] - Declaratively bind observable data to UI elements.
-  * [Lifecycles][6] - Create a UI that automatically responds to lifecycle events.
-  * [LiveData][7] - Build data objects that notify views when the underlying database changes.
-  * [Navigation][8] - Handle everything needed for in-app navigation.
-  * [Room][9] - Access your app's SQLite database with in-app objects and compile-time checks.
-  * [ViewModel][10] - Store UI-related data that isn't destroyed on app rotations. Easily schedule
-     asynchronous tasks for optimal execution.
-* [UI][11] - Details on why and how to use UI Components in your apps - together or separate
-  * [Animations & Transitions][12] - Move widgets and transition between screens.
-  * [Fragment][13] - A basic unit of composable UI.
-  * [Layout][14] - Lay out widgets using different algorithms.
-  * [MotionLayout][18] for manage motion and widget animation.
-* Third party
-  * [Glide][15] for image loading
-  * [Dagger 2][16] for Dependency Injection
-  * [Retrofit][17] for Networking
-  * [Coroutine Flow][19] for asynchronous process and reduce callback.
-  * [Shimmer][20] provides an easy way to add a shimmer effect to any view in your Android app.
+## Features
+* Movies
+* Tv Shows
+* Search Movie & Tv Show
+* Detail Movies & Tv Show
+* Localization
+* Dark Theme
 
-[0]: https://developer.android.com/jetpack/components
-[1]: https://developer.android.com/topic/libraries/support-library/packages#v7-appcompat
-[2]: https://developer.android.com/kotlin/ktx
-[3]: https://developer.android.com/training/testing/
-[4]: https://developer.android.com/jetpack/arch/
-[5]: https://developer.android.com/topic/libraries/data-binding/
-[6]: https://developer.android.com/topic/libraries/architecture/lifecycle
-[7]: https://developer.android.com/topic/libraries/architecture/livedata
-[8]: https://developer.android.com/topic/libraries/architecture/navigation/
-[9]: https://developer.android.com/topic/libraries/architecture/room
-[10]: https://developer.android.com/topic/libraries/architecture/viewmodel
-[11]: https://developer.android.com/guide/topics/ui
-[12]: https://developer.android.com/training/animation/
-[13]: https://developer.android.com/guide/components/fragments
-[14]: https://developer.android.com/guide/topics/ui/declaring-layout
-[15]: https://bumptech.github.io/glide/
-[16]: https://github.com/google/dagger
-[17]: https://square.github.io/retrofit/
-[18]: https://developer.android.com/training/constraint-layout/motionlayout
-[19]: https://kotlinlang.org/docs/reference/coroutines/flow.html
-[20]: https://github.com/facebook/shimmer-android
+## Screenshots App
+<pre>
+<img src="screenshots/Screenshot 1.png"> <img src="screenshots/Screenshot 2.png"> <img src="screenshots/Screenshot 3.png"> <img src="screenshots/Screenshot 4.png"> <img src="screenshots/Screenshot 5.png"> <img src="screenshots/Screenshot 6.png"> <img src="screenshots/Screenshot 7.png"> <img src="screenshots/Screenshot 8.png"> <img src="screenshots/Screenshot 9.png"> <img src="screenshots/Screenshot 10.png">
+</pre>
+
+
+## Built With 🛠
+* [Dagger 2](https://github.com/google/dagger) for Dependency Injection
+* [Coroutine Flow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/-flow/) An asynchronous data stream that sequentially emits values and completes normally or with an exception.
+* [Retrofit](https://github.com/square/retrofit) A type-safe HTTP client for Android
+* [Data Binding](https://developer.android.com/topic/libraries/data-binding) A support library that allows you to bind UI components in your layouts to data sources in your app using a declarative format rather than programmatically.
+* [LiveData](https://developer.android.com/topic/libraries/architecture/livedata) is an observable data holder class.
+* [Navigation Component](https://developer.android.com/guide/navigation) helps you implement navigation, from simple button clicks to more complex patterns, such as app bars and the navigation drawer.
+* [Room](https://developer.android.com/topic/libraries/architecture/room) persistence library provides an abstraction layer over SQLite to allow for more robust database access while harnessing the full power of SQLite.
+* [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) class is designed to store and manage UI-related data in a lifecycle conscious way. 
+* [MotionLayout](https://developer.android.com/training/constraint-layout/motionlayout)  is a layout type that helps you manage motion and widget animation in your app.
+* [Glide](https://github.com/bumptech/glide)  is a fast and efficient open source media management and image loading framework for Android that wraps media decoding, memory and disk caching, and resource pooling into a simple and easy to use interface.
+* [Shimmer](https://github.com/facebook/shimmer-android) is an Android library that provides an easy way to add a shimmer effect to any view in your Android app.
 
 License
 -------
