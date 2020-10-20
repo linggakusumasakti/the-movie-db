@@ -7,6 +7,7 @@ Submission for Menjadi Android Developer Expert dicoding with clean architecture
 ## Features
 * Movies
 * Tv Shows
+* Favorites for Movie & Tv Show
 * Search Movie & Tv Show
 * Detail Movies & Tv Show
 * Localization
