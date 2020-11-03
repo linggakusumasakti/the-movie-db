@@ -13,4 +13,5 @@
     <string name="setting">Setting</string>
     <string name="change_language">Change Language</string>
     <string name="change_theme">Change Theme</string>
+    <string name="top_billed_cast">Top Billed Cast</string>
 </resources>

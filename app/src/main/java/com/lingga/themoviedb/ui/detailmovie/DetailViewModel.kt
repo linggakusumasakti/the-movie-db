@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.domain.model.Credit
 import com.domain.model.Movie
 import com.domain.usecase.movie.MovieUseCase
 import kotlinx.coroutines.flow.collect
@@ -15,6 +16,9 @@ class DetailViewModel @Inject constructor(private val useCase: MovieUseCase) : V
     private val _detail = MutableLiveData<Movie>()
     val detail: LiveData<Movie> get() = _detail
 
+    private val _credit = MutableLiveData<List<Credit>>()
+    val credit: LiveData<List<Credit>> get() = _credit
+
     fun getDetail(id: Int) {
         viewModelScope.launch {
             useCase.getMovie(id)
@@ -24,6 +28,16 @@ class DetailViewModel @Inject constructor(private val useCase: MovieUseCase) : V
         }
     }
 
+
+    fun getCredit(id: Int) {
+        viewModelScope.launch {
+            useCase.getCreditMovie(id).collect {
+                _credit.postValue(it)
+            }
+        }
+    }
+
     fun setFavoriteMovie(movie: Movie, state: Boolean) = useCase.setFavoriteMovie(movie, state)
+
 
 }

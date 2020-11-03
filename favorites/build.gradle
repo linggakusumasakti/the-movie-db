@@ -25,9 +25,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    dataBinding {
-        enabled = true
-    }
+
+    android.buildFeatures.dataBinding = true
+
     androidExtensions {
         experimental = true
     }

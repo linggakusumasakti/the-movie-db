@@ -3,8 +3,10 @@ package com.utils
 import com.data.source.local.entity.MovieEntity
 import com.data.source.local.entity.MovieFavoriteEntity
 import com.data.source.local.entity.TvShowEntity
+import com.data.source.remote.response.CreditResponse
 import com.data.source.remote.response.movie.MovieResponse
 import com.data.source.remote.response.tvshow.TvShowResponse
+import com.domain.model.Credit
 import com.domain.model.Movie
 import com.domain.model.TvShow
 
@@ -66,6 +68,19 @@ object DataMapper {
         return list
     }
 
+    fun responseToDomainCreditMovie(input: List<CreditResponse>): List<Credit> {
+        val list = ArrayList<Credit>()
+        input.map {
+            val data = Credit(
+                castId = it.castId,
+                character = it.character,
+                name = it.name,
+                profilePath = it.profilePath
+            )
+            list.add(data)
+        }
+        return list
+    }
 
     fun mapEntitiesToDomainMovie(input: List<MovieEntity>): List<Movie> =
         input.map {

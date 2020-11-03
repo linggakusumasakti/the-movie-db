@@ -16,7 +16,7 @@ import com.lingga.themoviedb.utils.ext.observe
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
 
-
+@ExperimentalCoroutinesApi
 class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_detail) {
 
     @Inject
@@ -26,7 +26,9 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
 
     private val args: DetailFragmentArgs by navArgs()
 
-    private val adapter by lazy { GenreAdapter() }
+    private val adapterGenre by lazy { GenreAdapter() }
+
+    private val adapterCredit by lazy { CreditAdapter() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -39,7 +41,11 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
         binding.apply {
             recyclerViewGenre.apply {
                 layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-                adapter = this@DetailFragment.adapter
+                adapter = this@DetailFragment.adapterGenre
+            }
+            recyclerViewCredit.apply {
+                layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                adapter = this@DetailFragment.adapterCredit
             }
             backButton.setOnClickListener { findNavController().navigateUp() }
         }
@@ -47,8 +53,12 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
 
     private fun subscribeUi() {
         viewModel.getDetail(args.movie.id ?: 0)
+        viewModel.getCredit(args.movie.id ?: 0)
         observe(viewModel.detail) { movie ->
-            adapter.submitList(movie.genres)
+            adapterGenre.submitList(movie.genres)
+        }
+        observe(viewModel.credit) { credit ->
+            adapterCredit.submitList(credit)
         }
     }
 
@@ -83,7 +93,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
         }
     }
 
-    @ExperimentalCoroutinesApi
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         appComponent.inject(this)

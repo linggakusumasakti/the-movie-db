@@ -1,6 +1,8 @@
 package com.data.source.remote.network
 
+import com.data.source.remote.response.BaseCreditResponse
 import com.data.source.remote.response.BaseMovieResponse
+import com.data.source.remote.response.CreditResponse
 import com.data.source.remote.response.movie.MovieResponse
 import com.data.source.remote.response.tvshow.TvShowResponse
 import com.lingga.themoviedb.core.BuildConfig
@@ -39,4 +41,10 @@ interface MovieApiService {
         @Query("api_key") apiKey: String? = BuildConfig.TMDB_API_KEY,
         @Query("query") query: String?
     ): BaseMovieResponse<TvShowResponse>
+
+    @GET("movie/{movie_id}/credits")
+    suspend fun getCredits(
+        @Path("movie_id") movieId: Int,
+        @Query("api_key") apiKey: String? = BuildConfig.TMDB_API_KEY
+    ): BaseCreditResponse<CreditResponse>
 }

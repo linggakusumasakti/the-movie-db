@@ -9,6 +9,7 @@ import com.data.source.local.MovieLocalDataSource
 import com.data.source.remote.MovieRemoteDataSource
 import com.data.source.remote.network.ApiResponse
 import com.data.source.remote.response.movie.MovieResponse
+import com.domain.model.Credit
 import com.domain.model.Movie
 import com.domain.repository.IMovieRepository
 import com.utils.AppExecutors
@@ -74,4 +75,8 @@ class MovieRepository @Inject constructor(
             DataMapper.responseToDomainMovies(it)
         }
 
+    override suspend fun getCreditMovie(id: Int): Flow<List<Credit>> =
+        remoteDataSource.fetchCreditMovie(id).map {
+            DataMapper.responseToDomainCreditMovie(it)
+        }
 }
