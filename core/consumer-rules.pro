@@ -91,3 +91,4 @@
 -dontwarn androidx.databinding.**
 -keep class androidx.databinding.** { *; }
 -keep class * extends androidx.databinding.DataBinderMapper { *; }
+-keepnames class androidx.navigation.fragment.NavHostFragment
