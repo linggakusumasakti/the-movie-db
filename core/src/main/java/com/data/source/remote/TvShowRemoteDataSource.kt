@@ -3,6 +3,7 @@ package com.data.source.remote
 import android.util.Log
 import com.data.source.remote.network.ApiResponse
 import com.data.source.remote.network.MovieApiService
+import com.data.source.remote.response.CreditResponse
 import com.data.source.remote.response.tvshow.TvShowResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -50,6 +51,18 @@ class TvShowRemoteDataSource @Inject constructor(private val movieApiService: Mo
                 if (data?.isNotEmpty() ?: return@flow) {
                     emit(response.results)
                 }
+            } catch (e: Exception) {
+                Log.e("RemoteDataSource", e.toString())
+            }
+        }.flowOn(Dispatchers.IO)
+    }
+
+    suspend fun fetchCreditTvShow(id: Int): Flow<List<CreditResponse>> {
+        return flow {
+            try {
+                val response = movieApiService.getCreditsTvShow(tvId = id)
+                val data = response.cast
+                if (data?.isNotEmpty() ?: return@flow) emit(data)
             } catch (e: Exception) {
                 Log.e("RemoteDataSource", e.toString())
             }

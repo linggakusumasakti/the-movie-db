@@ -9,9 +9,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lingga.themoviedb.R
-import com.lingga.themoviedb.ui.base.BaseFragment
-import com.lingga.themoviedb.ui.ViewModelFactory
 import com.lingga.themoviedb.databinding.FragmentDetailTvShowBinding
+import com.lingga.themoviedb.ui.ViewModelFactory
+import com.lingga.themoviedb.ui.base.BaseFragment
+import com.lingga.themoviedb.ui.detailmovie.CreditAdapter
 import com.lingga.themoviedb.ui.detailmovie.GenreAdapter
 import com.lingga.themoviedb.utils.ext.observe
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -27,7 +28,9 @@ class DetailTvShowFragment :
 
     private val args: DetailTvShowFragmentArgs by navArgs()
 
-    private val adapter by lazy { GenreAdapter() }
+    private val genreAdapter by lazy { GenreAdapter() }
+
+    private val creditAdapter by lazy { CreditAdapter() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -40,7 +43,11 @@ class DetailTvShowFragment :
         binding.apply {
             recyclerViewGenre.apply {
                 layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-                adapter = this@DetailTvShowFragment.adapter
+                adapter = this@DetailTvShowFragment.genreAdapter
+            }
+            recyclerViewCredit.apply {
+                layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                adapter = this@DetailTvShowFragment.creditAdapter
             }
             backButton.setOnClickListener { findNavController().navigateUp() }
         }
@@ -48,8 +55,12 @@ class DetailTvShowFragment :
 
     private fun subscribeUi() {
         viewModel.getDetail(args.tvShow.id ?: 0)
+        viewModel.getCreditTvShow(args.tvShow.id ?: 0)
         observe(viewModel.detail) { tvShow ->
-            adapter.submitList(tvShow.genres)
+            genreAdapter.submitList(tvShow.genres)
+        }
+        observe(viewModel.credit) { credit ->
+            creditAdapter.submitList(credit)
         }
     }
 

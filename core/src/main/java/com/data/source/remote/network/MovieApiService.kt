@@ -47,4 +47,10 @@ interface MovieApiService {
         @Path("movie_id") movieId: Int,
         @Query("api_key") apiKey: String? = BuildConfig.TMDB_API_KEY
     ): BaseCreditResponse<CreditResponse>
+
+    @GET("tv/{tv_id}/credits")
+    suspend fun getCreditsTvShow(
+        @Path("tv_id") tvId: Int,
+        @Query("api_key") apiKey: String? = BuildConfig.TMDB_API_KEY
+    ): BaseCreditResponse<CreditResponse>
 }

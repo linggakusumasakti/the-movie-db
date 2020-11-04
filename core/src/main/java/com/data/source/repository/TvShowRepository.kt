@@ -9,6 +9,7 @@ import com.data.source.local.TvShowLocalDataSource
 import com.data.source.remote.TvShowRemoteDataSource
 import com.data.source.remote.network.ApiResponse
 import com.data.source.remote.response.tvshow.TvShowResponse
+import com.domain.model.Credit
 import com.domain.model.TvShow
 import com.domain.repository.ITvShowRepository
 import com.utils.AppExecutors
@@ -70,5 +71,10 @@ class TvShowRepository @Inject constructor(
     override suspend fun getSearchTvShow(query: String): Flow<List<TvShow>> =
         remoteDataSource.fetchSearchTvShow(query).map {
             DataMapper.responseToDomainTvShow(it)
+        }
+
+    override suspend fun getCreditTvShow(id: Int): Flow<List<Credit>> =
+        remoteDataSource.fetchCreditTvShow(id).map {
+            DataMapper.responseToDomainCreditMovie(it)
         }
 }

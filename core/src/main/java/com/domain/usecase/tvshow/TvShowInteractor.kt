@@ -3,6 +3,7 @@ package com.domain.usecase.tvshow
 import androidx.lifecycle.LiveData
 import androidx.paging.PagedList
 import com.data.Resource
+import com.domain.model.Credit
 import com.domain.model.TvShow
 import com.domain.repository.ITvShowRepository
 import kotlinx.coroutines.flow.Flow
@@ -22,4 +23,7 @@ class TvShowInteractor @Inject constructor(private val repository: ITvShowReposi
 
     override suspend fun getSearchTvShow(query: String): Flow<List<TvShow>> =
         repository.getSearchTvShow(query)
+
+    override suspend fun getCreditTvShow(id: Int): Flow<List<Credit>> =
+        repository.getCreditTvShow(id)
 }
