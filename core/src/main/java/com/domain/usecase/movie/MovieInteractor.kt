@@ -26,4 +26,6 @@ class MovieInteractor @Inject constructor(private val movieRepository: IMovieRep
 
     override suspend fun getCreditMovie(id: Int): Flow<List<Credit>> =
         movieRepository.getCreditMovie(id)
+
+    override suspend fun getMovieById(id: Int): Flow<Movie> = movieRepository.getMovieById(id)
 }

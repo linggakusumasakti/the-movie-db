@@ -72,7 +72,6 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
                     }
                 }
             }
-            Log.d("cekfav", movie.data.toString())
         }
     }
 

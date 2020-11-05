@@ -79,4 +79,9 @@ class MovieRepository @Inject constructor(
         remoteDataSource.fetchCreditMovie(id).map {
             DataMapper.responseToDomainCreditMovie(it)
         }
+
+    override suspend fun getMovieById(id: Int): Flow<Movie> =
+        localDataSource.getMovieById(id).map {
+            DataMapper.mapEntityToDomainMovie(it)
+        }
 }

@@ -14,4 +14,5 @@ interface MovieUseCase {
     fun getFavoriteMovie(): LiveData<PagedList<Movie>>
     suspend fun getSearchMovie(query: String): Flow<List<Movie>>
     suspend fun getCreditMovie(id: Int): Flow<List<Credit>>
+    suspend fun getMovieById(id: Int): Flow<Movie>
 }

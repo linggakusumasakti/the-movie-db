@@ -32,13 +32,13 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        showDetailArgs()
         subscribeUi()
         initBinding()
     }
 
     private fun initBinding() {
         binding.apply {
+            args = this@DetailFragment.args.movie
             recyclerViewGenre.apply {
                 layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                 adapter = this@DetailFragment.adapterGenre
@@ -54,22 +54,21 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
     private fun subscribeUi() {
         viewModel.getDetail(args.movie.id ?: 0)
         viewModel.getCredit(args.movie.id ?: 0)
+        viewModel.getDetailDb(args.movie.id ?: 0)
         observe(viewModel.detail) { movie ->
             adapterGenre.submitList(movie.genres)
         }
         observe(viewModel.credit) { credit ->
             adapterCredit.submitList(credit)
         }
-    }
-
-    private fun showDetailArgs() {
-        binding.args = args.movie
-        var statusFavorite = args.movie.isFavorite ?: return
-        setStatusFavorite(statusFavorite)
-        binding.favoriteButton.setOnClickListener {
-            statusFavorite = !statusFavorite
-            viewModel.setFavoriteMovie(args.movie, statusFavorite)
+        observe(viewModel.detailDb) { movie ->
+            var statusFavorite = movie.isFavorite ?: false
             setStatusFavorite(statusFavorite)
+            binding.favoriteButton.setOnClickListener {
+                statusFavorite = !statusFavorite
+                viewModel.setFavoriteMovie(args.movie, statusFavorite)
+                setStatusFavorite(statusFavorite)
+            }
         }
     }
 

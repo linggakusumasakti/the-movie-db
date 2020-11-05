@@ -20,6 +20,8 @@ class MovieLocalDataSource @Inject constructor(private val movieDao: MovieDao) {
         movieDao.updateFavoriteMovie(movie)
     }
 
-    fun getFavoriteMovie(): DataSource.Factory<Int, MovieFavoriteEntity> = movieDao.getFavoriteMovie()
+    fun getFavoriteMovie(): DataSource.Factory<Int, MovieFavoriteEntity> =
+        movieDao.getFavoriteMovie()
 
+    fun getMovieById(id: Int) = movieDao.getMovieById(id)
 }

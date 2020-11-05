@@ -24,4 +24,6 @@ interface MovieDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun updateFavoriteMovie(movie: MovieFavoriteEntity)
 
+    @Query("select * from movie_favorite where id =:id")
+    fun getMovieById(id: Int): Flow<MovieFavoriteEntity>
 }

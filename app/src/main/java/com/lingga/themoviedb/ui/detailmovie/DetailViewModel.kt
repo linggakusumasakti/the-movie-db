@@ -19,6 +19,9 @@ class DetailViewModel @Inject constructor(private val useCase: MovieUseCase) : V
     private val _credit = MutableLiveData<List<Credit>>()
     val credit: LiveData<List<Credit>> get() = _credit
 
+    private val _detailDb = MutableLiveData<Movie>()
+    val detailDb: LiveData<Movie> get() = _detailDb
+
     fun getDetail(id: Int) {
         viewModelScope.launch {
             useCase.getMovie(id)
@@ -33,6 +36,14 @@ class DetailViewModel @Inject constructor(private val useCase: MovieUseCase) : V
         viewModelScope.launch {
             useCase.getCreditMovie(id).collect {
                 _credit.postValue(it)
+            }
+        }
+    }
+
+    fun getDetailDb(id: Int) {
+        viewModelScope.launch {
+            useCase.getMovieById(id).collect {
+                _detailDb.postValue(it)
             }
         }
     }
