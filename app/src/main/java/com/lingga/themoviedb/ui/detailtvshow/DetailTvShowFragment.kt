@@ -3,7 +3,7 @@ package com.lingga.themoviedb.ui.detailtvshow
 import android.content.Context
 import android.os.Bundle
 import android.view.View
-import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.getDrawable
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -77,21 +77,12 @@ class DetailTvShowFragment :
 
     private fun setStatusFavorite(statusFavorite: Boolean) {
         binding.apply {
-            if (statusFavorite) {
-                favoriteButton.setImageDrawable(
-                    ContextCompat.getDrawable(
-                        context ?: return,
-                        R.drawable.ic_baseline_favorite
-                    )
+            favoriteButton.setImageDrawable(
+                getDrawable(
+                    requireContext(),
+                    if (statusFavorite) R.drawable.ic_baseline_favorite else R.drawable.ic_twotone_favorite_border
                 )
-            } else {
-                favoriteButton.setImageDrawable(
-                    ContextCompat.getDrawable(
-                        context ?: return,
-                        R.drawable.ic_twotone_favorite_border
-                    )
-                )
-            }
+            )
         }
     }
 
