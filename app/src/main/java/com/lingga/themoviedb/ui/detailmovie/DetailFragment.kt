@@ -52,9 +52,10 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
     }
 
     private fun subscribeUi() {
-        viewModel.getDetail(args.movie.id ?: 0)
-        viewModel.getCredit(args.movie.id ?: 0)
-        viewModel.getDetailDb(args.movie.id ?: 0)
+        val id = args.movie.id ?: 0
+        viewModel.getDetail(id)
+        viewModel.getCredit(id)
+        viewModel.getDetailDb(id)
         observe(viewModel.detail) { movie ->
             adapterGenre.submitList(movie.genres)
         }
