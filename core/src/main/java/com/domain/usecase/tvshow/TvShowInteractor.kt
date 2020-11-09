@@ -26,4 +26,6 @@ class TvShowInteractor @Inject constructor(private val repository: ITvShowReposi
 
     override suspend fun getCreditTvShow(id: Int): Flow<List<Credit>> =
         repository.getCreditTvShow(id)
+
+    override suspend fun getTvShowById(id: Int): Flow<TvShow> = repository.getTvShowById(id)
 }

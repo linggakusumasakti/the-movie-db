@@ -36,11 +36,11 @@ class DetailTvShowFragment :
         super.onViewCreated(view, savedInstanceState)
         subscribeUi()
         initBinding()
-        showDetailArgs()
     }
 
     private fun initBinding() {
         binding.apply {
+            args = this@DetailTvShowFragment.args.tvShow
             recyclerViewGenre.apply {
                 layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                 adapter = this@DetailTvShowFragment.genreAdapter
@@ -54,24 +54,24 @@ class DetailTvShowFragment :
     }
 
     private fun subscribeUi() {
-        viewModel.getDetail(args.tvShow.id ?: 0)
-        viewModel.getCreditTvShow(args.tvShow.id ?: 0)
+        val id = args.tvShow.id ?: 0
+        viewModel.getDetail(id)
+        viewModel.getCreditTvShow(id)
+        viewModel.getTvShowById(id)
         observe(viewModel.detail) { tvShow ->
             genreAdapter.submitList(tvShow.genres)
         }
         observe(viewModel.credit) { credit ->
             creditAdapter.submitList(credit)
         }
-    }
-
-    private fun showDetailArgs() {
-        binding.args = args.tvShow
-        var statusFavorite = args.tvShow.isFavorite ?: false
-        setStatusFavorite(statusFavorite)
-        binding.favoriteButton.setOnClickListener {
-            statusFavorite = !statusFavorite
-            viewModel.setFavoriteTvShow(args.tvShow, statusFavorite)
+        observe(viewModel.detailDb) { tvShow ->
+            var statusFavorite = tvShow.isFavorite ?: false
             setStatusFavorite(statusFavorite)
+            binding.favoriteButton.setOnClickListener {
+                statusFavorite = !statusFavorite
+                viewModel.setFavoriteTvShow(args.tvShow, statusFavorite)
+                setStatusFavorite(statusFavorite)
+            }
         }
     }
 

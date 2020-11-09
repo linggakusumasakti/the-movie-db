@@ -3,6 +3,7 @@ package com.utils
 import com.data.source.local.entity.MovieEntity
 import com.data.source.local.entity.MovieFavoriteEntity
 import com.data.source.local.entity.TvShowEntity
+import com.data.source.local.entity.TvShowFavoriteEntity
 import com.data.source.remote.response.CreditResponse
 import com.data.source.remote.response.movie.MovieResponse
 import com.data.source.remote.response.tvshow.TvShowResponse
@@ -109,17 +110,16 @@ object DataMapper {
         popularity = input?.popularity
     )
 
-    fun mapEntityToDomainTvShow(input: TvShowEntity) = TvShow(
-        id = input.id,
-        backdropPath = input.backdropPath,
-        voteAverage = input.voteAverage,
-        isFavorite = input.isFavorite,
-        posterPath = input.posterPath,
-        overview = input.overview,
-        firstAirDate = input.firstAirDate,
-        name = input.name
+    fun mapTvShowFavoriteToDomainTvShow(input: TvShowFavoriteEntity?) = TvShow(
+        id = input?.id,
+        backdropPath = input?.backdropPath,
+        voteAverage = input?.voteAverage,
+        isFavorite = input?.isFavorite,
+        posterPath = input?.posterPath,
+        overview = input?.overview,
+        firstAirDate = input?.firstAirDate,
+        name = input?.name
     )
-
 
     fun domainToEntityMovieFavorite(input: Movie) = MovieFavoriteEntity(
         id = input.id ?: 0,
@@ -133,7 +133,7 @@ object DataMapper {
         popularity = input.popularity
     )
 
-    fun domainToEntityTvShow(input: TvShow) = TvShowEntity(
+    fun domainToTvShowFavorite(input: TvShow) = TvShowFavoriteEntity(
         id = input.id ?: 0,
         backdropPath = input.backdropPath,
         overview = input.overview,

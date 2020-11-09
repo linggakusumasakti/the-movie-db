@@ -51,13 +51,13 @@ class TvShowRepository @Inject constructor(
         }
 
     override fun setFavoriteTvShow(tvShow: TvShow, state: Boolean) {
-        val entity = DataMapper.domainToEntityTvShow(tvShow)
+        val entity = DataMapper.domainToTvShowFavorite(tvShow)
         appExecutors.diskIO().execute { localDataSource.setFavoriteTvShow(entity, state) }
     }
 
     override fun getFavoriteTvShow(): LiveData<PagedList<TvShow>> {
         val data = localDataSource.getFavoriteTvShow().map {
-            DataMapper.mapEntityToDomainTvShow(it)
+            DataMapper.mapTvShowFavoriteToDomainTvShow(it)
         }
         val config = PagedList.Config.Builder()
             .setEnablePlaceholders(false)
@@ -76,5 +76,10 @@ class TvShowRepository @Inject constructor(
     override suspend fun getCreditTvShow(id: Int): Flow<List<Credit>> =
         remoteDataSource.fetchCreditTvShow(id).map {
             DataMapper.responseToDomainCreditMovie(it)
+        }
+
+    override suspend fun getTvShowById(id: Int): Flow<TvShow> =
+        localDataSource.getTvShowById(id).map {
+            DataMapper.mapTvShowFavoriteToDomainTvShow(it)
         }
 }

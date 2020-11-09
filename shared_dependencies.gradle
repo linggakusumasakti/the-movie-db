@@ -21,7 +21,7 @@ dependencies {
 
 
     implementation "com.google.dagger:dagger:$dagger_version"
-    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:2.29.1"
 
     implementation "androidx.activity:activity-ktx:$activity_ktx_version"
     implementation "androidx.fragment:fragment-ktx:$fragment_ktx_version"
@@ -40,10 +40,10 @@ dependencies {
     testImplementation "org.mockito:mockito-core:$mockitoVersion"
     testImplementation "org.mockito:mockito-inline:$mockitoVersion"
     testImplementation "androidx.arch.core:core-testing:2.1.0"
-    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
     implementation "androidx.test.espresso:espresso-idling-resource:$idleResourceVersion"
 
     implementation "androidx.multidex:multidex:2.0.1"
-    implementation "com.facebook.shimmer:shimmer:$shimmer_version"
+    implementation "com.facebook.shimmer:shimmer:0.5.0"
 
 }

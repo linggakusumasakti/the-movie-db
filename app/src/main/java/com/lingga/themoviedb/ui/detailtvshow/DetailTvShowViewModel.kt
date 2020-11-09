@@ -20,6 +20,9 @@ class DetailTvShowViewModel @Inject constructor(private val useCase: TvShowUseCa
     private val _credit = MutableLiveData<List<Credit>>()
     val credit: LiveData<List<Credit>> get() = _credit
 
+    private val _detailDb = MutableLiveData<TvShow>()
+    val detailDb: LiveData<TvShow> get() = _detailDb
+
     fun getDetail(id: Int) {
         viewModelScope.launch {
             useCase.getTvShow(id)
@@ -35,6 +38,12 @@ class DetailTvShowViewModel @Inject constructor(private val useCase: TvShowUseCa
                 .collect {
                     _credit.postValue(it)
                 }
+        }
+    }
+
+    fun getTvShowById(id: Int) {
+        viewModelScope.launch {
+            useCase.getTvShowById(id).collect { _detailDb.postValue(it) }
         }
     }
 

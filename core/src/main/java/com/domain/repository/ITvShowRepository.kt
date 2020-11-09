@@ -14,4 +14,5 @@ interface ITvShowRepository {
     fun getFavoriteTvShow(): LiveData<PagedList<TvShow>>
     suspend fun getSearchTvShow(query: String): Flow<List<TvShow>>
     suspend fun getCreditTvShow(id: Int): Flow<List<Credit>>
+    suspend fun getTvShowById(id: Int): Flow<TvShow>
 }
