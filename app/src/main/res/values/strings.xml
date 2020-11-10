@@ -15,4 +15,5 @@
     <string name="change_theme">Change Theme</string>
     <string name="top_billed_cast">Top Billed Cast</string>
     <string name="series_cast">Series Cast</string>
+    <string name="search_tv_show">Search Tv Show…</string>
 </resources>
