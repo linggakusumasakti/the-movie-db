@@ -16,4 +16,6 @@
     <string name="top_billed_cast">Top Billed Cast</string>
     <string name="series_cast">Series Cast</string>
     <string name="search_tv_show">Search Tv Show…</string>
+    <string name="movie_popular">Popular Movie</string>
+    <string name="now_playing_movie">Now Playing Movie</string>
 </resources>
