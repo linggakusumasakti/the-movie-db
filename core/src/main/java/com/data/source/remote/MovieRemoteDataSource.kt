@@ -32,6 +32,23 @@ class MovieRemoteDataSource @Inject constructor(private val movieApiService: Mov
         }.flowOn(Dispatchers.IO)
     }
 
+    suspend fun fetchNowPlayingMovie(): Flow<ApiResponse<List<MovieResponse>>> {
+        return flow {
+            try {
+                val response = movieApiService.getNowPlayingMovie()
+                val data = response.results
+                if (data?.isNotEmpty() ?: return@flow) {
+                    emit(ApiResponse.Success(response.results))
+                } else {
+                    emit(ApiResponse.Empty)
+                }
+            } catch (e: Exception) {
+                emit(ApiResponse.Error(e.toString()))
+                Log.e("RemoteDataSource", e.toString())
+            }
+        }.flowOn(Dispatchers.IO)
+    }
+
     suspend fun fetchDetailMovie(id: Int): Flow<MovieResponse> {
         return flow {
             try {
