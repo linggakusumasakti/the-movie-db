@@ -11,7 +11,7 @@ import javax.inject.Singleton
 @Singleton
 class MovieLocalDataSource @Inject constructor(private val movieDao: MovieDao) {
 
-    fun getAllMovie(): Flow<List<MovieEntity>> = movieDao.getAllMovie()
+    fun getAllMovie(type:String): Flow<List<MovieEntity>> = movieDao.getAllMovie(type)
 
     suspend fun insertMovie(movie: List<MovieEntity>) = movieDao.insertMovie(movie)
 

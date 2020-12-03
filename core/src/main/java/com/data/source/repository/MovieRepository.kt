@@ -26,10 +26,10 @@ class MovieRepository @Inject constructor(
     private val appExecutors: AppExecutors
 ) : IMovieRepository {
 
-    override fun getAllMovie(): Flow<Resource<List<Movie>>> =
+    override fun getAllMovie(type: String): Flow<Resource<List<Movie>>> =
         object : NetworkBoundResource<List<Movie>, List<MovieResponse>>() {
             override fun loadFromDB(): Flow<List<Movie>> {
-                return localDataSource.getAllMovie().map {
+                return localDataSource.getAllMovie(type).map {
                     DataMapper.mapEntitiesToDomainMovie(it)
                 }
             }
@@ -84,4 +84,24 @@ class MovieRepository @Inject constructor(
         localDataSource.getMovieById(id).map {
             DataMapper.mapEntityToDomainMovie(it)
         }
+
+    override fun getNowPlayingMovie(type: String): Flow<Resource<List<Movie>>> =
+        object : NetworkBoundResource<List<Movie>, List<MovieResponse>>() {
+            override fun loadFromDB(): Flow<List<Movie>> =
+                localDataSource.getAllMovie(type).map {
+                    DataMapper.mapEntitiesToDomainMovie(it)
+                }
+
+            override fun shouldFetch(data: List<Movie>?): Boolean = true
+
+            override suspend fun createCall(): Flow<ApiResponse<List<MovieResponse>>> =
+                remoteDataSource.fetchNowPlayingMovie()
+
+            override suspend fun saveCallResult(data: List<MovieResponse>) {
+                val movie = DataMapper.responseToEntitiesNowPlayingMovie(data)
+                localDataSource.insertMovie(movie)
+            }
+
+        }.asFlow()
+
 }
