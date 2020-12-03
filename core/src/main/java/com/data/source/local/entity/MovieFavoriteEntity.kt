@@ -14,6 +14,7 @@ data class MovieFavoriteEntity(
     var overview: String?,
     var isFavorite: Boolean? = false,
     var popularity: Float?,
+    var type: String?,
     @ColumnInfo(name = "poster_path") var posterPath: String?,
     @ColumnInfo(name = "backdrop_path") var backdropPath: String?,
     @ColumnInfo(name = "vote_average") var voteAverage: String?,
