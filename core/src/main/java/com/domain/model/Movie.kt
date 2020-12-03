@@ -17,7 +17,8 @@ data class Movie(
     val voteAverage: String?,
     val releaseDate: String?,
     val popularity: Float?,
-    val genres: @RawValue List<GenreResponse>? = emptyList()
+    val genres: @RawValue List<GenreResponse>? = emptyList(),
+    val type: String? = ""
 ) : Parcelable {
 
     fun getReleaseDateFormat(): String = releaseDate?.parseDateWithFormat("MM/dd/yyyy") ?: ""
