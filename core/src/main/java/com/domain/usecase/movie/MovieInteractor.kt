@@ -12,7 +12,8 @@ import javax.inject.Inject
 class MovieInteractor @Inject constructor(private val movieRepository: IMovieRepository) :
     MovieUseCase {
 
-    override fun getAllMovie(): Flow<Resource<List<Movie>>> = movieRepository.getAllMovie()
+    override fun getAllMovie(type: String): Flow<Resource<List<Movie>>> =
+        movieRepository.getAllMovie(type)
 
     override suspend fun getMovie(id: Int): Flow<Movie> = movieRepository.getMovie(id)
 
@@ -28,4 +29,9 @@ class MovieInteractor @Inject constructor(private val movieRepository: IMovieRep
         movieRepository.getCreditMovie(id)
 
     override suspend fun getMovieById(id: Int): Flow<Movie> = movieRepository.getMovieById(id)
+
+    override fun getNowPlayingMovie(type: String): Flow<Resource<List<Movie>>> =
+        movieRepository.getNowPlayingMovie(type)
+
+
 }

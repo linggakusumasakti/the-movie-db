@@ -21,6 +21,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
 
 
+@ExperimentalCoroutinesApi
 class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie) {
 
     @Inject
@@ -30,6 +31,7 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
 
     private val adapter by lazy { MovieAdapter { navigateToDetail(it) } }
 
+    private val adapterNowPlaying by lazy { MovieNowPlayingAdapter { navigateToDetail(it) } }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -45,14 +47,19 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
             }
             recyclerViewMovie.apply {
                 adapter = this@MovieFragment.adapter
-                layoutManager = LinearLayoutManager(context)
+                layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            }
+            recyclerViewNowPlayingMovie.apply {
+                adapter = this@MovieFragment.adapterNowPlaying
+                layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             }
             searchMovie(this)
         }
     }
 
     private fun subscribeUi() {
-        observe(viewModel.movie ?: return) { movie ->
+        observe(viewModel.movie("popular") ?: return) { movie ->
+            Log.d("cekmovie", movie.data.toString())
             binding.apply {
                 when (movie) {
                     is Resource.Loading -> loading.progressBar.show()
@@ -68,6 +75,28 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
                                 movie.message ?: getString(R.string.oopss_something_went_wrong)
                         } else {
                             adapter.submitList(movie.data)
+                        }
+                    }
+                }
+            }
+        }
+        observe(viewModel.nowPlayingMovie("nowplaying") ?: return) { movie ->
+            Log.d("cekmovienowplay", movie.data.toString())
+            binding.apply {
+                when (movie) {
+                    is Resource.Loading -> loading.progressBar.show()
+                    is Resource.Success -> {
+                        loading.progressBar.hide()
+                        adapterNowPlaying.submitList(movie.data)
+                    }
+                    is Resource.Error -> {
+                        loading.progressBar.hide()
+                        if (movie.data.isNullOrEmpty()) {
+                            viewError.errorContainer.show()
+                            viewError.errorMessage.text =
+                                movie.message ?: getString(R.string.oopss_something_went_wrong)
+                        } else {
+                            adapterNowPlaying.submitList(movie.data)
                         }
                     }
                 }
@@ -100,7 +129,7 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
         })
     }
 
-    @ExperimentalCoroutinesApi
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         appComponent.inject(this)
