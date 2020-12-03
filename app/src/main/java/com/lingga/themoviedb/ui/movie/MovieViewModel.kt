@@ -5,6 +5,7 @@ import androidx.lifecycle.asLiveData
 import com.domain.usecase.movie.MovieUseCase
 import javax.inject.Inject
 
-class MovieViewModel @Inject constructor(movieUseCase: MovieUseCase?) : ViewModel() {
-  val movie = movieUseCase?.getAllMovie()?.asLiveData()
+class MovieViewModel @Inject constructor(private val movieUseCase: MovieUseCase?) : ViewModel() {
+    fun movie(type: String) = movieUseCase?.getAllMovie(type)?.asLiveData()
+    fun nowPlayingMovie(type: String) = movieUseCase?.getNowPlayingMovie(type)?.asLiveData()
 }
