@@ -25,7 +25,28 @@ object DataMapper {
                 releaseDate = it.releaseDate,
                 title = it.title,
                 voteAverage = it.voteAverage,
-                popularity = it.popularity
+                popularity = it.popularity,
+                type = "popular"
+            )
+            movieList.add(movie)
+        }
+        return movieList
+    }
+
+    fun responseToEntitiesNowPlayingMovie(input: List<MovieResponse>): List<MovieEntity> {
+        val movieList = ArrayList<MovieEntity>()
+        input.map {
+            val movie = MovieEntity(
+                id = it.id ?: 0,
+                backdropPath = it.backdropPath,
+                isFavorite = false,
+                overview = it.overview,
+                posterPath = it.posterPath,
+                releaseDate = it.releaseDate,
+                title = it.title,
+                voteAverage = it.voteAverage,
+                popularity = it.popularity,
+                type = "nowplaying"
             )
             movieList.add(movie)
         }
@@ -94,7 +115,8 @@ object DataMapper {
                 overview = it.overview,
                 isFavorite = it.isFavorite,
                 backdropPath = it.backdropPath,
-                popularity = it.popularity
+                popularity = it.popularity,
+                type = it.type,
             )
         }
 
@@ -107,7 +129,8 @@ object DataMapper {
         overview = input?.overview,
         releaseDate = input?.releaseDate,
         title = input?.title,
-        popularity = input?.popularity
+        popularity = input?.popularity,
+        type = input?.type
     )
 
     fun mapTvShowFavoriteToDomainTvShow(input: TvShowFavoriteEntity?) = TvShow(
@@ -130,7 +153,8 @@ object DataMapper {
         title = input.title,
         voteAverage = input.voteAverage,
         isFavorite = input.isFavorite,
-        popularity = input.popularity
+        popularity = input.popularity,
+        type = input.type
     )
 
     fun domainToTvShowFavorite(input: TvShow) = TvShowFavoriteEntity(
