@@ -62,10 +62,16 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
             Log.d("cekmovie", movie.data.toString())
             binding.apply {
                 when (movie) {
-                    is Resource.Loading -> loading.progressBar.show()
+                    is Resource.Loading -> {
+                        loading.progressBar.show()
+                        labelMoviePopular.hide()
+                        labelNowPlayingMovie.hide()
+                    }
                     is Resource.Success -> {
                         loading.progressBar.hide()
                         adapter.submitList(movie.data)
+                        labelMoviePopular.show()
+                        labelNowPlayingMovie.show()
                     }
                     is Resource.Error -> {
                         loading.progressBar.hide()
@@ -84,15 +90,21 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
             Log.d("cekmovienowplay", movie.data.toString())
             binding.apply {
                 when (movie) {
-                    is Resource.Loading -> loading.progressBar.show()
+                    is Resource.Loading -> {
+                        loading.progressBar.show()
+                        labelMoviePopular.hide()
+                        labelNowPlayingMovie.hide()
+                    }
                     is Resource.Success -> {
                         loading.progressBar.hide()
+                        labelMoviePopular.show()
+                        labelNowPlayingMovie.show()
                         adapterNowPlaying.submitList(movie.data)
                     }
                     is Resource.Error -> {
                         loading.progressBar.hide()
                         if (movie.data.isNullOrEmpty()) {
-                            viewError.errorContainer.show()
+                            viewError.errorContainer.hide()
                             viewError.errorMessage.text =
                                 movie.message ?: getString(R.string.oopss_something_went_wrong)
                         } else {
