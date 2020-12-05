@@ -20,4 +20,5 @@
     <string name="movie_popular">Film Populer</string>
     <string name="now_playing_movie">Film yang Sedang Tayang</string>
     <string name="see_more"><![CDATA[Lihat Semua >]]></string>
+    <string name="upcoming_movie">Film Akan Datang</string>
 </resources>
