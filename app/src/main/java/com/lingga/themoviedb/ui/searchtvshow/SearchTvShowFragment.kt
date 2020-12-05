@@ -46,6 +46,7 @@ class SearchTvShowFragment :
                 adapter = this@SearchTvShowFragment.adapter
                 layoutManager = LinearLayoutManager(context)
             }
+            appbar.buttonSetting.setOnClickListener { navigateToSetting() }
             searchTvShow(this)
         }
     }
@@ -86,6 +87,10 @@ class SearchTvShowFragment :
         findNavController().navigate(
             SearchTvShowFragmentDirections.actionSearchTvShowFragmentToDetailTvShowFragment(tvShow)
         )
+    }
+
+    private fun navigateToSetting() {
+        findNavController().navigate(SearchTvShowFragmentDirections.actionSearchTvShowFragmentToSettingFragment())
     }
 
 

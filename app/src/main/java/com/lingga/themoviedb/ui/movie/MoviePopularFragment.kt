@@ -42,6 +42,7 @@ class MoviePopularFragment :
                 adapter = this@MoviePopularFragment.adapter
                 layoutManager = LinearLayoutManager(context)
             }
+            appbar.buttonSetting.setOnClickListener { navigateToSetting() }
         }
     }
 
@@ -71,6 +72,10 @@ class MoviePopularFragment :
         findNavController().navigate(
             MoviePopularFragmentDirections.actionMoviePopularFragmentToDetailFragment(movie)
         )
+    }
+
+    private fun navigateToSetting() {
+        findNavController().navigate(MoviePopularFragmentDirections.actionMoviePopularFragmentToSettingFragment())
     }
 
     override fun onAttach(context: Context) {

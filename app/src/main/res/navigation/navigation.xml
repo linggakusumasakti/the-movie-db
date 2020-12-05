@@ -91,6 +91,9 @@
         <action
             android:id="@+id/action_searchMovieFragment_self"
             app:destination="@id/searchMovieFragment" />
+        <action
+            android:id="@+id/action_searchMovieFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchTvShowFragment"
@@ -107,6 +110,9 @@
         <action
             android:id="@+id/action_searchTvShowFragment_self"
             app:destination="@id/searchTvShowFragment" />
+        <action
+            android:id="@+id/action_searchTvShowFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingFragment"
@@ -121,5 +127,8 @@
         <action
             android:id="@+id/action_moviePopularFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
+        <action
+            android:id="@+id/action_moviePopularFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
     </fragment>
 </navigation>

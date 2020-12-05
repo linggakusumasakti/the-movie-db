@@ -47,6 +47,7 @@ class SearchMovieFragment :
                 adapter = this@SearchMovieFragment.adapter
                 layoutManager = LinearLayoutManager(context)
             }
+            appbar.buttonSetting.setOnClickListener { navigateToSetting() }
             searchMovie(this)
         }
     }
@@ -87,6 +88,10 @@ class SearchMovieFragment :
         findNavController().navigate(
             SearchMovieFragmentDirections.actionSearchMovieFragmentToDetailFragment(movie)
         )
+    }
+
+    private fun navigateToSetting() {
+        findNavController().navigate(SearchMovieFragmentDirections.actionSearchMovieFragmentToSettingFragment())
     }
 
     override fun onAttach(context: Context) {
