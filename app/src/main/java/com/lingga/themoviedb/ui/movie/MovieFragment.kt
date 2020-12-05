@@ -29,7 +29,7 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
 
     private val viewModel: MovieViewModel by viewModels { factory }
 
-    private val adapter by lazy { MovieAdapter { navigateToDetail(it) } }
+    private val adapter by lazy { MovieHomeAdapter { navigateToDetail(it) } }
 
     private val adapterNowPlaying by lazy { MovieNowPlayingAdapter { navigateToDetail(it) } }
 
@@ -48,10 +48,12 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
             recyclerViewMovie.apply {
                 adapter = this@MovieFragment.adapter
                 layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                setHasFixedSize(true)
             }
             recyclerViewNowPlayingMovie.apply {
                 adapter = this@MovieFragment.adapterNowPlaying
                 layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                setHasFixedSize(true)
             }
             searchMovie(this)
         }
@@ -69,7 +71,7 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
                     }
                     is Resource.Success -> {
                         loading.progressBar.hide()
-                        adapter.submitList(movie.data)
+                        adapter.submitList(movie.data ?: return@apply)
                         labelMoviePopular.show()
                         labelNowPlayingMovie.show()
                     }
@@ -80,7 +82,7 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
                             viewError.errorMessage.text =
                                 movie.message ?: getString(R.string.oopss_something_went_wrong)
                         } else {
-                            adapter.submitList(movie.data)
+                            adapter.submitList(movie.data ?: return@apply)
                         }
                     }
                 }
@@ -99,7 +101,7 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
                         loading.progressBar.hide()
                         labelMoviePopular.show()
                         labelNowPlayingMovie.show()
-                        adapterNowPlaying.submitList(movie.data)
+                        adapterNowPlaying.submitList(movie.data ?: return@apply)
                     }
                     is Resource.Error -> {
                         loading.progressBar.hide()
@@ -108,7 +110,7 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
                             viewError.errorMessage.text =
                                 movie.message ?: getString(R.string.oopss_something_went_wrong)
                         } else {
-                            adapterNowPlaying.submitList(movie.data)
+                            adapterNowPlaying.submitList(movie.data ?: return@apply)
                         }
                     }
                 }

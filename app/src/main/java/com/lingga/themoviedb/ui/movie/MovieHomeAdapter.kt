@@ -4,8 +4,7 @@ import com.domain.model.Movie
 import com.lingga.themoviedb.R
 import com.lingga.themoviedb.ui.base.BaseAdapterHome
 
-class MovieNowPlayingAdapter(onClick: (Movie) -> Unit) :
-    BaseAdapterHome<Movie>(onClick = onClick) {
+class MovieHomeAdapter(onClick: (Movie) -> Unit) : BaseAdapterHome<Movie>(onClick) {
     override val getLayoutIdRes: Int
         get() = R.layout.item_list_movie_home
 }
