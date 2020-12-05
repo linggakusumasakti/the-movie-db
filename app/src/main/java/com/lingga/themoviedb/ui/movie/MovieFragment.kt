@@ -55,6 +55,7 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
                 layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                 setHasFixedSize(true)
             }
+            seeMorePopularMovie.setOnClickListener { navigateToPopularMovie() }
             searchMovie(this)
         }
     }
@@ -130,6 +131,10 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
 
     private fun navigateToSetting() {
         findNavController().navigate(MovieFragmentDirections.actionMovieFragmentToSettingFragment())
+    }
+
+    private fun navigateToPopularMovie() {
+        findNavController().navigate(MovieFragmentDirections.actionMovieFragmentToMoviePopularFragment())
     }
 
     private fun searchMovie(binding: FragmentMovieBinding) {

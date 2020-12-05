@@ -23,6 +23,9 @@
         <action
             android:id="@+id/action_movieFragment_to_settingFragment"
             app:destination="@id/settingFragment" />
+        <action
+            android:id="@+id/action_movieFragment_to_moviePopularFragment"
+            app:destination="@id/moviePopularFragment" />
     </fragment>
     <fragment
         android:id="@+id/tvFragment"
@@ -110,4 +113,13 @@
         android:name="com.lingga.themoviedb.ui.setting.SettingFragment"
         android:label="SettingFragment"
         tools:layout="@layout/fragment_setting" />
+    <fragment
+        android:id="@+id/moviePopularFragment"
+        android:name="com.lingga.themoviedb.ui.movie.MoviePopularFragment"
+        android:label="MoviePopularFragment"
+        tools:layout="@layout/fragment_movie_popular" >
+        <action
+            android:id="@+id/action_moviePopularFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
 </navigation>

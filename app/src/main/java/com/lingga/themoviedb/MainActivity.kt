@@ -41,6 +41,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                 R.id.detailTvShowFragment -> binding.bottomNavBar.hide()
                 R.id.favoriteFragment -> binding.bottomNavBar.show()
                 R.id.detailFragment -> binding.bottomNavBar.hide()
+                R.id.moviePopularFragment -> binding.bottomNavBar.show()
             }
         }
     }

@@ -8,7 +8,7 @@ import com.lingga.themoviedb.ui.base.BaseAdapter
 class MovieAdapter(onClick: (Movie) -> Unit) :
     BaseAdapter<Movie>(diffUtil = DIFF_CALLBACK, onClick = onClick) {
     override val getLayoutIdRes: Int
-        get() = R.layout.item_list_movie_home
+        get() = R.layout.item_list_movie
 
     companion object {
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Movie>() {
