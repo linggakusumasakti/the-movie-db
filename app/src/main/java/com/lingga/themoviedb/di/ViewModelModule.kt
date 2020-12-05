@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.lingga.themoviedb.ui.ViewModelFactory
 import com.lingga.themoviedb.ui.detailmovie.DetailViewModel
 import com.lingga.themoviedb.ui.detailtvshow.DetailTvShowViewModel
-import com.lingga.themoviedb.ui.movie.MoviePopularViewModel
 import com.lingga.themoviedb.ui.movie.MovieViewModel
 import com.lingga.themoviedb.ui.searchmovie.SearchMovieViewModel
 import com.lingga.themoviedb.ui.searchtvshow.SearchTvShowViewModel
@@ -51,8 +50,4 @@ abstract class ViewModelModule {
     @ViewModelKey(SearchTvShowViewModel::class)
     abstract fun bindSearchTvShowViewModel(viewModel: SearchTvShowViewModel): ViewModel
 
-    @Binds
-    @IntoMap
-    @ViewModelKey(MoviePopularViewModel::class)
-    abstract fun bindMoviePopularViewMode(viewModel: MoviePopularViewModel): ViewModel
 }
