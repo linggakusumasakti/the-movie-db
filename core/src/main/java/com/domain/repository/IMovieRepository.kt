@@ -17,4 +17,5 @@ interface IMovieRepository {
     suspend fun getCreditMovie(id: Int): Flow<List<Credit>>
     suspend fun getMovieById(id: Int): Flow<Movie>
     fun getNowPlayingMovie(type: String): Flow<Resource<List<Movie>>>
+    fun getUpcomingMovie(type: String): Flow<Resource<List<Movie>>>
 }

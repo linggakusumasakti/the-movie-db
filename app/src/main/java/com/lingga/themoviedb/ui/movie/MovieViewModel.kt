@@ -8,4 +8,5 @@ import javax.inject.Inject
 class MovieViewModel @Inject constructor(private val movieUseCase: MovieUseCase?) : ViewModel() {
     fun movie(type: String) = movieUseCase?.getAllMovie(type)?.asLiveData()
     fun nowPlayingMovie(type: String) = movieUseCase?.getNowPlayingMovie(type)?.asLiveData()
+    fun upComingMovie(type: String) = movieUseCase?.getUpComingMovie(type)?.asLiveData()
 }

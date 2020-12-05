@@ -33,5 +33,6 @@ class MovieInteractor @Inject constructor(private val movieRepository: IMovieRep
     override fun getNowPlayingMovie(type: String): Flow<Resource<List<Movie>>> =
         movieRepository.getNowPlayingMovie(type)
 
-
+    override fun getUpComingMovie(type: String): Flow<Resource<List<Movie>>> =
+        movieRepository.getUpcomingMovie(type)
 }

@@ -127,6 +127,40 @@
                     tools:itemCount="1"
                     tools:listitem="@layout/item_list_movie_home" />
 
+                <TextView
+                    android:id="@+id/label_upcoming_movie"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="@string/upcoming_movie"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="18sp"
+                    app:layout_constraintTop_toBottomOf="@id/recycler_view_now_playing_movie" />
+
+                <TextView
+                    android:id="@+id/see_more_upcoming_movie"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins"
+                    android:text="@string/see_more"
+                    android:textColor="@color/colorAccent"
+                    app:layout_constraintBottom_toBottomOf="@+id/label_upcoming_movie"
+                    app:layout_constraintEnd_toEndOf="@+id/label_upcoming_movie"
+                    app:layout_constraintTop_toTopOf="@+id/label_upcoming_movie" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view_upcoming_movie"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/label_upcoming_movie"
+                    tools:itemCount="1"
+                    tools:listitem="@layout/item_list_movie_home" />
+
 
                 <include
                     android:id="@+id/view_error"

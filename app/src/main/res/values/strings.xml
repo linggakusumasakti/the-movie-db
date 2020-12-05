@@ -19,4 +19,5 @@
     <string name="movie_popular">Popular Movie</string>
     <string name="now_playing_movie">Now Playing Movie</string>
     <string name="see_more"><![CDATA[See More >]]></string>
+    <string name="upcoming_movie">Upcoming Movie</string>
 </resources>

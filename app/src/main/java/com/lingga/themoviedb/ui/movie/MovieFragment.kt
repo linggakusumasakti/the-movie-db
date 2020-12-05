@@ -33,6 +33,8 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
 
     private val adapterNowPlaying by lazy { MovieNowPlayingAdapter { navigateToDetail(it) } }
 
+    private val adapterUpcoming by lazy { MovieUpcomingAdapter {} }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initBinding()
@@ -55,6 +57,11 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
                 layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                 setHasFixedSize(true)
             }
+            recyclerViewUpcomingMovie.apply {
+                adapter = this@MovieFragment.adapterUpcoming
+                layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                setHasFixedSize(true)
+            }
             seeMorePopularMovie.setOnClickListener { navigateToPopularMovie() }
             seeMoreNowPlayingMovie.setOnClickListener { navigateToNowPlayingMovie() }
             searchMovie(this)
@@ -66,18 +73,10 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
             Log.d("cekmovie", movie.data.toString())
             binding.apply {
                 when (movie) {
-                    is Resource.Loading -> {
-                        loading.progressBar.show()
-                        labelMoviePopular.hide()
-                        labelNowPlayingMovie.hide()
-                        seeMorePopularMovie.hide()
-                    }
+                    is Resource.Loading -> isLoading(this)
                     is Resource.Success -> {
-                        loading.progressBar.hide()
+                        isSuccess(this)
                         adapter.submitList(movie.data ?: return@apply)
-                        labelMoviePopular.show()
-                        labelNowPlayingMovie.show()
-                        seeMorePopularMovie.show()
                     }
                     is Resource.Error -> {
                         loading.progressBar.hide()
@@ -86,10 +85,7 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
                             viewError.errorMessage.text =
                                 movie.message ?: getString(R.string.oopss_something_went_wrong)
                         } else {
-                            labelMoviePopular.show()
-                            labelNowPlayingMovie.show()
-                            seeMoreNowPlayingMovie.show()
-                            seeMorePopularMovie.show()
+                            isSuccess(this)
                             adapter.submitList(movie.data ?: return@apply)
                         }
                     }
@@ -100,17 +96,9 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
             Log.d("cekmovienowplay", movie.data.toString())
             binding.apply {
                 when (movie) {
-                    is Resource.Loading -> {
-                        loading.progressBar.show()
-                        labelMoviePopular.hide()
-                        labelNowPlayingMovie.hide()
-                        seeMoreNowPlayingMovie.hide()
-                    }
+                    is Resource.Loading -> isLoading(this)
                     is Resource.Success -> {
-                        loading.progressBar.hide()
-                        labelMoviePopular.show()
-                        labelNowPlayingMovie.show()
-                        seeMoreNowPlayingMovie.show()
+                        isSuccess(this)
                         adapterNowPlaying.submitList(movie.data ?: return@apply)
                     }
                     is Resource.Error -> {
@@ -120,11 +108,31 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
                             viewError.errorMessage.text =
                                 movie.message ?: getString(R.string.oopss_something_went_wrong)
                         } else {
-                            labelMoviePopular.show()
-                            labelNowPlayingMovie.show()
-                            seeMoreNowPlayingMovie.show()
-                            seeMorePopularMovie.show()
+                            isSuccess(this)
                             adapterNowPlaying.submitList(movie.data ?: return@apply)
+                        }
+                    }
+                }
+            }
+        }
+        observe(viewModel.upComingMovie("upcoming") ?: return) { movie ->
+            Log.d("cekupcoming", movie.data.toString())
+            binding.apply {
+                when (movie) {
+                    is Resource.Loading -> isLoading(this)
+                    is Resource.Success -> {
+                        isSuccess(this)
+                        adapterUpcoming.submitList(movie.data ?: return@apply)
+                    }
+                    is Resource.Error -> {
+                        loading.progressBar.hide()
+                        if (movie.data.isNullOrEmpty()) {
+                            viewError.errorContainer.hide()
+                            viewError.errorMessage.text =
+                                movie.message ?: getString(R.string.oopss_something_went_wrong)
+                        } else {
+                            isSuccess(this)
+                            adapterUpcoming.submitList(movie.data ?: return@apply)
                         }
                     }
                 }
@@ -148,6 +156,30 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
 
     private fun navigateToNowPlayingMovie() {
         findNavController().navigate(MovieFragmentDirections.actionMovieFragmentToMovieNowPlayingFragment())
+    }
+
+    private fun isLoading(binding: FragmentMovieBinding) {
+        binding.apply {
+            loading.progressBar.show()
+            labelMoviePopular.hide()
+            labelNowPlayingMovie.hide()
+            seeMoreNowPlayingMovie.hide()
+            seeMoreUpcomingMovie.hide()
+            seeMorePopularMovie.hide()
+            labelUpcomingMovie.hide()
+        }
+    }
+
+    private fun isSuccess(binding: FragmentMovieBinding) {
+        binding.apply {
+            loading.progressBar.hide()
+            labelMoviePopular.show()
+            labelNowPlayingMovie.show()
+            labelUpcomingMovie.show()
+            seeMoreNowPlayingMovie.show()
+            seeMorePopularMovie.show()
+            seeMoreUpcomingMovie.show()
+        }
     }
 
     private fun searchMovie(binding: FragmentMovieBinding) {

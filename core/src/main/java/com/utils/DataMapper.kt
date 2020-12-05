@@ -53,6 +53,26 @@ object DataMapper {
         return movieList
     }
 
+    fun responseToEntitiesUpcomingMovie(input: List<MovieResponse>): List<MovieEntity> {
+        val movieList = ArrayList<MovieEntity>()
+        input.map {
+            val movie = MovieEntity(
+                id = it.id ?: 0,
+                backdropPath = it.backdropPath,
+                isFavorite = false,
+                overview = it.overview,
+                posterPath = it.posterPath,
+                releaseDate = it.releaseDate,
+                title = it.title,
+                voteAverage = it.voteAverage,
+                popularity = it.popularity,
+                type = "upcoming"
+            )
+            movieList.add(movie)
+        }
+        return movieList
+    }
+
     fun responseToDomainMovies(input: List<MovieResponse>): List<Movie> {
         val movieList = ArrayList<Movie>()
         input.map {

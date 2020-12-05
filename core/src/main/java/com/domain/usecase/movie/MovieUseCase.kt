@@ -16,4 +16,5 @@ interface MovieUseCase {
     suspend fun getCreditMovie(id: Int): Flow<List<Credit>>
     suspend fun getMovieById(id: Int): Flow<Movie>
     fun getNowPlayingMovie(type: String): Flow<Resource<List<Movie>>>
+    fun getUpComingMovie(type: String): Flow<Resource<List<Movie>>>
 }
