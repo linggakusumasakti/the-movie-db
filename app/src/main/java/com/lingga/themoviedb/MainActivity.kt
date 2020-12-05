@@ -7,8 +7,10 @@ import androidx.navigation.Navigation
 import androidx.navigation.ui.setupWithNavController
 import com.lingga.themoviedb.databinding.ActivityMainBinding
 import com.lingga.themoviedb.ui.base.BaseActivity
+import com.lingga.themoviedb.utils.ext.hide
 import com.lingga.themoviedb.utils.ext.setTransparentStatusBar
 import com.lingga.themoviedb.utils.ext.setTransparentStatusBarBlack
+import com.lingga.themoviedb.utils.ext.show
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 
@@ -21,6 +23,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         super.onCreate(savedInstanceState)
         appComponent.inject(this)
         setUpNavigation()
+        hideBottomNavigation()
         if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) setTransparentStatusBar()
         else setTransparentStatusBarBlack()
     }
@@ -28,6 +31,18 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     private fun setUpNavigation() {
         navController = Navigation.findNavController(this, R.id.nav_host_fragment)
         binding.bottomNavBar.setupWithNavController(navController)
+    }
+
+    private fun hideBottomNavigation() {
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.movieFragment -> binding.bottomNavBar.show()
+                R.id.tvFragment -> binding.bottomNavBar.show()
+                R.id.detailTvShowFragment -> binding.bottomNavBar.hide()
+                R.id.favoriteFragment -> binding.bottomNavBar.show()
+                R.id.detailFragment -> binding.bottomNavBar.hide()
+            }
+        }
     }
 
     override fun onNavigateUp(): Boolean = navController.navigateUp() || super.onSupportNavigateUp()
