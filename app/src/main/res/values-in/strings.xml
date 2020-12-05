@@ -19,4 +19,5 @@
     <string name="search_tv_show">Cari Acara Tv…</string>
     <string name="movie_popular">Film Populer</string>
     <string name="now_playing_movie">Film yang Sedang Tayang</string>
+    <string name="see_more"><![CDATA[Lihat Semua >]]></string>
 </resources>

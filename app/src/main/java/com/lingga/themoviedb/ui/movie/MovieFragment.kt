@@ -68,12 +68,14 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
                         loading.progressBar.show()
                         labelMoviePopular.hide()
                         labelNowPlayingMovie.hide()
+                        seeMorePopularMovie.hide()
                     }
                     is Resource.Success -> {
                         loading.progressBar.hide()
                         adapter.submitList(movie.data ?: return@apply)
                         labelMoviePopular.show()
                         labelNowPlayingMovie.show()
+                        seeMorePopularMovie.show()
                     }
                     is Resource.Error -> {
                         loading.progressBar.hide()
@@ -96,11 +98,13 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
                         loading.progressBar.show()
                         labelMoviePopular.hide()
                         labelNowPlayingMovie.hide()
+                        seeMoreNowPlayingMovie.hide()
                     }
                     is Resource.Success -> {
                         loading.progressBar.hide()
                         labelMoviePopular.show()
                         labelNowPlayingMovie.show()
+                        seeMoreNowPlayingMovie.show()
                         adapterNowPlaying.submitList(movie.data ?: return@apply)
                     }
                     is Resource.Error -> {
