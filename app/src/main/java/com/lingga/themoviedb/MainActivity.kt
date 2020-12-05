@@ -45,6 +45,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                 R.id.searchMovieFragment -> binding.bottomNavBar.show()
                 R.id.searchTvShowFragment -> binding.bottomNavBar.show()
                 R.id.settingFragment -> binding.bottomNavBar.show()
+                R.id.movieNowPlayingFragment -> binding.bottomNavBar.show()
             }
         }
     }

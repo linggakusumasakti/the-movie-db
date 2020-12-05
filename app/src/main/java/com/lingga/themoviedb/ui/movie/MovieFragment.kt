@@ -56,6 +56,7 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
                 setHasFixedSize(true)
             }
             seeMorePopularMovie.setOnClickListener { navigateToPopularMovie() }
+            seeMoreNowPlayingMovie.setOnClickListener { navigateToNowPlayingMovie() }
             searchMovie(this)
         }
     }
@@ -85,6 +86,10 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
                             viewError.errorMessage.text =
                                 movie.message ?: getString(R.string.oopss_something_went_wrong)
                         } else {
+                            labelMoviePopular.show()
+                            labelNowPlayingMovie.show()
+                            seeMoreNowPlayingMovie.show()
+                            seeMorePopularMovie.show()
                             adapter.submitList(movie.data ?: return@apply)
                         }
                     }
@@ -115,6 +120,10 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
                             viewError.errorMessage.text =
                                 movie.message ?: getString(R.string.oopss_something_went_wrong)
                         } else {
+                            labelMoviePopular.show()
+                            labelNowPlayingMovie.show()
+                            seeMoreNowPlayingMovie.show()
+                            seeMorePopularMovie.show()
                             adapterNowPlaying.submitList(movie.data ?: return@apply)
                         }
                     }
@@ -135,6 +144,10 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
 
     private fun navigateToPopularMovie() {
         findNavController().navigate(MovieFragmentDirections.actionMovieFragmentToMoviePopularFragment())
+    }
+
+    private fun navigateToNowPlayingMovie() {
+        findNavController().navigate(MovieFragmentDirections.actionMovieFragmentToMovieNowPlayingFragment())
     }
 
     private fun searchMovie(binding: FragmentMovieBinding) {
