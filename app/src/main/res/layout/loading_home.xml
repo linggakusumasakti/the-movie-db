@@ -14,40 +14,58 @@
         app:layout_constraintTop_toTopOf="parent"
         app:shimmer_auto_start="true">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingTop="4dp"
-            android:paddingBottom="4dp">
-
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:paddingTop="4dp"
                 android:paddingBottom="4dp">
 
-                <include layout="@layout/item_list_placeholder_home" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp">
 
-                <include layout="@layout/item_list_placeholder_home" />
+                    <include layout="@layout/item_list_placeholder_home" />
 
+                    <include layout="@layout/item_list_placeholder_home" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp">
+
+                    <include layout="@layout/item_list_placeholder_home" />
+
+                    <include layout="@layout/item_list_placeholder_home" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp">
+
+                    <include layout="@layout/item_list_placeholder_home" />
+
+                    <include layout="@layout/item_list_placeholder_home" />
+
+                </LinearLayout>
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:orientation="horizontal"
-                android:paddingTop="4dp"
-                android:paddingBottom="4dp">
-
-                <include layout="@layout/item_list_placeholder_home" />
-
-                <include layout="@layout/item_list_placeholder_home" />
-
-            </LinearLayout>
-        </LinearLayout>
+        </ScrollView>
 
     </com.facebook.shimmer.ShimmerFrameLayout>
 </layout>
