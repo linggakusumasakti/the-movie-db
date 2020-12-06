@@ -13,6 +13,7 @@ import com.lingga.themoviedb.ui.searchmovie.SearchMovieFragment
 import com.lingga.themoviedb.ui.searchtvshow.SearchTvShowFragment
 import com.lingga.themoviedb.ui.setting.SettingFragment
 import com.lingga.themoviedb.ui.tvshow.TvFragment
+import com.lingga.themoviedb.ui.tvshow.TvShowPopularFragment
 import dagger.Component
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
@@ -39,5 +40,6 @@ interface AppComponent {
     fun inject(fragment: MoviePopularFragment)
     fun inject(fragment: MovieNowPlayingFragment)
     fun inject(fragment: MovieUpcomingFragment)
+    fun inject(fragment: TvShowPopularFragment)
     fun inject(application: MyApplication)
 }

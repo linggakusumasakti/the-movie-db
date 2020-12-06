@@ -51,6 +51,9 @@
         <action
             android:id="@+id/action_tvFragment_to_settingFragment"
             app:destination="@id/settingFragment" />
+        <action
+            android:id="@+id/action_tvFragment_to_tvShowPopularFragment"
+            app:destination="@id/tvShowPopularFragment" />
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
@@ -160,5 +163,21 @@
         <action
             android:id="@+id/action_movieUpcomingFragment_to_settingFragment"
             app:destination="@id/settingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/tvShowPopularFragment"
+        tools:layout="@layout/fragment_tv_show_popular"
+        android:name="com.lingga.themoviedb.ui.tvshow.TvShowPopularFragment"
+        android:label="TvShowPopularFragment" >
+        <action
+            android:id="@+id/action_tvShowPopularFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
+        <action
+            android:id="@+id/action_tvShowPopularFragment_to_detailTvShowFragment"
+            app:destination="@id/detailTvShowFragment" />
+        <argument
+            android:name="type"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
 </navigation>

@@ -30,6 +30,11 @@ class TvFragment : BaseFragment<FragmentTvBinding>(R.layout.fragment_tv) {
 
     private val adapterAiringToday by lazy { TvShowAiringTodayAdapter { navigateToDetail(it) } }
 
+    companion object {
+        const val POPULAR = "popular"
+        const val AIRING = "airing"
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initBinding()
@@ -50,12 +55,14 @@ class TvFragment : BaseFragment<FragmentTvBinding>(R.layout.fragment_tv) {
                 adapter = this@TvFragment.adapterAiringToday
                 layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             }
+            seeMorePopularTvShow.setOnClickListener { navigateToListSeeMoreTvShow(POPULAR) }
+            seeMoreAiringTodayTvShow.setOnClickListener { navigateToListSeeMoreTvShow(AIRING) }
             searchTvShow(this)
         }
     }
 
     private fun subscribeUi() {
-        observe(viewModel.tvShow("popular") ?: return) { tvShow ->
+        observe(viewModel.tvShow(POPULAR) ?: return) { tvShow ->
             binding.apply {
                 when (tvShow) {
                     is Resource.Loading -> isLoading(this)
@@ -78,7 +85,7 @@ class TvFragment : BaseFragment<FragmentTvBinding>(R.layout.fragment_tv) {
             }
         }
 
-        observe(viewModel.airingTodayTvShow("airing") ?: return) { tvShow ->
+        observe(viewModel.airingTodayTvShow(AIRING) ?: return) { tvShow ->
             binding.apply {
                 when (tvShow) {
                     is Resource.Loading -> isLoading(this)
@@ -110,6 +117,14 @@ class TvFragment : BaseFragment<FragmentTvBinding>(R.layout.fragment_tv) {
 
     private fun navigateToSetting() {
         findNavController().navigate(TvFragmentDirections.actionTvFragmentToSettingFragment())
+    }
+
+    private fun navigateToListSeeMoreTvShow(type: String?) {
+        findNavController().navigate(
+            TvFragmentDirections.actionTvFragmentToTvShowPopularFragment(
+                type
+            )
+        )
     }
 
     private fun isLoading(binding: FragmentTvBinding) {
