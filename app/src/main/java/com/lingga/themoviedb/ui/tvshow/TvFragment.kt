@@ -2,6 +2,7 @@ package com.lingga.themoviedb.ui.tvshow
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
@@ -33,6 +34,7 @@ class TvFragment : BaseFragment<FragmentTvBinding>(R.layout.fragment_tv) {
     companion object {
         const val POPULAR = "popular"
         const val AIRING = "airing"
+        const val TOP_RATED = "top_rated"
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -106,6 +108,10 @@ class TvFragment : BaseFragment<FragmentTvBinding>(R.layout.fragment_tv) {
                     }
                 }
             }
+        }
+
+        observe(viewModel.latestTvShow(TOP_RATED) ?: return) { tvShow ->
+            Log.d("cektoprated", tvShow.data.toString())
         }
     }
 

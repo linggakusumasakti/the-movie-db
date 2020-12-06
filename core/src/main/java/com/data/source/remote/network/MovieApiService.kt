@@ -62,4 +62,7 @@ interface MovieApiService {
 
     @GET("tv/airing_today")
     suspend fun getAiringTodayTvShow(@Query("api_key") apiKey: String? = BuildConfig.TMDB_API_KEY): BaseMovieResponse<TvShowResponse>
+
+    @GET("tv/top_rated")
+    suspend fun getTopRatedTvShow(@Query("api_key") apiKey: String? = BuildConfig.TMDB_API_KEY): BaseMovieResponse<TvShowResponse>
 }

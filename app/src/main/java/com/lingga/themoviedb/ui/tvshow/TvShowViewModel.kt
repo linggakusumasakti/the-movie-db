@@ -10,4 +10,5 @@ class TvShowViewModel @Inject constructor(private val useCase: TvShowUseCase?) :
 
     fun tvShow(type: String) = useCase?.getAllTvShow(type)?.asLiveData()
     fun airingTodayTvShow(type: String) = useCase?.getAiringTodayTvShow(type)?.asLiveData()
+    fun latestTvShow(type: String) = useCase?.getLatestTvShow(type)?.asLiveData()
 }

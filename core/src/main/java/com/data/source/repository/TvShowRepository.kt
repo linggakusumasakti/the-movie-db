@@ -101,4 +101,23 @@ class TvShowRepository @Inject constructor(
                 localDataSource.insertTvShow(list)
             }
         }.asFlow()
+
+    override fun getLatestTvShow(type: String): Flow<Resource<List<TvShow>>> =
+        object : NetworkBoundResource<List<TvShow>, List<TvShowResponse>>() {
+            override fun loadFromDB(): Flow<List<TvShow>> {
+                return localDataSource.getAllTvShow(type).map {
+                    DataMapper.mapEntitiesToDomainTvShow(it)
+                }
+            }
+
+            override fun shouldFetch(data: List<TvShow>?): Boolean = true
+
+            override suspend fun createCall(): Flow<ApiResponse<List<TvShowResponse>>> =
+                remoteDataSource.fetchLatestTvShow()
+
+            override suspend fun saveCallResult(data: List<TvShowResponse>) {
+                val list = DataMapper.responseToEntitiesLatestTvShow(data)
+                localDataSource.insertTvShow(list)
+            }
+        }.asFlow()
 }

@@ -218,6 +218,20 @@ object DataMapper {
             )
         }
 
+    fun responseToEntitiesLatestTvShow(input: List<TvShowResponse>): List<TvShowEntity> =
+        input.map {
+            TvShowEntity(
+                id = it.id ?: 0,
+                voteAverage = it.voteAverage,
+                isFavorite = false,
+                posterPath = it.posterPath,
+                overview = it.overview,
+                firstAirDate = it.firsAirDate,
+                backdropPath = it.backdropPath,
+                name = it.name,
+                type = "top_rated"
+            )
+        }
 
     fun mapEntitiesToDomainTvShow(input: List<TvShowEntity>): List<TvShow> =
         input.map {

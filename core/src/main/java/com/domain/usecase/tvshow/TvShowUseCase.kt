@@ -16,4 +16,5 @@ interface TvShowUseCase {
     suspend fun getCreditTvShow(id: Int): Flow<List<Credit>>
     suspend fun getTvShowById(id: Int): Flow<TvShow>
     fun getAiringTodayTvShow(type: String): Flow<Resource<List<TvShow>>>
+    fun getLatestTvShow(type: String): Flow<Resource<List<TvShow>>>
 }

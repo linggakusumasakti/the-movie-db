@@ -32,4 +32,7 @@ class TvShowInteractor @Inject constructor(private val repository: ITvShowReposi
 
     override fun getAiringTodayTvShow(type: String): Flow<Resource<List<TvShow>>> =
         repository.getAiringTodayTvShow(type)
+
+    override fun getLatestTvShow(type: String): Flow<Resource<List<TvShow>>> =
+        repository.getLatestTvShow(type)
 }
