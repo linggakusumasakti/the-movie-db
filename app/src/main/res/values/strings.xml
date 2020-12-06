@@ -20,4 +20,6 @@
     <string name="now_playing_movie">Now Playing Movie</string>
     <string name="see_more"><![CDATA[See More >]]></string>
     <string name="upcoming_movie">Upcoming Movie</string>
+    <string name="popular_tv_show">Popular Tv Show</string>
+    <string name="airing_today_tv_show">Airing Today Tv Show</string>
 </resources>

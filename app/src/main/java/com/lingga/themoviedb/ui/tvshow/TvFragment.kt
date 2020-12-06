@@ -2,7 +2,6 @@ package com.lingga.themoviedb.ui.tvshow
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
@@ -27,7 +26,9 @@ class TvFragment : BaseFragment<FragmentTvBinding>(R.layout.fragment_tv) {
 
     private val viewModel: TvShowViewModel by viewModels { factory }
 
-    private val adapter by lazy { TvAdapter { navigateToDetail(it) } }
+    private val adapter by lazy { TvShowHomeAdapter { navigateToDetail(it) } }
+
+    private val adapterAiringToday by lazy { TvShowAiringTodayAdapter { navigateToDetail(it) } }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -41,9 +42,13 @@ class TvFragment : BaseFragment<FragmentTvBinding>(R.layout.fragment_tv) {
                 textTitle.text = getString(R.string.tv_show)
                 buttonSetting.setOnClickListener { navigateToSetting() }
             }
-            recyclerViewTv.apply {
+            recyclerViewTvShow.apply {
                 adapter = this@TvFragment.adapter
-                layoutManager = LinearLayoutManager(context)
+                layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            }
+            recyclerViewAiringTodayTvShow.apply {
+                adapter = this@TvFragment.adapterAiringToday
+                layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             }
             searchTvShow(this)
         }
@@ -53,10 +58,10 @@ class TvFragment : BaseFragment<FragmentTvBinding>(R.layout.fragment_tv) {
         observe(viewModel.tvShow("popular") ?: return) { tvShow ->
             binding.apply {
                 when (tvShow) {
-                    is Resource.Loading -> loading.progressBar.show()
+                    is Resource.Loading -> isLoading(this)
                     is Resource.Success -> {
-                        loading.progressBar.hide()
-                        adapter.submitList(tvShow.data)
+                        isSuccess(this)
+                        adapter.submitList(tvShow.data ?: return@apply)
                     }
                     is Resource.Error -> {
                         loading.progressBar.hide()
@@ -65,7 +70,8 @@ class TvFragment : BaseFragment<FragmentTvBinding>(R.layout.fragment_tv) {
                             viewError.errorMessage.text =
                                 tvShow.message ?: getString(R.string.oopss_something_went_wrong)
                         } else {
-                            adapter.submitList(tvShow.data)
+                            isSuccess(this)
+                            adapter.submitList(tvShow.data ?: return@apply)
                         }
                     }
                 }
@@ -73,7 +79,26 @@ class TvFragment : BaseFragment<FragmentTvBinding>(R.layout.fragment_tv) {
         }
 
         observe(viewModel.airingTodayTvShow("airing") ?: return) { tvShow ->
-            Log.d("cekaringtv", tvShow.data.toString())
+            binding.apply {
+                when (tvShow) {
+                    is Resource.Loading -> isLoading(this)
+                    is Resource.Success -> {
+                        isSuccess(this)
+                        adapterAiringToday.submitList(tvShow.data ?: return@apply)
+                    }
+                    is Resource.Error -> {
+                        loading.progressBar.hide()
+                        if (tvShow.data.isNullOrEmpty()) {
+                            viewError.errorContainer.show()
+                            viewError.errorMessage.text =
+                                tvShow.message ?: getString(R.string.oopss_something_went_wrong)
+                        } else {
+                            isSuccess(this)
+                            adapterAiringToday.submitList(tvShow.data ?: return@apply)
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -85,6 +110,26 @@ class TvFragment : BaseFragment<FragmentTvBinding>(R.layout.fragment_tv) {
 
     private fun navigateToSetting() {
         findNavController().navigate(TvFragmentDirections.actionTvFragmentToSettingFragment())
+    }
+
+    private fun isLoading(binding: FragmentTvBinding) {
+        binding.apply {
+            loading.progressBar.show()
+            labelAiringTodayTvShow.hide()
+            labelTvShowPopular.hide()
+            seeMoreAiringTodayTvShow.hide()
+            seeMorePopularTvShow.hide()
+        }
+    }
+
+    private fun isSuccess(binding: FragmentTvBinding) {
+        binding.apply {
+            loading.progressBar.hide()
+            labelAiringTodayTvShow.show()
+            labelTvShowPopular.show()
+            seeMoreAiringTodayTvShow.show()
+            seeMorePopularTvShow.show()
+        }
     }
 
     private fun searchTvShow(binding: FragmentTvBinding) {

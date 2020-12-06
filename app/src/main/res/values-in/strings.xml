@@ -21,4 +21,6 @@
     <string name="now_playing_movie">Film Sedang Tayang</string>
     <string name="see_more"><![CDATA[Lihat Semua >]]></string>
     <string name="upcoming_movie">Film Akan Datang</string>
+    <string name="popular_tv_show">Acara Tv Popular</string>
+    <string name="airing_today_tv_show">Acara Tv Tayang Hari Ini</string>
 </resources>
