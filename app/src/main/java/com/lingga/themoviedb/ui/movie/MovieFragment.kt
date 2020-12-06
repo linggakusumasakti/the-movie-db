@@ -33,7 +33,7 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
 
     private val adapterNowPlaying by lazy { MovieNowPlayingAdapter { navigateToDetail(it) } }
 
-    private val adapterUpcoming by lazy { MovieUpcomingAdapter {} }
+    private val adapterUpcoming by lazy { MovieUpcomingAdapter { navigateToDetail(it) } }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
