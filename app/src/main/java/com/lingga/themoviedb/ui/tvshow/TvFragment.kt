@@ -64,6 +64,7 @@ class TvFragment : BaseFragment<FragmentTvBinding>(R.layout.fragment_tv) {
             }
             seeMorePopularTvShow.setOnClickListener { navigateToListSeeMoreTvShow(POPULAR) }
             seeMoreAiringTodayTvShow.setOnClickListener { navigateToListSeeMoreTvShow(AIRING) }
+            seeMoreTopRatedtvShow.setOnClickListener { navigateToListSeeMoreTvShow(TOP_RATED) }
             searchTvShow(this)
         }
     }

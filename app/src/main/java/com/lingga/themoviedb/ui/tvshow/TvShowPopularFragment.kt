@@ -54,6 +54,7 @@ class TvShowPopularFragment :
         when (args.type) {
             TvFragment.POPULAR -> getString(R.string.popular_tv_show)
             TvFragment.AIRING -> getString(R.string.airing_today_tv_show)
+            TvFragment.TOP_RATED -> getString(R.string.top_rated_tv_show)
             else -> ""
         }
 
@@ -82,6 +83,27 @@ class TvShowPopularFragment :
             }
             TvFragment.AIRING -> {
                 observe(viewModel.airingTodayTvShow(TvFragment.AIRING) ?: return) {
+                    binding.apply {
+                        when (it) {
+                            is Resource.Loading -> loading.progressBar.show()
+                            is Resource.Success -> {
+                                loading.progressBar.hide()
+                                adapter.submitList(it.data)
+                            }
+                            is Resource.Error -> {
+                                loading.progressBar.hide()
+                                if (it.data.isNullOrEmpty()) {
+                                    viewError.errorContainer.show()
+                                    viewError.errorMessage.text =
+                                        it.message ?: getString(R.string.oopss_something_went_wrong)
+                                } else adapter.submitList(it.data)
+                            }
+                        }
+                    }
+                }
+            }
+            TvFragment.TOP_RATED -> {
+                observe(viewModel.latestTvShow(TvFragment.TOP_RATED) ?: return) {
                     binding.apply {
                         when (it) {
                             is Resource.Loading -> loading.progressBar.show()
