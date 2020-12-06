@@ -50,10 +50,7 @@ class FavoriteTvShowFragment :
     private fun subscribeUi() {
         observe(viewModel.favoriteTvShow ?: return) {
             if (it.isNullOrEmpty()) {
-                binding.emptyFavorite.textView.apply {
-                    show()
-                    text = context?.getString(R.string.fav_tv_empty)
-                }
+                binding.animation.show()
             } else adapter.submitList(it)
         }
     }

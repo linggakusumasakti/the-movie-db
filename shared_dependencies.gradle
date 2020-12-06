@@ -45,5 +45,6 @@ dependencies {
 
     implementation "androidx.multidex:multidex:2.0.1"
     implementation "com.facebook.shimmer:shimmer:0.5.0"
+    implementation "com.airbnb.android:lottie:$lottieVersion"
 
 }

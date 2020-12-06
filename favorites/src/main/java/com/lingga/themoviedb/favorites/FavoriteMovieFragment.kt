@@ -51,7 +51,7 @@ class FavoriteMovieFragment :
     private fun subscribeUi() {
         observe(viewModel.favoriteMovie ?: return) {
             Log.d("cekfav", it.toString())
-            if (it.isNullOrEmpty()) binding.emptyFavorite.textView.show()
+            if (it.isNullOrEmpty()) binding.animation.show()
             else adapter.submitList(it)
         }
     }
