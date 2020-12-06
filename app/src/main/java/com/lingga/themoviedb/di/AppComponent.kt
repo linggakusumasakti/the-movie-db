@@ -8,6 +8,7 @@ import com.lingga.themoviedb.ui.detailtvshow.DetailTvShowFragment
 import com.lingga.themoviedb.ui.movie.MovieFragment
 import com.lingga.themoviedb.ui.movie.MovieNowPlayingFragment
 import com.lingga.themoviedb.ui.movie.MoviePopularFragment
+import com.lingga.themoviedb.ui.movie.MovieUpcomingFragment
 import com.lingga.themoviedb.ui.searchmovie.SearchMovieFragment
 import com.lingga.themoviedb.ui.searchtvshow.SearchTvShowFragment
 import com.lingga.themoviedb.ui.setting.SettingFragment
@@ -37,5 +38,6 @@ interface AppComponent {
     fun inject(fragment: TvFragment)
     fun inject(fragment: MoviePopularFragment)
     fun inject(fragment: MovieNowPlayingFragment)
+    fun inject(fragment: MovieUpcomingFragment)
     fun inject(application: MyApplication)
 }

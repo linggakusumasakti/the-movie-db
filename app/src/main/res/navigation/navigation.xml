@@ -29,6 +29,9 @@
         <action
             android:id="@+id/action_movieFragment_to_movieNowPlayingFragment"
             app:destination="@id/movieNowPlayingFragment" />
+        <action
+            android:id="@+id/action_movieFragment_to_movieUpcomingFragment"
+            app:destination="@id/movieUpcomingFragment" />
     </fragment>
     <fragment
         android:id="@+id/tvFragment"
@@ -126,7 +129,7 @@
         android:id="@+id/moviePopularFragment"
         android:name="com.lingga.themoviedb.ui.movie.MoviePopularFragment"
         android:label="MoviePopularFragment"
-        tools:layout="@layout/fragment_movie_popular" >
+        tools:layout="@layout/fragment_movie_popular">
         <action
             android:id="@+id/action_moviePopularFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
@@ -136,14 +139,26 @@
     </fragment>
     <fragment
         android:id="@+id/movieNowPlayingFragment"
-        tools:layout="@layout/fragment_movie_popular"
         android:name="com.lingga.themoviedb.ui.movie.MovieNowPlayingFragment"
-        android:label="MovieNowPlayingFragment" >
+        android:label="MovieNowPlayingFragment"
+        tools:layout="@layout/fragment_movie_popular">
         <action
             android:id="@+id/action_movieNowPlayingFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
         <action
             android:id="@+id/action_movieNowPlayingFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/movieUpcomingFragment"
+        android:name="com.lingga.themoviedb.ui.movie.MovieUpcomingFragment"
+        android:label="MovieUpcomingFragment"
+        tools:layout="@layout/fragment_movie_popular">
+        <action
+            android:id="@+id/action_movieUpcomingFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+        <action
+            android:id="@+id/action_movieUpcomingFragment_to_settingFragment"
             app:destination="@id/settingFragment" />
     </fragment>
 </navigation>

@@ -64,6 +64,7 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
             }
             seeMorePopularMovie.setOnClickListener { navigateToPopularMovie() }
             seeMoreNowPlayingMovie.setOnClickListener { navigateToNowPlayingMovie() }
+            seeMoreUpcomingMovie.setOnClickListener { navigateToUpcomingMovie() }
             searchMovie(this)
         }
     }
@@ -156,6 +157,10 @@ class MovieFragment : BaseFragment<FragmentMovieBinding>(R.layout.fragment_movie
 
     private fun navigateToNowPlayingMovie() {
         findNavController().navigate(MovieFragmentDirections.actionMovieFragmentToMovieNowPlayingFragment())
+    }
+
+    private fun navigateToUpcomingMovie() {
+        findNavController().navigate(MovieFragmentDirections.actionMovieFragmentToMovieUpcomingFragment())
     }
 
     private fun isLoading(binding: FragmentMovieBinding) {
