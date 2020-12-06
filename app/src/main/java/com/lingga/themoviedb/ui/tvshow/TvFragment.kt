@@ -2,7 +2,6 @@ package com.lingga.themoviedb.ui.tvshow
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
@@ -31,6 +30,8 @@ class TvFragment : BaseFragment<FragmentTvBinding>(R.layout.fragment_tv) {
 
     private val adapterAiringToday by lazy { TvShowAiringTodayAdapter { navigateToDetail(it) } }
 
+    private val adapterTopRated by lazy { TvShowTopRatedAdapter { navigateToDetail(it) } }
+
     companion object {
         const val POPULAR = "popular"
         const val AIRING = "airing"
@@ -55,6 +56,10 @@ class TvFragment : BaseFragment<FragmentTvBinding>(R.layout.fragment_tv) {
             }
             recyclerViewAiringTodayTvShow.apply {
                 adapter = this@TvFragment.adapterAiringToday
+                layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            }
+            recyclerViewTopRatedTvShow.apply {
+                adapter = this@TvFragment.adapterTopRated
                 layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             }
             seeMorePopularTvShow.setOnClickListener { navigateToListSeeMoreTvShow(POPULAR) }
@@ -111,7 +116,26 @@ class TvFragment : BaseFragment<FragmentTvBinding>(R.layout.fragment_tv) {
         }
 
         observe(viewModel.latestTvShow(TOP_RATED) ?: return) { tvShow ->
-            Log.d("cektoprated", tvShow.data.toString())
+            binding.apply {
+                when (tvShow) {
+                    is Resource.Loading -> isLoading(this)
+                    is Resource.Success -> {
+                        isSuccess(this)
+                        adapterTopRated.submitList(tvShow.data ?: return@apply)
+                    }
+                    is Resource.Error -> {
+                        loading.progressBar.hide()
+                        if (tvShow.data.isNullOrEmpty()) {
+                            viewError.errorContainer.show()
+                            viewError.errorMessage.text =
+                                tvShow.message ?: getString(R.string.oopss_something_went_wrong)
+                        } else {
+                            isSuccess(this)
+                            adapterTopRated.submitList(tvShow.data ?: return@apply)
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -138,8 +162,10 @@ class TvFragment : BaseFragment<FragmentTvBinding>(R.layout.fragment_tv) {
             loading.progressBar.show()
             labelAiringTodayTvShow.hide()
             labelTvShowPopular.hide()
+            labelTopRatedTvShow.hide()
             seeMoreAiringTodayTvShow.hide()
             seeMorePopularTvShow.hide()
+            seeMoreTopRatedtvShow.hide()
         }
     }
 
@@ -148,8 +174,10 @@ class TvFragment : BaseFragment<FragmentTvBinding>(R.layout.fragment_tv) {
             loading.progressBar.hide()
             labelAiringTodayTvShow.show()
             labelTvShowPopular.show()
+            labelTopRatedTvShow.show()
             seeMoreAiringTodayTvShow.show()
             seeMorePopularTvShow.show()
+            seeMoreTopRatedtvShow.show()
         }
     }
 
