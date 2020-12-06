@@ -198,7 +198,23 @@ object DataMapper {
                 overview = it.overview,
                 firstAirDate = it.firsAirDate,
                 backdropPath = it.backdropPath,
-                name = it.name
+                name = it.name,
+                type = "popular"
+            )
+        }
+
+    fun responseToEntitiesAiringTodayTvShow(input: List<TvShowResponse>): List<TvShowEntity> =
+        input.map {
+            TvShowEntity(
+                id = it.id ?: 0,
+                voteAverage = it.voteAverage,
+                isFavorite = false,
+                posterPath = it.posterPath,
+                overview = it.overview,
+                firstAirDate = it.firsAirDate,
+                backdropPath = it.backdropPath,
+                name = it.name,
+                type = "airing"
             )
         }
 

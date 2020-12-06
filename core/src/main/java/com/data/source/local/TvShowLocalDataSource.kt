@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 class TvShowLocalDataSource @Inject constructor(private val tvShowDao: TvShowDao) {
 
-    fun getAllTvShow() = tvShowDao.getAllTvShow()
+    fun getAllTvShow(type: String) = tvShowDao.getAllTvShow(type)
 
     suspend fun insertTvShow(tvShow: List<TvShowEntity>) = tvShowDao.insertTvShow(tvShow)
 

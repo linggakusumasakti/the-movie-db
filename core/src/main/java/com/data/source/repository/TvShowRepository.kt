@@ -26,10 +26,10 @@ class TvShowRepository @Inject constructor(
     private val appExecutors: AppExecutors
 ) : ITvShowRepository {
 
-    override fun getAllTvShow(): Flow<Resource<List<TvShow>>> =
+    override fun getAllTvShow(type: String): Flow<Resource<List<TvShow>>> =
         object : NetworkBoundResource<List<TvShow>, List<TvShowResponse>>() {
             override fun loadFromDB(): Flow<List<TvShow>> {
-                return localDataSource.getAllTvShow().map {
+                return localDataSource.getAllTvShow(type).map {
                     DataMapper.mapEntitiesToDomainTvShow(it)
                 }
             }
@@ -82,4 +82,23 @@ class TvShowRepository @Inject constructor(
         localDataSource.getTvShowById(id).map {
             DataMapper.mapTvShowFavoriteToDomainTvShow(it)
         }
+
+    override fun getAiringTodayTvShow(type: String): Flow<Resource<List<TvShow>>> =
+        object : NetworkBoundResource<List<TvShow>, List<TvShowResponse>>() {
+            override fun loadFromDB(): Flow<List<TvShow>> {
+                return localDataSource.getAllTvShow(type).map {
+                    DataMapper.mapEntitiesToDomainTvShow(it)
+                }
+            }
+
+            override fun shouldFetch(data: List<TvShow>?): Boolean = true
+
+            override suspend fun createCall(): Flow<ApiResponse<List<TvShowResponse>>> =
+                remoteDataSource.fetchAiringTodayTvShow()
+
+            override suspend fun saveCallResult(data: List<TvShowResponse>) {
+                val list = DataMapper.responseToEntitiesAiringTodayTvShow(data)
+                localDataSource.insertTvShow(list)
+            }
+        }.asFlow()
 }

@@ -16,6 +16,7 @@ data class TvShow(
     val backdropPath: String?,
     val voteAverage: String?,
     val firstAirDate: String?,
+    val type: String? = "",
     val genres: @RawValue List<GenreResponse>? = emptyList()
 ) : Parcelable {
     fun getReleaseDateFormat(): String = firstAirDate?.parseDateWithFormat("MM/dd/yyyy") ?: ""

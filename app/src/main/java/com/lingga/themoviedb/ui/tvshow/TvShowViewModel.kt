@@ -6,7 +6,8 @@ import com.domain.usecase.tvshow.TvShowUseCase
 
 import javax.inject.Inject
 
-class TvShowViewModel @Inject constructor(useCase: TvShowUseCase?) : ViewModel() {
+class TvShowViewModel @Inject constructor(private val useCase: TvShowUseCase?) : ViewModel() {
 
-    val tvShow = useCase?.getAllTvShow()?.asLiveData()
+    fun tvShow(type: String) = useCase?.getAllTvShow(type)?.asLiveData()
+    fun airingTodayTvShow(type: String) = useCase?.getAiringTodayTvShow(type)?.asLiveData()
 }

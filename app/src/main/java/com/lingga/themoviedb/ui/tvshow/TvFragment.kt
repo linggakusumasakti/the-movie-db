@@ -2,6 +2,7 @@ package com.lingga.themoviedb.ui.tvshow
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
@@ -49,7 +50,7 @@ class TvFragment : BaseFragment<FragmentTvBinding>(R.layout.fragment_tv) {
     }
 
     private fun subscribeUi() {
-        observe(viewModel.tvShow ?: return) { tvShow ->
+        observe(viewModel.tvShow("popular") ?: return) { tvShow ->
             binding.apply {
                 when (tvShow) {
                     is Resource.Loading -> loading.progressBar.show()
@@ -69,6 +70,10 @@ class TvFragment : BaseFragment<FragmentTvBinding>(R.layout.fragment_tv) {
                     }
                 }
             }
+        }
+
+        observe(viewModel.airingTodayTvShow("airing") ?: return) { tvShow ->
+            Log.d("cekaringtv", tvShow.data.toString())
         }
     }
 

@@ -12,7 +12,8 @@ import javax.inject.Inject
 class TvShowInteractor @Inject constructor(private val repository: ITvShowRepository) :
     TvShowUseCase {
 
-    override fun getAllTvShow(): Flow<Resource<List<TvShow>>> = repository.getAllTvShow()
+    override fun getAllTvShow(type: String): Flow<Resource<List<TvShow>>> =
+        repository.getAllTvShow(type)
 
     override suspend fun getTvShow(id: Int): Flow<TvShow> = repository.getTvShow(id)
 
@@ -28,4 +29,7 @@ class TvShowInteractor @Inject constructor(private val repository: ITvShowReposi
         repository.getCreditTvShow(id)
 
     override suspend fun getTvShowById(id: Int): Flow<TvShow> = repository.getTvShowById(id)
+
+    override fun getAiringTodayTvShow(type: String): Flow<Resource<List<TvShow>>> =
+        repository.getAiringTodayTvShow(type)
 }

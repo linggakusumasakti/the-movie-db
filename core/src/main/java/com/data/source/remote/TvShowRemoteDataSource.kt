@@ -32,6 +32,23 @@ class TvShowRemoteDataSource @Inject constructor(private val movieApiService: Mo
         }.flowOn(Dispatchers.IO)
     }
 
+    suspend fun fetchAiringTodayTvShow(): Flow<ApiResponse<List<TvShowResponse>>> {
+        return flow {
+            try {
+                val response = movieApiService.getAiringTodayTvShow()
+                val data = response.results
+                if (data?.isNotEmpty() ?: return@flow) {
+                    emit(ApiResponse.Success(data))
+                } else {
+                    emit(ApiResponse.Empty)
+                }
+            } catch (e: Exception) {
+                emit(ApiResponse.Error(e.toString()))
+                Log.e("RemoteDataSource", e.toString())
+            }
+        }.flowOn(Dispatchers.IO)
+    }
+
     suspend fun fetchDetailTvShow(id: Int): Flow<TvShowResponse> {
         return flow {
             try {

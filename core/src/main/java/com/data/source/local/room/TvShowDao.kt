@@ -9,8 +9,8 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface TvShowDao {
 
-    @Query("select * from tv_show")
-    fun getAllTvShow(): Flow<List<TvShowEntity>>
+    @Query("select * from tv_show where type = :type")
+    fun getAllTvShow(type:String): Flow<List<TvShowEntity>>
 
     @Query("select * from tv_show_favorite where isFavorite = 1")
     fun getFavoriteTvShow(): DataSource.Factory<Int, TvShowFavoriteEntity>
