@@ -3,6 +3,7 @@ package com.lingga.themoviedb.ui.detailmovie
 import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.core.content.ContextCompat.getDrawable
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -47,7 +48,8 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
                 layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                 adapter = this@DetailFragment.adapterCredit
             }
-            backButton.setOnClickListener { findNavController().navigateUp() }
+            backButton.setOnClickListener { findNavController().popBackStack() }
+            buyTikcetButton.setOnClickListener { navigateToBuyTicket() }
         }
     }
 
@@ -84,6 +86,9 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
         }
     }
 
+    private fun navigateToBuyTicket() {
+        Toast.makeText(context, "Coming Soon", Toast.LENGTH_SHORT).show()
+    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

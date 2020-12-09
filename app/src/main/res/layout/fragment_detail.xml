@@ -137,11 +137,27 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
             android:backgroundTint="@color/white"
+            style="@style/FloatingActionButtonTheme"
             android:src="@drawable/ic_twotone_favorite_border"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/poster"
             tools:ignore="ContentDescription" />
 
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/buy_tikcet_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/colorAccent"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@string/buy_ticket"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:theme="@style/AppTheme"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:ignore="ContentDescription" />
 
         <androidx.core.widget.NestedScrollView
             android:id="@+id/scroll_view"
@@ -230,8 +246,10 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="70dp"
                     android:orientation="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/text_cast"

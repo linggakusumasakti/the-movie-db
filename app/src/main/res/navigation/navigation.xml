@@ -75,6 +75,9 @@
         <argument
             android:name="movie"
             app:argType="com.domain.model.Movie" />
+        <action
+            android:id="@+id/action_detailFragment_to_ticketFragment"
+            app:destination="@id/ticketFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailTvShowFragment"
@@ -166,9 +169,9 @@
     </fragment>
     <fragment
         android:id="@+id/tvShowPopularFragment"
-        tools:layout="@layout/fragment_tv_show_popular"
         android:name="com.lingga.themoviedb.ui.tvshow.TvShowPopularFragment"
-        android:label="TvShowPopularFragment" >
+        android:label="TvShowPopularFragment"
+        tools:layout="@layout/fragment_tv_show_popular">
         <action
             android:id="@+id/action_tvShowPopularFragment_to_settingFragment"
             app:destination="@id/settingFragment" />
@@ -180,4 +183,9 @@
             app:argType="string"
             app:nullable="true" />
     </fragment>
+    <fragment
+        android:id="@+id/ticketFragment"
+        android:name="com.lingga.themoviedb.ui.ticket.TicketFragment"
+        android:label="TicketFragment"
+        tools:layout="@layout/fragment_ticket" />
 </navigation>
