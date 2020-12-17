@@ -5,6 +5,7 @@ import com.lingga.themoviedb.MainActivity
 import com.lingga.themoviedb.MyApplication
 import com.lingga.themoviedb.ui.detailmovie.DetailFragment
 import com.lingga.themoviedb.ui.detailtvshow.DetailTvShowFragment
+import com.lingga.themoviedb.ui.login.LoginActivity
 import com.lingga.themoviedb.ui.movie.MovieFragment
 import com.lingga.themoviedb.ui.movie.MovieNowPlayingFragment
 import com.lingga.themoviedb.ui.movie.MoviePopularFragment
@@ -31,6 +32,7 @@ interface AppComponent {
     }
 
     fun inject(activity: MainActivity)
+    fun inject(activity: LoginActivity)
     fun inject(fragment: MovieFragment)
     fun inject(fragment: DetailFragment)
     fun inject(fragment: DetailTvShowFragment)

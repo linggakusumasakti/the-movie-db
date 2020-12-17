@@ -7,9 +7,13 @@ import android.os.Bundle
 import android.provider.Settings
 import android.view.View
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.navigation.findNavController
+import com.google.firebase.auth.FirebaseAuth
 import com.lingga.themoviedb.R
 import com.lingga.themoviedb.databinding.FragmentSettingBinding
 import com.lingga.themoviedb.ui.base.BaseFragment
+import com.lingga.themoviedb.ui.login.LoginActivity
+import com.lingga.themoviedb.utils.ext.show
 import com.utils.Cache
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
@@ -31,7 +35,12 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(R.layout.fragment_s
                 buttonSetting.hide()
                 textTitle.text = getString(R.string.setting)
                 changeLanguage.setOnClickListener { doChangeLanguage() }
+                backButton.apply {
+                    show()
+                    setOnClickListener { findNavController().popBackStack() }
+                }
             }
+            signOut.setOnClickListener { logout() }
             doChangeTheme(this)
         }
     }
@@ -56,6 +65,15 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(R.layout.fragment_s
                 }
             }
         }
+    }
+
+    private fun logout() {
+        FirebaseAuth.getInstance().signOut()
+        val intent = Intent(activity, LoginActivity::class.java).apply {
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        }
+        startActivity(intent)
+        activity?.finish()
     }
 
     override fun onAttach(context: Context) {

@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.setupWithNavController
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.ktx.Firebase
 import com.lingga.themoviedb.databinding.ActivityMainBinding
 import com.lingga.themoviedb.ui.base.BaseActivity
 import com.lingga.themoviedb.utils.ext.hide
@@ -17,6 +20,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     private lateinit var navController: NavController
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
 
     @ExperimentalCoroutinesApi
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,6 +28,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         appComponent.inject(this)
         setUpNavigation()
         hideBottomNavigation()
+        googleAnalytics()
         if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) setTransparentStatusBar()
         else setTransparentStatusBarBlack()
     }
@@ -44,12 +49,18 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                 R.id.moviePopularFragment -> binding.bottomNavBar.show()
                 R.id.searchMovieFragment -> binding.bottomNavBar.show()
                 R.id.searchTvShowFragment -> binding.bottomNavBar.show()
-                R.id.settingFragment -> binding.bottomNavBar.show()
+                R.id.settingFragment -> binding.bottomNavBar.hide()
                 R.id.movieNowPlayingFragment -> binding.bottomNavBar.show()
                 R.id.movieUpcomingFragment -> binding.bottomNavBar.show()
                 R.id.tvShowPopularFragment -> binding.bottomNavBar.show()
             }
         }
+    }
+
+    private fun googleAnalytics(){
+        firebaseAnalytics = Firebase.analytics
+        val bundle = Bundle()
+        firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle)
     }
 
     override fun onNavigateUp(): Boolean = navController.navigateUp() || super.onSupportNavigateUp()
