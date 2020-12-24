@@ -147,6 +147,7 @@
         <Constraint
             android:id="@id/poster"
             android:layout_marginStart="0dp"
+            android:visibility="gone"
             android:layout_marginLeft="0dp"
             app:layout_constraintRight_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/space" />
@@ -154,6 +155,7 @@
         <Constraint
             android:id="@id/release_date"
             android:layout_marginStart="0dp"
+            android:visibility="gone"
             android:layout_marginLeft="0dp"
             app:layout_constraintRight_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/space" />
@@ -162,6 +164,7 @@
         <Constraint
             android:id="@id/ratingBar"
             android:layout_marginStart="0dp"
+            android:visibility="gone"
             android:layout_marginLeft="0dp"
             app:layout_constraintRight_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/space" />

@@ -25,4 +25,15 @@
     <string name="airing_today_tv_show">Acara Tv Tayang Hari Ini</string>
     <string name="top_rated_tv_show">Acara Tv Peringkat Atas</string>
     <string name="buy_ticket">Beli Tiket</string>
+    <string name="email">Email</string>
+    <string name="confirm_password">Konfirmasi Password</string>
+    <string name="confirm_your_password">Konfirmasi Password Anda</string>
+    <string name="creating_an_account_means_you_re_okay_with_our_terms_of_service_and_our_privacy_policy">" Membuat akun berarti Anda setuju dengan Persyaratan Layanan dan Kebijakan Privasi kami"</string>
+    <string name="create_an_account">Buat Akun</string>
+    <string name="notice_password_less_8_characters">Kata sandi tidak boleh kurang dari 8 karakter</string>
+    <string name="password_doesnt_match">Kata sandi tidak cocok</string>
+    <string name="input_valid_email">Harap masukkan email yang valid</string>
+    <string name="email_verification">Verifikasi Email</string>
+    <string name="check_your_email_and_verify">Cek email anda dan verifikasi</string>
+    <string name="next">Lanjut</string>
 </resources>

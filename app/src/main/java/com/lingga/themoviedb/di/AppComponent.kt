@@ -13,6 +13,7 @@ import com.lingga.themoviedb.ui.movie.MovieUpcomingFragment
 import com.lingga.themoviedb.ui.searchmovie.SearchMovieFragment
 import com.lingga.themoviedb.ui.searchtvshow.SearchTvShowFragment
 import com.lingga.themoviedb.ui.setting.SettingFragment
+import com.lingga.themoviedb.ui.signup.SignUpActivity
 import com.lingga.themoviedb.ui.ticket.TicketFragment
 import com.lingga.themoviedb.ui.tvshow.TvFragment
 import com.lingga.themoviedb.ui.tvshow.TvShowPopularFragment
@@ -33,6 +34,7 @@ interface AppComponent {
 
     fun inject(activity: MainActivity)
     fun inject(activity: LoginActivity)
+    fun inject(activity: SignUpActivity)
     fun inject(fragment: MovieFragment)
     fun inject(fragment: DetailFragment)
     fun inject(fragment: DetailTvShowFragment)

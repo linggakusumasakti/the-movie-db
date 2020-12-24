@@ -9,21 +9,22 @@ import com.lingga.themoviedb.MyApplication
 import com.lingga.themoviedb.di.AppComponent
 
 abstract class BaseActivity<B : ViewDataBinding> constructor(
-  @LayoutRes val layoutRes: Int
+    @LayoutRes val layoutRes: Int
 ) : AppCompatActivity() {
 
-  protected open lateinit var binding: B
-  protected open lateinit var appComponent: AppComponent
+    protected val TAG = BaseActivity::class.simpleName
+    protected open lateinit var binding: B
+    protected open lateinit var appComponent: AppComponent
 
-  private fun bindView() {
-    binding = DataBindingUtil.setContentView(this, layoutRes)
-    binding.lifecycleOwner = this
-  }
+    private fun bindView() {
+        binding = DataBindingUtil.setContentView(this, layoutRes)
+        binding.lifecycleOwner = this
+    }
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    appComponent = (application as MyApplication).appComponent
-    super.onCreate(savedInstanceState)
-    bindView()
-  }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        appComponent = (application as MyApplication).appComponent
+        super.onCreate(savedInstanceState)
+        bindView()
+    }
 
 }

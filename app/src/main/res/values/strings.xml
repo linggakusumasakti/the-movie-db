@@ -24,4 +24,16 @@
     <string name="airing_today_tv_show">Airing Today Tv Show</string>
     <string name="top_rated_tv_show">Top Rated Tv Show</string>
     <string name="buy_ticket">Buy Ticket</string>
+    <string name="email">Email</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="confirm_your_password">Confirm your password</string>
+    <string name="creating_an_account_means_you_re_okay_with_our_terms_of_service_and_our_privacy_policy">Creating an account means you\'re okay with our Terms of Service and our Privacy Policy</string>
+    <string name="create_an_account">Create an Account</string>
+    <string name="notice_password_less_8_characters">The password can not be less than 8 characters</string>
+    <string name="password_doesnt_match">The password doesn\'t match</string>
+    <string name="fill_field" translatable="false">Fill all field</string>
+    <string name="input_valid_email">Please Input valid email</string>
+    <string name="email_verification">Email Verification</string>
+    <string name="check_your_email_and_verify">Check your email and verify</string>
+    <string name="next">Next</string>
 </resources>

@@ -16,6 +16,7 @@ import com.lingga.themoviedb.MainActivity
 import com.lingga.themoviedb.R
 import com.lingga.themoviedb.databinding.ActivityLoginBinding
 import com.lingga.themoviedb.ui.base.BaseActivity
+import com.lingga.themoviedb.ui.signup.SignUpActivity
 import com.lingga.themoviedb.utils.ext.hide
 import com.lingga.themoviedb.utils.ext.setTransparentStatusBar
 import com.lingga.themoviedb.utils.ext.setTransparentStatusBarBlack
@@ -39,6 +40,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         else setTransparentStatusBarBlack()
         setGso()
         button_google_login.setOnClickListener { signIn() }
+        sign_up.setOnClickListener { navigateToSignUp() }
     }
 
     private fun setGso() {
@@ -68,6 +70,11 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
     private fun signIn() {
         val signInIntent = mGoogleSignInClient.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
+    }
+
+    private fun navigateToSignUp() {
+        val intent = Intent(this, SignUpActivity::class.java)
+        startActivity(intent)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

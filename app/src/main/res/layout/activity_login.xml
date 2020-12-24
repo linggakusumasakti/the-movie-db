@@ -43,6 +43,21 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.5" />
 
+        <TextView
+            android:id="@+id/sign_up"
+            app:layout_constraintTop_toBottomOf="@id/button_google_login"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textAlignment="center"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="Sign Up"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:ignore="HardcodedText" />
+
         <include
             android:id="@+id/loading"
             layout="@layout/loading_auth"

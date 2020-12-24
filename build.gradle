@@ -16,7 +16,7 @@ buildscript {
         material_version = "1.2.0"
         glide_version = "4.11.0"
 
-        room_version = "2.2.5"
+        room_version = "2.3.0-alpha04"
 
         retrofit_version = "2.9.0"
         logging_interceptor_version = '4.9.0'
