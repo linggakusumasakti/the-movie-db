@@ -48,10 +48,12 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
                     customDialog.showSuccessCreateAccount(this, { navigateToLogin() })
                     binding.loading.hide()
                 } else {
+                    Toast.makeText(this, getString(R.string.email_registered), Toast.LENGTH_SHORT)
+                        .show()
                     binding.loading.hide()
                 }
             }
-        } catch (e:Exception){
+        } catch (e: Exception) {
             e.printStackTrace()
         }
 

@@ -21,42 +21,151 @@
             app:layout_constraintBottom_toTopOf="@+id/guideline"
             tools:ignore="ContentDescription" />
 
-        <com.shobhitpuri.custombuttons.GoogleSignInButton
-            android:id="@+id/button_google_login"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="Sign In with Google Account"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            app:isDarkTheme="true"
-            app:layout_constraintTop_toBottomOf="@+id/guideline"
-            tools:ignore="HardcodedText" />
-
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.5" />
+            app:layout_constraintGuide_percent="0.3" />
 
         <TextView
-            android:id="@+id/sign_up"
-            app:layout_constraintTop_toBottomOf="@id/button_google_login"
+            android:id="@+id/label_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@string/email"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:textAlignment="center"
+            app:layout_constraintTop_toBottomOf="@+id/logo" />
+
+        <EditText
+            android:id="@+id/email_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/rounded_text"
+            android:hint="example@example.com"
+            android:inputType="textEmailAddress"
+            android:padding="15dp"
+            app:layout_constraintTop_toBottomOf="@id/label_email"
+            tools:ignore="Autofill,HardcodedText,LabelFor" />
+
+        <TextView
+            android:id="@+id/label_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Password"
+            app:layout_constraintTop_toBottomOf="@id/email_field"
+            tools:ignore="HardcodedText" />
+
+        <EditText
+            android:id="@+id/password_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/rounded_text"
+            android:hint="8+ Characters"
+            android:inputType="textPassword"
+            android:padding="15dp"
+            app:layout_constraintTop_toBottomOf="@id/label_password"
+            tools:ignore="Autofill,HardcodedText,LabelFor" />
+
+        <Button
+            android:id="@+id/button_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/rounded_button_black"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Login"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/password_field"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/label_or"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/poppins_semibold"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:text="Sign Up"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:text="OR"
+            android:textAlignment="center"
+            app:layout_constraintTop_toBottomOf="@id/button_login"
             tools:ignore="HardcodedText" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.35" />
+
+        <ImageView
+            android:id="@+id/google_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_google_icon"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/label_or"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/button_google_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@string/google_sign_in"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="@+id/google_icon"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toTopOf="@+id/google_icon" />
+
+        <LinearLayout
+            android:id="@+id/linear_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins"
+                android:text="Don't have an account? "
+                android:textColor="@color/colorPrimaryDark"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/sign_up"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Register here"
+                android:textColor="@color/colorPrimaryDark"
+                tools:ignore="HardcodedText" />
+
+        </LinearLayout>
+
 
         <include
             android:id="@+id/loading"
