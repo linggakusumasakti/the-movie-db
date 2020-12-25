@@ -37,4 +37,5 @@
     <string name="check_your_email_and_verify">Cek email anda dan verifikasi</string>
     <string name="next">Lanjut</string>
     <string name="email_registered">Email telah terdaftar</string>
+    <string name="email_not_verified">Email belum diverifikasi</string>
 </resources>

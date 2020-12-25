@@ -22,8 +22,10 @@ import com.lingga.themoviedb.utils.ext.setTransparentStatusBar
 import com.lingga.themoviedb.utils.ext.setTransparentStatusBarBlack
 import com.lingga.themoviedb.utils.ext.show
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 
+@ExperimentalCoroutinesApi
 class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login) {
 
     companion object {
@@ -41,6 +43,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         setGso()
         button_google_login.setOnClickListener { signIn() }
         sign_up.setOnClickListener { navigateToSignUp() }
+        button_login.setOnClickListener { signInWithEmail() }
     }
 
     private fun setGso() {
@@ -72,9 +75,39 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         startActivityForResult(signInIntent, RC_SIGN_IN)
     }
 
+    private fun signInWithEmail() {
+        loading.show()
+        try {
+            firebaseAuth.signInWithEmailAndPassword(
+                email_field.text.toString(),
+                password_field.text.toString()
+            ).addOnCompleteListener {
+                if (it.isSuccessful) {
+                    checkEmailIsVerified()
+                    loading.hide()
+                } else {
+                    Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
+                    loading.hide()
+                }
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
     private fun navigateToSignUp() {
         val intent = Intent(this, SignUpActivity::class.java)
         startActivity(intent)
+    }
+
+    private fun checkEmailIsVerified() {
+        if (firebaseAuth.currentUser?.isEmailVerified == true) {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        } else {
+            firebaseAuth.signOut()
+            Toast.makeText(this, getString(R.string.email_not_verified), Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
