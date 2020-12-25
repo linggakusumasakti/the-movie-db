@@ -38,4 +38,5 @@
     <string name="next">Lanjut</string>
     <string name="email_registered">Email telah terdaftar</string>
     <string name="email_not_verified">Email belum diverifikasi</string>
+    <string name="profile">Profil</string>
 </resources>

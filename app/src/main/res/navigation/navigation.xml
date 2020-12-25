@@ -188,4 +188,9 @@
         android:name="com.lingga.themoviedb.ui.ticket.TicketFragment"
         android:label="TicketFragment"
         tools:layout="@layout/fragment_ticket" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.lingga.themoviedb.ui.profile.ProfileFragment"
+        android:label="ProfileFragment"
+        tools:layout="@layout/fragment_profile" />
 </navigation>

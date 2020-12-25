@@ -18,4 +18,12 @@
         android:icon="@drawable/ic_twotone_favorite"
         android:title="@string/favorite"
         app:showAsAction="ifRoom" />
+
+
+    <item
+        android:id="@+id/profileFragment"
+        android:icon="@drawable/ic_twotone_account_circle"
+        android:title="@string/profile"
+        app:showAsAction="ifRoom" />
+
 </menu>
