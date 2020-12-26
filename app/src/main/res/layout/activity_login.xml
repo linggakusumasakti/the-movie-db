@@ -131,12 +131,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:fontFamily="@font/poppins_semibold"
-            android:text="@string/google_sign_in"
+            android:text="Sign In with Google"
             android:textAlignment="center"
             android:textColor="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="@+id/google_icon"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
-            app:layout_constraintTop_toTopOf="@+id/google_icon" />
+            app:layout_constraintTop_toTopOf="@+id/google_icon"
+            tools:ignore="HardcodedText" />
 
         <LinearLayout
             android:id="@+id/linear_layout"
