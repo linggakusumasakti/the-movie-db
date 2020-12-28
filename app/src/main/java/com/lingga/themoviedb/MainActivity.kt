@@ -53,11 +53,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                 R.id.movieNowPlayingFragment -> binding.bottomNavBar.show()
                 R.id.movieUpcomingFragment -> binding.bottomNavBar.show()
                 R.id.tvShowPopularFragment -> binding.bottomNavBar.show()
+                R.id.profileFragment -> binding.bottomNavBar.show()
+                R.id.editProfileFragment -> binding.bottomNavBar.hide()
             }
         }
     }
 
-    private fun googleAnalytics(){
+    private fun googleAnalytics() {
         firebaseAnalytics = Firebase.analytics
         val bundle = Bundle()
         firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle)

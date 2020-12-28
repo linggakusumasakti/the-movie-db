@@ -40,4 +40,6 @@
     <string name="email_not_verified">Email not verified</string>
     <string name="profile">Profile</string>
     <string name="edit_profile">Edit Profile</string>
+    <string name="change_photo">Change Photo</string>
+    <string name="save">Save</string>
 </resources>

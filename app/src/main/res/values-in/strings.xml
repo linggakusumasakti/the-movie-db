@@ -40,4 +40,6 @@
     <string name="email_not_verified">Email belum diverifikasi</string>
     <string name="profile">Profil</string>
     <string name="edit_profile">Edit Profil</string>
+    <string name="change_photo">Ganti Foto</string>
+    <string name="save">Simpan</string>
 </resources>
