@@ -28,27 +28,15 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
             buttonEditProfile.setOnClickListener { navigateToEditProfile() }
             setImage(this)
         }
-        Log.d("cek profile", "${user?.displayName} , ${getUrlPhoto()}")
-    }
-
-    private fun getUrlPhoto(): String {
-        var url: String? = null
-        for (userInfo in user?.providerData.orEmpty()) {
-            url = userInfo.photoUrl.toString()
-        }
-        return url.toString()
     }
 
     private fun setImage(binding: FragmentProfileBinding) {
         binding.apply {
-            if (getUrlPhoto().contains(".jpg") || getUrlPhoto().contains(".png") || getUrlPhoto().contains(
-                    "jpeg"
-                )
-            ) {
+            if (user?.photoUrl != null) {
                 Glide.with(profileImage.context ?: return)
-                    .load(getUrlPhoto())
+                    .load(user?.photoUrl)
                     .into(profileImage)
-                Log.d("cek", "sukses")
+                Log.d("cek", "sukses , ${user?.photoUrl}")
             } else {
                 Glide.with(profileImage.context ?: return)
                     .load(R.drawable.ic_twotone_account)
