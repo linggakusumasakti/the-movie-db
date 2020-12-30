@@ -3,10 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/motion_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
+        app:layoutDescription="@xml/fragment_profile_scene"
         tools:context=".ui.profile.ProfileFragment">
 
 
@@ -24,6 +27,7 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.25" />
 
+
         <ImageView
             android:id="@+id/background_gradient"
             android:layout_width="match_parent"
@@ -32,6 +36,15 @@
             app:layout_constraintBottom_toTopOf="@+id/guideline"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="ContentDescription" />
+
+        <Space
+            android:id="@+id/spacer"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="-5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/background_gradient" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_image"
@@ -64,14 +77,95 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_outer_white"
-            android:textColor="@color/white"
             android:fontFamily="@font/poppins"
-            android:padding="6dp"
             android:minHeight="0dp"
+            android:padding="6dp"
             android:text="@string/edit_profile"
             android:textAllCaps="false"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/profile_name" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <TextView
+            android:id="@+id/movie_count"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="40dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="0"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toStartOf="@id/guideline3"
+            app:layout_constraintTop_toBottomOf="@id/background_gradient"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/label_movies"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins"
+            android:text="@string/movie"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@+id/movie_count"
+            app:layout_constraintStart_toStartOf="@+id/movie_count"
+            app:layout_constraintTop_toBottomOf="@id/movie_count" />
+
+        <TextView
+            android:id="@+id/tv_count"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="0"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@id/background_gradient"
+            tools:ignore="HardcodedText" />
+
+
+        <TextView
+            android:id="@+id/label_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins"
+            android:text="@string/tv_show"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@+id/tv_count"
+            app:layout_constraintStart_toStartOf="@+id/tv_count"
+            app:layout_constraintTop_toBottomOf="@id/tv_count" />
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorPrimaryDark"
+            app:layout_constraintTop_toBottomOf="@id/background_gradient" />
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nested_scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/label_movies">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+
 </layout>

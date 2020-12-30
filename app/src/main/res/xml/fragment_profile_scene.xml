@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        app:constraintSetEnd="@id/end"
+        app:constraintSetStart="@+id/start">
+        <OnSwipe
+            app:dragDirection="dragUp"
+            app:touchAnchorId="@id/nested_scroll_view"
+            app:touchAnchorSide="top" />
+
+        <KeyFrameSet>
+            <KeyAttribute
+                app:framePosition="60"
+                app:motionTarget="@id/background_gradient">
+                <CustomAttribute
+                    app:attributeName="imageAlpha"
+                    app:customIntegerValue="255" />
+            </KeyAttribute>
+            <KeyAttribute
+                app:framePosition="90"
+                app:motionTarget="@id/background_gradient">
+                <CustomAttribute
+                    app:attributeName="imageAlpha"
+                    app:customIntegerValue="0" />
+            </KeyAttribute>
+
+        </KeyFrameSet>
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/background_gradient"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/gradient_black"
+            app:layout_constraintBottom_toTopOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="parent">
+            <CustomAttribute
+                app:attributeName="foreground"
+                app:customColorDrawableValue="@android:color/transparent" />
+        </Constraint>
+
+        <Constraint
+            android:id="@+id/profile_image"
+            android:layout_width="120dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="32dp"
+            android:src="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/guideline2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Constraint
+            android:id="@+id/profile_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profile_image">
+            <CustomAttribute
+                app:attributeName="textColor"
+                app:customColorValue="@color/white" />
+        </Constraint>
+
+        <Constraint
+            android:id="@+id/button_edit_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_outer_white"
+            android:fontFamily="@font/poppins"
+            android:minHeight="0dp"
+            android:padding="6dp"
+            android:text="@string/edit_profile"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profile_name" />
+
+
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@id/background_gradient"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="H,5:1"
+            app:layout_constraintTop_toTopOf="parent">
+            <CustomAttribute
+                app:attributeName="foreground"
+                app:customColorDrawableValue="@color/white" />
+        </Constraint>
+
+        <Constraint
+            android:id="@+id/profile_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@id/background_gradient"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <CustomAttribute
+                app:attributeName="textColor"
+                app:customColorValue="@color/colorPrimary" />
+        </Constraint>
+        <Constraint
+            android:id="@+id/profile_image"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintBottom_toTopOf="@+id/spacer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Constraint
+            android:id="@+id/button_edit_profile"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="150dp"
+            android:layout_marginEnd="150dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image" />
+
+    </ConstraintSet>
+
+</MotionScene>
