@@ -56,6 +56,8 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
             setTabLayout(this)
             setUpAdapterMovie(this)
             setUpAdapterTvShow(this)
+            countTvShow()
+            countMovie()
         }
     }
 
@@ -192,6 +194,18 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
                 tvShow
             )
         )
+    }
+
+    private fun countTvShow() {
+        val query = db.collection(Constant.PATH_TV).document(Constant.PATH_FAVORITES)
+            .collection(user?.uid.toString())
+        query.get().addOnSuccessListener { binding.tvCount.text = it.documents.size.toString() }
+    }
+
+    private fun countMovie() {
+        val query = db.collection(Constant.PATH_MOVIE).document(Constant.PATH_FAVORITES)
+            .collection(user?.uid.toString())
+        query.get().addOnSuccessListener { binding.movieCount.text = it.documents.size.toString() }
     }
 
     override fun onStart() {
