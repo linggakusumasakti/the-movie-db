@@ -2,7 +2,6 @@ package com.lingga.themoviedb.ui.profile
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
 import com.domain.model.Movie
+import com.domain.model.TvShow
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.material.tabs.TabLayout
@@ -19,6 +19,7 @@ import com.google.firebase.ktx.Firebase
 import com.lingga.themoviedb.R
 import com.lingga.themoviedb.databinding.FragmentProfileBinding
 import com.lingga.themoviedb.databinding.ItemListMovieFireStoreBinding
+import com.lingga.themoviedb.databinding.ItemListTvShowFireStoreBinding
 import com.lingga.themoviedb.ui.base.BaseFragment
 import com.lingga.themoviedb.utils.ext.hide
 import com.lingga.themoviedb.utils.ext.show
@@ -34,6 +35,8 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
     private val db by lazy { Firebase.firestore }
 
     private lateinit var adapter: FirestoreRecyclerAdapter<Movie, MovieFireStoreViewHolder>
+
+    private lateinit var adapterTvShow: FirestoreRecyclerAdapter<TvShow, TvShowFireStoreViewHolder>
 
     companion object {
         const val TAB_MOVIE = 0
@@ -51,7 +54,8 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
             buttonEditProfile.setOnClickListener { navigateToEditProfile() }
             setImage(this)
             setTabLayout(this)
-            setUpAdapter(this)
+            setUpAdapterMovie(this)
+            setUpAdapterTvShow(this)
         }
     }
 
@@ -61,12 +65,10 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
                 Glide.with(profileImage.context ?: return)
                     .load(user?.photoUrl)
                     .into(profileImage)
-                Log.d("cek", "sukses , ${user?.photoUrl}")
             } else {
                 Glide.with(profileImage.context ?: return)
                     .load(R.drawable.ic_twotone_account)
                     .into(profileImage)
-                Log.d("cek", "gagal")
             }
         }
     }
@@ -81,8 +83,18 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
                 override fun onTabSelected(tab: TabLayout.Tab?) {
                     if (tab != null) {
                         when (tab.position) {
-                            TAB_MOVIE -> binding.recyclerViewMovie.show()
-                            TAB_TV -> binding.recyclerViewMovie.hide()
+                            TAB_MOVIE -> {
+                                binding.apply {
+                                    recyclerViewMovie.show()
+                                    recyclerViewTvShow.hide()
+                                }
+                            }
+                            TAB_TV -> {
+                                binding.apply {
+                                    recyclerViewMovie.hide()
+                                    recyclerViewTvShow.show()
+                                }
+                            }
                         }
                     }
                 }
@@ -94,7 +106,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
         }
     }
 
-    private fun setUpAdapter(binding: FragmentProfileBinding) {
+    private fun setUpAdapterMovie(binding: FragmentProfileBinding) {
         val query = db.collection(Constant.PATH_MOVIE).document(Constant.PATH_FAVORITES)
             .collection(user?.uid.toString())
         val response = FirestoreRecyclerOptions.Builder<Movie>()
@@ -130,6 +142,42 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
         }
     }
 
+    private fun setUpAdapterTvShow(binding: FragmentProfileBinding) {
+        val query = db.collection(Constant.PATH_TV).document(Constant.PATH_FAVORITES)
+            .collection(user?.uid.toString())
+        val response = FirestoreRecyclerOptions.Builder<TvShow>()
+            .setQuery(query, TvShow::class.java)
+            .build()
+
+        adapterTvShow = object :
+            FirestoreRecyclerAdapter<TvShow, TvShowFireStoreViewHolder>(response) {
+            override fun onCreateViewHolder(
+                parent: ViewGroup,
+                viewType: Int
+            ): TvShowFireStoreViewHolder = TvShowFireStoreViewHolder(
+                ItemListTvShowFireStoreBinding.inflate(
+                    LayoutInflater.from(parent.context)
+                )
+            )
+
+            override fun onBindViewHolder(
+                holder: TvShowFireStoreViewHolder,
+                position: Int,
+                model: TvShow
+            ) {
+                holder.apply {
+                    bind(model)
+                    itemView.setOnClickListener { navigateToDetailTvShow(model) }
+                }
+            }
+        }
+        adapterTvShow.notifyDataSetChanged()
+        binding.recyclerViewTvShow.apply {
+            adapter = this@ProfileFragment.adapterTvShow
+            layoutManager = GridLayoutManager(context, 2)
+        }
+    }
+
     private fun navigateToDetailMovie(movie: Movie) {
         findNavController().navigate(
             ProfileFragmentDirections.actionProfileFragmentToDetailFragment(
@@ -138,14 +186,24 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
         )
     }
 
+    private fun navigateToDetailTvShow(tvShow: TvShow) {
+        findNavController().navigate(
+            ProfileFragmentDirections.actionProfileFragmentToDetailTvShowFragment(
+                tvShow
+            )
+        )
+    }
+
     override fun onStart() {
         super.onStart()
         adapter.startListening()
+        adapterTvShow.startListening()
     }
 
     override fun onStop() {
         super.onStop()
         adapter.stopListening()
+        adapterTvShow.stopListening()
     }
 
     override fun onAttach(context: Context) {
