@@ -129,6 +129,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
 
     private fun addDataFireStore(status: Boolean) {
         val movie = hashMapOf(
+            "id" to args.movie.id,
             "title" to args.movie.title,
             "backdrop" to args.movie.backdropPath,
             "overview" to args.movie.overview,

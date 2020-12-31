@@ -117,7 +117,10 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
                 position: Int,
                 model: Movie
             ) {
-                holder.bind(model)
+                holder.apply {
+                    bind(model)
+                    itemView.setOnClickListener { navigateToDetailMovie(model) }
+                }
             }
         }
         adapter.notifyDataSetChanged()
@@ -125,6 +128,14 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
             adapter = this@ProfileFragment.adapter
             layoutManager = GridLayoutManager(context, 2)
         }
+    }
+
+    private fun navigateToDetailMovie(movie: Movie) {
+        findNavController().navigate(
+            ProfileFragmentDirections.actionProfileFragmentToDetailFragment(
+                movie
+            )
+        )
     }
 
     override fun onStart() {
