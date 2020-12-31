@@ -12,7 +12,7 @@ data class Movie(
     @PropertyName("id") val id: Int? = 0,
     @PropertyName("title") val title: String? = "",
     @PropertyName("overview") val overview: String? = "",
-    val isFavorite: Boolean? = false,
+    @PropertyName("isFavorite") val isFavorite: Boolean? = false,
     @PropertyName("poster") val posterPath: String? = "",
     @PropertyName("backdrop") val backdropPath: String? = "",
     @PropertyName("voteAverage") val voteAverage: String? = "",

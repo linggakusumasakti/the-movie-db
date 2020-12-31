@@ -39,6 +39,12 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
 
     private val user by lazy { FirebaseAuth.getInstance().currentUser }
 
+    private val collection by lazy {
+        db.collection(Constant.PATH_MOVIE).document(Constant.PATH_FAVORITES)
+            .collection(user?.uid.toString())
+            .document(args.movie.id.toString())
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         subscribeUi()
@@ -58,6 +64,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
             }
             backButton.setOnClickListener { findNavController().popBackStack() }
             buyTikcetButton.setOnClickListener { navigateToBuyTicket() }
+            setFavorite(this)
         }
     }
 
@@ -65,23 +72,44 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
         val id = args.movie.id ?: 0
         viewModel.getDetail(id)
         viewModel.getCredit(id)
-        viewModel.getDetailDb(id)
         observe(viewModel.detail) { movie ->
             adapterGenre.submitList(movie.genres)
         }
         observe(viewModel.credit) { credit ->
             adapterCredit.submitList(credit)
         }
-        observe(viewModel.detailDb) { movie ->
-            var statusFavorite = movie.isFavorite ?: false
-            setStatusFavorite(statusFavorite)
-            binding.favoriteButton.setOnClickListener {
-                statusFavorite = !statusFavorite
-                viewModel.setFavoriteMovie(args.movie, statusFavorite)
+
+        /**
+         *  use if want to save favorite to local
+         */
+        /* viewModel.getDetailDb(id)
+             observe(viewModel.detailDb) { movie ->
+                 var statusFavorite = movie.isFavorite ?: false
+                 setStatusFavorite(statusFavorite)
+                 binding.favoriteButton.setOnClickListener {
+                     statusFavorite = !statusFavorite
+                     viewModel.setFavoriteMovie(args.movie, statusFavorite)
+                     setStatusFavorite(statusFavorite)
+                     addDataFireStore()
+                 }
+             }*/
+    }
+
+    private fun setFavorite(binding: FragmentDetailBinding) {
+        collection.get()
+            .addOnSuccessListener { result ->
+                var statusFavorite = result.getBoolean("isFavorite") ?: false
                 setStatusFavorite(statusFavorite)
-                addData()
+                binding.favoriteButton.setOnClickListener {
+                    statusFavorite = !statusFavorite
+                    setStatusFavorite(statusFavorite)
+                    if (statusFavorite) addDataFireStore(statusFavorite) else deleteFavorite()
+                }
             }
-        }
+    }
+
+    private fun deleteFavorite() {
+        collection.delete()
     }
 
     private fun setStatusFavorite(statusFavorite: Boolean) {
@@ -99,7 +127,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
         Toast.makeText(context, "Coming Soon", Toast.LENGTH_SHORT).show()
     }
 
-    private fun addData() {
+    private fun addDataFireStore(status: Boolean) {
         val movie = hashMapOf(
             "title" to args.movie.title,
             "backdrop" to args.movie.backdropPath,
@@ -107,12 +135,11 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
             "popularity" to args.movie.popularity,
             "poster" to args.movie.posterPath,
             "releaseDate" to args.movie.releaseDate,
-            "voteAverage" to args.movie.voteAverage
+            "voteAverage" to args.movie.voteAverage,
+            "isFavorite" to status
         )
 
-        db.collection(Constant.PATH_MOVIE).document(Constant.PATH_FAVORITES)
-            .collection(user?.uid.toString())
-            .document(args.movie.id.toString()).set(movie)
+        collection.set(movie)
     }
 
     override fun onAttach(context: Context) {
