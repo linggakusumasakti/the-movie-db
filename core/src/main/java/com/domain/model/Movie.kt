@@ -2,21 +2,22 @@ package com.domain.model
 
 import android.os.Parcelable
 import com.data.source.remote.response.GenreResponse
+import com.google.firebase.firestore.PropertyName
 import com.utils.ext.parseDateWithFormat
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.parcel.RawValue
 
 @Parcelize
 data class Movie(
-    val id: Int?,
-    val title: String?,
-    val overview: String?,
-    val isFavorite: Boolean?,
-    val posterPath: String?,
-    val backdropPath: String?,
-    val voteAverage: String?,
-    val releaseDate: String?,
-    val popularity: Float?,
+    @PropertyName("id") val id: Int? = 0,
+    @PropertyName("title") val title: String? = "",
+    @PropertyName("overview") val overview: String? = "",
+    val isFavorite: Boolean? = false,
+    @PropertyName("poster") val posterPath: String? = "",
+    @PropertyName("backdrop") val backdropPath: String? = "",
+    @PropertyName("voteAverage") val voteAverage: String? = "",
+    @PropertyName("releaseDate") val releaseDate: String? = "",
+    @PropertyName("popularity") val popularity: Float? = 0f,
     val genres: @RawValue List<GenreResponse>? = emptyList(),
     val type: String? = ""
 ) : Parcelable {

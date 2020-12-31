@@ -9,11 +9,15 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.lingga.themoviedb.R
 import com.lingga.themoviedb.databinding.FragmentDetailBinding
 import com.lingga.themoviedb.ui.ViewModelFactory
 import com.lingga.themoviedb.ui.base.BaseFragment
 import com.lingga.themoviedb.utils.ext.observe
+import com.utils.Constant
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
 
@@ -30,6 +34,10 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
     private val adapterGenre by lazy { GenreAdapter() }
 
     private val adapterCredit by lazy { CreditAdapter() }
+
+    private val db by lazy { Firebase.firestore }
+
+    private val user by lazy { FirebaseAuth.getInstance().currentUser }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -71,6 +79,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
                 statusFavorite = !statusFavorite
                 viewModel.setFavoriteMovie(args.movie, statusFavorite)
                 setStatusFavorite(statusFavorite)
+                addData()
             }
         }
     }
@@ -88,6 +97,22 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
 
     private fun navigateToBuyTicket() {
         Toast.makeText(context, "Coming Soon", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun addData() {
+        val movie = hashMapOf(
+            "title" to args.movie.title,
+            "backdrop" to args.movie.backdropPath,
+            "overview" to args.movie.overview,
+            "popularity" to args.movie.popularity,
+            "poster" to args.movie.posterPath,
+            "releaseDate" to args.movie.releaseDate,
+            "voteAverage" to args.movie.voteAverage
+        )
+
+        db.collection(Constant.PATH_MOVIE).document(Constant.PATH_FAVORITES)
+            .collection(user?.uid.toString())
+            .document(args.movie.id.toString()).set(movie)
     }
 
     override fun onAttach(context: Context) {

@@ -20,6 +20,13 @@
         <item name="android:fontFamily">@font/poppins_medium</item>
     </style>
 
+    <style name="TabActiveStyle">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:fontFamily">@font/poppins_semibold</item>
+    </style>
+
+
     <style name="ToolBarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="colorControlNormal">@color/colorAccent</item>
     </style>
