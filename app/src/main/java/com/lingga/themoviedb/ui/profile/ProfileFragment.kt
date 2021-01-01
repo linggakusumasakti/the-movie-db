@@ -52,6 +52,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
         binding.apply {
             profileName.text = if (user?.displayName.isNullOrEmpty()) "User" else user?.displayName
             buttonEditProfile.setOnClickListener { navigateToEditProfile() }
+            buttonSetting.setOnClickListener { navigateToSetting() }
             setImage(this)
             setTabLayout(this)
             setUpAdapterMovie(this)
@@ -194,6 +195,10 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
                 tvShow
             )
         )
+    }
+
+    private fun navigateToSetting() {
+        findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToSettingFragment())
     }
 
     private fun countTvShow() {

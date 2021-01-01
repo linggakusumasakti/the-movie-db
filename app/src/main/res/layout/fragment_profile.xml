@@ -35,7 +35,8 @@
             android:background="@drawable/gradient_black"
             app:layout_constraintBottom_toTopOf="@+id/guideline"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="ContentDescription" />
+            tools:ignore="ContentDescription"
+            tools:layout_editor_absoluteX="47dp" />
 
         <Space
             android:id="@+id/spacer"
@@ -151,6 +152,14 @@
             android:layout_height="1dp"
             android:background="@color/colorPrimaryDark"
             app:layout_constraintTop_toBottomOf="@id/background_gradient" />
+
+        <ImageButton
+            android:id="@+id/button_setting"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/ic_twotone_settings_24"
+            tools:ignore="ContentDescription" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_layout"
