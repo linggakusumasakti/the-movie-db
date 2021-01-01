@@ -13,11 +13,13 @@
         android:title="@string/tv_show"
         app:showAsAction="ifRoom" />
 
-    <item
+    <!-- use if want to show favorite local menu
+    -->
+    <!--<item
         android:id="@+id/favoriteFragment"
         android:icon="@drawable/ic_twotone_favorite"
         android:title="@string/favorite"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom" />-->
 
 
     <item
