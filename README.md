@@ -5,8 +5,12 @@
 Submission for Menjadi Android Developer Expert dicoding with clean architecture(seperation of model) and modularization.
 
 ## Features
-* Movies
-* Tv Shows
+* Popular Movies
+* Now Playing Movies
+* Upcoming Movies
+* Popular Tv Shows
+* Airing Today Tv Shows
+* Top Rated Tv Shows
 * Favorites for Movie & Tv Show
 * Search Movie & Tv Show
 * Detail Movies & Tv Show
@@ -15,7 +19,7 @@ Submission for Menjadi Android Developer Expert dicoding with clean architecture
 
 ## Screenshots App
 <pre>
-<img src="screenshots/Screenshot 1.png" width="30%">    <img src="screenshots/Screenshot 2.png" width="30%">    <img src="screenshots/Screenshot 3.png" width="30%">    <img src="screenshots/Screenshot 4.png" width="30%">    <img src="screenshots/Screenshot 5.png" width="30%">    <img src="screenshots/Screenshot 6.png" width="30%">    <img src="screenshots/Screenshot 7.png" width="30%">    <img src="screenshots/Screenshot 8.png" width="30%">    <img src="screenshots/Screenshot 9.png" width="30%">    <img src="screenshots/Screenshot 10.png" width="30%">
+<img src="screenshots/Screenshot 1.jpg" width="30%">    <img src="screenshots/Screenshot 2.jpg" width="30%">    <img src="screenshots/Screenshot 3.jpg" width="30%">    <img src="screenshots/Screenshot 4.jpg" width="30%">    <img src="screenshots/Screenshot 5.jpg" width="30%">    <img src="screenshots/Screenshot 6.jpg" width="30%">    <img src="screenshots/Screenshot 7.jpg" width="30%">    <img src="screenshots/Screenshot 8.jpg" width="30%">    <img src="screenshots/Screenshot 9.jpg" width="30%">    <img src="screenshots/Screenshot 10.jpg" width="30%">   <img src="screenshots/Screenshot 11.jpg" width="30%">   <img src="screenshots/Screenshot 12.jpg" width="30%">   <img src="screenshots/Screenshot 13.jpg" width="30%">   <img src="screenshots/Screenshot 14.jpg" width="30%">
 </pre>
 
 
@@ -31,6 +35,8 @@ Submission for Menjadi Android Developer Expert dicoding with clean architecture
 * [MotionLayout](https://developer.android.com/training/constraint-layout/motionlayout)  is a layout type that helps you manage motion and widget animation in your app.
 * [Glide](https://github.com/bumptech/glide)  is a fast and efficient open source media management and image loading framework for Android that wraps media decoding, memory and disk caching, and resource pooling into a simple and easy to use interface.
 * [Shimmer](https://github.com/facebook/shimmer-android) is an Android library that provides an easy way to add a shimmer effect to any view in your Android app.
+* [Firebase Auth](https://firebase.google.com/docs/auth) provides backend services, easy-to-use SDKs, and ready-made UI libraries to authenticate users to your app. It supports authentication using passwords, phone numbers, popular federated identity providers like Google, Facebook and Twitter, and more.
+* [Cloud Firetore](https://firebase.google.com/docs/firestore) is a flexible, scalable database for mobile, web, and server development from Firebase and Google Cloud.  
 
 License
 -------
