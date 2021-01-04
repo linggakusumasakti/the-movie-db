@@ -19,7 +19,7 @@ Submission for Menjadi Android Developer Expert dicoding with clean architecture
 
 ## Screenshots App
 <pre>
-<img src="screenshots/Screenshot 1.jpg" width="30%">    <img src="screenshots/Screenshot 2.jpg" width="30%">    <img src="screenshots/Screenshot 3.jpg" width="30%">    <img src="screenshots/Screenshot 4.jpg" width="30%">    <img src="screenshots/Screenshot 5.jpg" width="30%">    <img src="screenshots/Screenshot 6.jpg" width="30%">    <img src="screenshots/Screenshot 7.jpg" width="30%">    <img src="screenshots/Screenshot 8.jpg" width="30%">    <img src="screenshots/Screenshot 9.jpg" width="30%">    <img src="screenshots/Screenshot 10.jpg" width="30%">   <img src="screenshots/Screenshot 11.jpg" width="30%">   <img src="screenshots/Screenshot 12.jpg" width="30%">   <img src="screenshots/Screenshot 13.jpg" width="30%">   <img src="screenshots/Screenshot 14.jpg" width="30%">
+<img src="screenshots/ScreenShot 1.jpg" width="30%">    <img src="screenshots/ScreenShot 2.jpg" width="30%">    <img src="screenshots/ScreenShot 3.jpg" width="30%">    <img src="screenshots/ScreenShot 4.jpg" width="30%">    <img src="screenshots/ScreenShot 5.jpg" width="30%">    <img src="screenshots/ScreenShot 6.jpg" width="30%">    <img src="screenshots/ScreenShot 7.jpg" width="30%">    <img src="screenshots/ScreenShot 8.jpg" width="30%">    <img src="screenshots/ScreenShot 9.jpg" width="30%">    <img src="screenshots/ScreenShot 10.jpg" width="30%">   <img src="screenshots/ScreenShot 11.jpg" width="30%">   <img src="screenshots/ScreenShot 12.jpg" width="30%">   <img src="screenshots/ScreenShot 13.jpg" width="30%">   <img src="screenshots/ScreenShot 14.jpg" width="30%">
 </pre>
 
 
