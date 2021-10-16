@@ -153,6 +153,7 @@
             android:backgroundTint="@color/colorAccent"
             android:fontFamily="@font/poppins_semibold"
             android:text="@string/buy_ticket"
+            android:visibility="gone"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:theme="@style/AppTheme"
